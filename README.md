@@ -4,11 +4,23 @@ Local any-file-to-Markdown for Node.js. Drop office documents, PDFs, or images i
 
 ## Install
 
-Node.js 22 or 24 is required.
+Node.js 22 or 24 is required. Install from GitHub; the package is not published to the npm registry.
 
 ```bash
-npm install here-docs
+npm install github:AkaraChen/here-docs
 ```
+
+or in `package.json`:
+
+```json
+"here-docs": "github:AkaraChen/here-docs"
+```
+
+```json
+"here-docs": "git+https://github.com/AkaraChen/here-docs.git"
+```
+
+Git and local installs run `prepare` (`tsc`) so `dist/` exists before the package is linked.
 
 ## Programmable API
 

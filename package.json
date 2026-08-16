@@ -20,10 +20,19 @@
   "engines": {
     "node": ">=22"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AkaraChen/here-docs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AkaraChen/here-docs/issues"
+  },
+  "homepage": "https://github.com/AkaraChen/here-docs#readme",
+  "license": "UNLICENSED",
   "scripts": {
     "build": "tsc",
     "test": "tsx --test test/*.test.ts",
-    "prepublishOnly": "tsc"
+    "prepare": "tsc && node -e \"require('node:fs').chmodSync('dist/cli.js', 0o755)\""
   },
   "dependencies": {
     "@arcships/light-ocr": "^0.5.7",
@@ -33,6 +42,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
+    "publint": "^0.3.23",
     "tsx": "^4.20.0",
     "typescript": "^5.9.0"
   }

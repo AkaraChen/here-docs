@@ -1,7 +1,8 @@
 #!/usr/bin/env node
+import { realpathSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import { basename } from "node:path";
-import { pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import { convert } from "./convert.js";
 import { IllegalConvertInputError } from "./errors.js";
@@ -137,7 +138,18 @@ async function readStream(stream: NodeJS.ReadableStream): Promise<Uint8Array> {
   return Buffer.concat(chunks);
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+function invokedAsCli(argv1: string | undefined, moduleUrl: string): boolean {
+  if (!argv1) {
+    return false;
+  }
+  try {
+    return realpathSync(fileURLToPath(moduleUrl)) === realpathSync(argv1);
+  } catch {
+    return false;
+  }
+}
+
+if (invokedAsCli(process.argv[1], import.meta.url)) {
   runCli(process.argv.slice(2)).then(
     (code) => {
       process.exitCode = code;
