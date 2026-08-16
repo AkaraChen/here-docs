@@ -4,8 +4,8 @@ export const ENGINE_VERSIONS = {
   lightOcr: "0.5.7",
   anydoc: "0.1.9",
   pdfInspector: "1.14.2",
-  sharp: "0.34.5",
-  sharpLibvips: "1.2.4",
+  sharp: "0.35.3",
+  sharpLibvips: "1.3.2",
 } as const;
 
 /** Every official optional platform package the four engines publish, pinned to ENGINE_VERSIONS. */
@@ -31,6 +31,7 @@ export const OFFICIAL_OPTIONAL_DEPENDENCIES: Record<string, string> = {
   "@firecrawl/pdf-inspector-win32-x64-msvc": ENGINE_VERSIONS.pdfInspector,
   "@img/sharp-darwin-arm64": ENGINE_VERSIONS.sharp,
   "@img/sharp-darwin-x64": ENGINE_VERSIONS.sharp,
+  "@img/sharp-freebsd-wasm32": ENGINE_VERSIONS.sharp,
   "@img/sharp-linux-arm": ENGINE_VERSIONS.sharp,
   "@img/sharp-linux-arm64": ENGINE_VERSIONS.sharp,
   "@img/sharp-linux-ppc64": ENGINE_VERSIONS.sharp,
@@ -39,7 +40,7 @@ export const OFFICIAL_OPTIONAL_DEPENDENCIES: Record<string, string> = {
   "@img/sharp-linux-x64": ENGINE_VERSIONS.sharp,
   "@img/sharp-linuxmusl-arm64": ENGINE_VERSIONS.sharp,
   "@img/sharp-linuxmusl-x64": ENGINE_VERSIONS.sharp,
-  "@img/sharp-wasm32": ENGINE_VERSIONS.sharp,
+  "@img/sharp-webcontainers-wasm32": ENGINE_VERSIONS.sharp,
   "@img/sharp-win32-arm64": ENGINE_VERSIONS.sharp,
   "@img/sharp-win32-ia32": ENGINE_VERSIONS.sharp,
   "@img/sharp-win32-x64": ENGINE_VERSIONS.sharp,
