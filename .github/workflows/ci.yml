@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  supported:
+    name: ${{ matrix.os }} / Node ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, ubuntu-24.04-arm, windows-2025, macos-15]
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - name: Install with optional platform packages
+        run: npm ci
+      - run: npm test
+      - name: Convert smoke from the repo build
+        run: npm run smoke
+      - name: Convert smoke after packed consumer install
+        shell: bash
+        run: |
+          npm pack
+          consumer="${RUNNER_TEMP}/here-docs-consumer"
+          mkdir -p "$consumer"
+          cd "$consumer"
+          npm init -y
+          npm install "$GITHUB_WORKSPACE/here-docs-0.1.0.tgz"
+          HERE_DOCS_SMOKE_PACKAGE=1 node "$GITHUB_WORKSPACE/scripts/smoke-convert.js"
+
+  unsupported-musl:
+    name: alpine musl fail-closed
+    runs-on: ubuntu-24.04
+    container: node:22-alpine
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install JavaScript without optional addons
+        run: npm ci --ignore-scripts
+      - run: npm run build
+      - name: Engine startup must fail closed
+        run: node scripts/smoke-unsupported.js

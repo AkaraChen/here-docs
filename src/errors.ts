@@ -19,6 +19,29 @@ export class IllegalConvertInputError extends TypeError {
   }
 }
 
+export class UnsupportedPlatformError extends Error {
+  readonly code = "unsupported-platform";
+
+  constructor(platform: string, reason: string) {
+    super(`here-docs cannot start on ${platform}: ${reason}`);
+    this.name = "UnsupportedPlatformError";
+  }
+}
+
+export class MissingPlatformPackageError extends Error {
+  readonly code = "missing-platform-package";
+  readonly packages: readonly string[];
+
+  constructor(packages: readonly string[], platform: string) {
+    super(
+      `here-docs is missing native packages for ${platform}: ${packages.join(", ")}. ` +
+        "Reinstall without omitting optional dependencies (do not use --omit=optional or optional=false).",
+    );
+    this.name = "MissingPlatformPackageError";
+    this.packages = packages;
+  }
+}
+
 export function isUint8Array(value: unknown): value is Uint8Array {
   return value instanceof Uint8Array;
 }

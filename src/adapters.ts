@@ -1,3 +1,4 @@
+import { assertNativePackages } from "./natives.js";
 import type {
   AnydocDocument,
   AnydocPort,
@@ -10,6 +11,7 @@ import type {
 } from "./types.js";
 
 export async function createEngine(): Promise<ConvertEngine> {
+  assertNativePackages();
   const [anydoc, ocr, pdf, images] = await Promise.all([
     createAnydocPort(),
     createOcrPort(),

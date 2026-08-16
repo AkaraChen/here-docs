@@ -15,7 +15,8 @@
     "here-docs": "./dist/cli.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "scripts"
   ],
   "engines": {
     "node": ">=22"
@@ -32,13 +33,60 @@
   "scripts": {
     "build": "tsc",
     "test": "tsx --test test/*.test.ts",
-    "prepare": "tsc && node -e \"require('node:fs').chmodSync('dist/cli.js', 0o755)\""
+    "smoke": "node scripts/smoke-convert.js",
+    "prepare": "tsc && node -e \"require('node:fs').chmodSync('dist/cli.js', 0o755)\"",
+    "postinstall": "node scripts/check-natives.js"
   },
   "dependencies": {
-    "@arcships/light-ocr": "^0.5.7",
-    "@firecrawl/anydoc": "^0.1.9",
-    "@firecrawl/pdf-inspector": "^1.14.2",
-    "sharp": "^0.34.0"
+    "@arcships/light-ocr": "0.5.7",
+    "@firecrawl/anydoc": "0.1.9",
+    "@firecrawl/pdf-inspector": "1.14.2",
+    "sharp": "0.34.5"
+  },
+  "optionalDependencies": {
+    "@arcships/light-ocr-darwin-arm64": "0.5.7",
+    "@arcships/light-ocr-darwin-x64": "0.5.7",
+    "@arcships/light-ocr-linux-arm64-gnu": "0.5.7",
+    "@arcships/light-ocr-linux-x64-gnu": "0.5.7",
+    "@arcships/light-ocr-win32-arm64": "0.5.7",
+    "@arcships/light-ocr-win32-x64": "0.5.7",
+    "@firecrawl/anydoc-darwin-arm64": "0.1.9",
+    "@firecrawl/anydoc-darwin-x64": "0.1.9",
+    "@firecrawl/anydoc-linux-arm64-gnu": "0.1.9",
+    "@firecrawl/anydoc-linux-arm64-musl": "0.1.9",
+    "@firecrawl/anydoc-linux-x64-gnu": "0.1.9",
+    "@firecrawl/anydoc-linux-x64-musl": "0.1.9",
+    "@firecrawl/anydoc-win32-x64-msvc": "0.1.9",
+    "@firecrawl/pdf-inspector-darwin-arm64": "1.14.2",
+    "@firecrawl/pdf-inspector-linux-arm64-gnu": "1.14.2",
+    "@firecrawl/pdf-inspector-linux-arm64-musl": "1.14.2",
+    "@firecrawl/pdf-inspector-linux-x64-gnu": "1.14.2",
+    "@firecrawl/pdf-inspector-linux-x64-musl": "1.14.2",
+    "@firecrawl/pdf-inspector-win32-x64-msvc": "1.14.2",
+    "@img/sharp-darwin-arm64": "0.34.5",
+    "@img/sharp-darwin-x64": "0.34.5",
+    "@img/sharp-linux-arm": "0.34.5",
+    "@img/sharp-linux-arm64": "0.34.5",
+    "@img/sharp-linux-ppc64": "0.34.5",
+    "@img/sharp-linux-riscv64": "0.34.5",
+    "@img/sharp-linux-s390x": "0.34.5",
+    "@img/sharp-linux-x64": "0.34.5",
+    "@img/sharp-linuxmusl-arm64": "0.34.5",
+    "@img/sharp-linuxmusl-x64": "0.34.5",
+    "@img/sharp-wasm32": "0.34.5",
+    "@img/sharp-win32-arm64": "0.34.5",
+    "@img/sharp-win32-ia32": "0.34.5",
+    "@img/sharp-win32-x64": "0.34.5",
+    "@img/sharp-libvips-darwin-arm64": "1.2.4",
+    "@img/sharp-libvips-darwin-x64": "1.2.4",
+    "@img/sharp-libvips-linux-arm": "1.2.4",
+    "@img/sharp-libvips-linux-arm64": "1.2.4",
+    "@img/sharp-libvips-linux-ppc64": "1.2.4",
+    "@img/sharp-libvips-linux-riscv64": "1.2.4",
+    "@img/sharp-libvips-linux-s390x": "1.2.4",
+    "@img/sharp-libvips-linux-x64": "1.2.4",
+    "@img/sharp-libvips-linuxmusl-arm64": "1.2.4",
+    "@img/sharp-libvips-linuxmusl-x64": "1.2.4"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

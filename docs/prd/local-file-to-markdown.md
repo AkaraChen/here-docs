@@ -14,6 +14,7 @@ Callers receive mixed office documents, PDFs, and images and need a readable tex
 - Convert a supported file to one Markdown manuscript, locally, with no network requirement at runtime.
 - Route automatically: office documents through structured conversion plus embedded-image OCR; raster images through OCR only; PDFs through text extraction and per-page OCR where needed.
 - Stay best-effort: return whatever manuscript can be produced, with warnings for skipped parts.
+- After a normal install on a supported host, `createEngine()` can load every native engine. This is not macOS-only.
 
 ## Non-goals
 
@@ -42,6 +43,7 @@ Supported v1 inputs:
 
 - Success: `markdown` is a string, possibly empty, and `warnings` lists skipped pages, assets, transcodes, or unsupported/encrypted inputs.
 - Illegal call: the programmable API throws when it is not given bytes or an engine.
+- Engine startup failure: `createEngine()` throws when the host is unsupported or a required native platform package is missing. This is not a convert warning. The CLI prints the error and exits 1 without calling `convert()`.
 - CLI I/O failure: unreadable path, empty stdin, or invalid usage exits 1 and does not call `convert()`.
 - Encrypted, unknown, or unconvertible input: `markdown` is empty and a warning is present. The API does not throw.
 - Single-page or single-asset OCR failure: that part is skipped, a warning is recorded, and the rest of the manuscript is returned.
@@ -58,6 +60,9 @@ Supported v1 inputs:
 - Encrypted or unknown types return empty Markdown plus a warning and do not throw.
 - `convert()` accepts only bytes and a caller-owned engine; a string argument or a missing engine is an illegal call.
 - The CLI accepts a filesystem path or stdin (`-` or a pipe). `--json` prints the same `{ markdown, warnings }` object as the API.
+- On `darwin-arm64`, `linux-x64-gnu`, `linux-arm64-gnu`, and `win32-x64`, a GitHub or registry-style install that does not omit optional dependencies can call `createEngine()` and convert a raster image.
+- A host missing an upstream addon (Intel macOS, musl Linux, Windows ARM) fails at `createEngine()` with that gap named.
+- Omitting optional dependencies fails install or `createEngine()`, not a completed convert with empty Markdown.
 
 ## Exclusions and resolved product decisions
 
@@ -66,3 +71,5 @@ Supported v1 inputs:
 - `convert()` does not create or close the OCR engine. The caller does.
 - Path and stdin are mutually exclusive on the CLI.
 - A completed `convert()` — including empty Markdown with warnings — is a successful CLI run (exit 0).
+- Native addons are required on every supported OS. A macOS-only package list is not sufficient.
+- `--omit=optional` / `optional=false` is unsupported.

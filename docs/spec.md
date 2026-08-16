@@ -30,7 +30,7 @@ Out of scope: HTTP services, decrypting files, audio/video, directory batch conv
 
 ### convert
 
-- `createEngine()` returns an engine the caller must close.
+- `createEngine()` returns an engine the caller must close. It throws when the host is unsupported or a required native platform package cannot be resolved. Those failures are not convert warnings.
 - `convert(input, options)` accepts `input` as `Uint8Array` (including Node `Buffer`) and requires `options.engine`. A string, missing bytes, or missing engine is an illegal call and throws.
 - `convert()` never creates or closes an engine.
 - `options.filename` is a format hint only.
@@ -74,6 +74,8 @@ Detection prefers content signatures. CSV and other signature-less formats requi
 - Commit attempts should re-check the working tree against this specification and relevant PRDs/ADRs before landing.
 - Runtime is Node.js 22 or 24.
 - Conversion is local: no network service is required after install.
+- Supported native hosts are `darwin-arm64`, `linux-x64-gnu`, `linux-arm64-gnu`, and `win32-x64`. Every official platform package those engines publish is declared so installers on each host receive their matching addon. Optional dependencies must not be omitted.
+- Continuous integration must exercise those four hosts with a real engine start and convert, and must show that an unsupported musl host fails closed at startup.
 
 ## Current implementation status
 

@@ -33,6 +33,7 @@ Project: `here-docs`.
 - Install: `npm install` (runs `prepare`: `tsc` and chmod `dist/cli.js`)
 - Build: `npm run build`
 - Test: `npm test`
+- Smoke (real natives): `npm run smoke`
 - CLI (after build): `node dist/cli.js <file>` or `npx here-docs <file>`
 - Consumer install: `npm install github:AkaraChen/here-docs` (not the npm registry)
 
