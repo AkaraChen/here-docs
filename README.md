@@ -24,19 +24,25 @@ Git and local installs run `prepare` (`tsc`) so `dist/` exists before the packag
 
 ## Programmable API
 
-`convert()` accepts **bytes only**. Read the file yourself. A string path is an illegal call and throws.
+`convert()` accepts **bytes only** and a caller-owned **engine**. Read the file yourself. Create and close the engine yourself. A string path or a missing engine is an illegal call and throws.
 
 ```ts
 import { readFile } from "node:fs/promises";
-import { convert } from "here-docs";
+import { convert, createEngine } from "here-docs";
 
-const { markdown, warnings } = await convert(await readFile("report.docx"), {
-  filename: "report.docx",
-});
+const engine = await createEngine();
+try {
+  const { markdown, warnings } = await convert(await readFile("report.docx"), {
+    filename: "report.docx",
+    engine,
+  });
 
-console.log(markdown);
-for (const warning of warnings) {
-  console.warn(warning.code, warning.message);
+  console.log(markdown);
+  for (const warning of warnings) {
+    console.warn(warning.code, warning.message);
+  }
+} finally {
+  await engine.close();
 }
 ```
 

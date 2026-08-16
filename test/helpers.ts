@@ -2,6 +2,7 @@ import type {
   AnydocDocument,
   AnydocPort,
   ConvertDeps,
+  ConvertEngine,
   ImageNormalizerPort,
   OcrLine,
   OcrPage,
@@ -21,7 +22,7 @@ export const pdfBytes = Uint8Array.from(Buffer.from("%PDF-1.4\n%eof\n"));
 
 export const gifBytes = Uint8Array.from(Buffer.from("GIF89a"));
 
-export function fakeDeps(overrides: Partial<ConvertDeps> = {}): ConvertDeps & {
+export function fakeDeps(overrides: Partial<ConvertDeps> = {}): ConvertEngine & {
   ocrCalls: { encoded: number; document: Array<{ start?: number; end?: number }> };
 } {
   const ocrCalls = { encoded: 0, document: [] as Array<{ start?: number; end?: number }> };
@@ -62,7 +63,14 @@ export function fakeDeps(overrides: Partial<ConvertDeps> = {}): ConvertDeps & {
       return bytes;
     },
   };
-  return { anydoc, ocr, pdf, images, ocrCalls };
+  return {
+    anydoc,
+    ocr,
+    pdf,
+    images,
+    ocrCalls,
+    close: () => ocr.close(),
+  };
 }
 
 export function emptyDocument(): AnydocDocument {

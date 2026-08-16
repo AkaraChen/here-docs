@@ -4,6 +4,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
+import { createEngine } from "./adapters.js";
 import { convert } from "./convert.js";
 import { IllegalConvertInputError } from "./errors.js";
 import type { ConvertOptions, ConvertResult } from "./types.js";
@@ -95,8 +96,9 @@ export async function runCli(
   }
 
   try {
-    const convertFn = io.convert ?? convert;
-    const result = await convertFn(bytes, { filename });
+    const result = io.convert
+      ? await io.convert(bytes, { filename } as ConvertOptions)
+      : await convertWithOwnedEngine(bytes, filename);
     const output = values.json ? `${JSON.stringify(result, null, 2)}\n` : result.markdown;
     if (values.output) {
       await io.writeFile(values.output, output);
@@ -116,6 +118,18 @@ export async function runCli(
     }
     io.stderr.write(`${error instanceof Error ? error.message : "conversion failed"}\n`);
     return 1;
+  }
+}
+
+async function convertWithOwnedEngine(
+  bytes: Uint8Array,
+  filename: string | undefined,
+): Promise<ConvertResult> {
+  const engine = await createEngine();
+  try {
+    return await convert(bytes, { filename, engine });
+  } finally {
+    await engine.close();
   }
 }
 

@@ -1,7 +1,7 @@
 import type {
   AnydocDocument,
   AnydocPort,
-  ConvertDeps,
+  ConvertEngine,
   ImageNormalizerPort,
   OcrPort,
   PdfClassification,
@@ -9,14 +9,20 @@ import type {
   PdfProcessResult,
 } from "./types.js";
 
-export async function createDefaultDeps(): Promise<ConvertDeps> {
+export async function createEngine(): Promise<ConvertEngine> {
   const [anydoc, ocr, pdf, images] = await Promise.all([
     createAnydocPort(),
     createOcrPort(),
     createPdfPort(),
     createImagePort(),
   ]);
-  return { anydoc, ocr, pdf, images };
+  return {
+    anydoc,
+    ocr,
+    pdf,
+    images,
+    close: () => ocr.close(),
+  };
 }
 
 async function createAnydocPort(): Promise<AnydocPort> {

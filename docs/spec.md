@@ -4,7 +4,7 @@
 
 `here-docs` converts supported local file bytes into one Markdown manuscript. The programmable API accepts only bytes. The CLI is the only surface that reads a filesystem path or stdin.
 
-Out of scope: HTTP services, a public OCR session API, decrypting files, audio/video, directory batch conversion, and the programmable API reading paths.
+Out of scope: HTTP services, decrypting files, audio/video, directory batch conversion, and the programmable API reading paths.
 
 ## Terminology
 
@@ -16,6 +16,7 @@ Out of scope: HTTP services, a public OCR session API, decrypting files, audio/v
 - **Warning**: a structured `{ code, message }` describing a skipped or degraded part. Warnings do not fail a completed conversion.
 - **Strategy**: the routing choice for a detected input kind (image, office, PDF, or unknown).
 - **Filename hint**: an optional name or extension used only to detect signature-less formats. It is never a path to read.
+- **Engine**: the caller-owned handle from `createEngine()`. It must be passed to `convert()` and closed by the caller.
 
 ## Observable contracts
 
@@ -29,7 +30,9 @@ Out of scope: HTTP services, a public OCR session API, decrypting files, audio/v
 
 ### convert
 
-- `convert(input, options?)` accepts `input` as `Uint8Array` (including Node `Buffer`). A string or missing bytes is an illegal call and throws.
+- `createEngine()` returns an engine the caller must close.
+- `convert(input, options)` accepts `input` as `Uint8Array` (including Node `Buffer`) and requires `options.engine`. A string, missing bytes, or missing engine is an illegal call and throws.
+- `convert()` never creates or closes an engine.
 - `options.filename` is a format hint only.
 - A completed call resolves to `{ markdown: string, warnings: Array<{ code: string, message: string }> }`.
 - `markdown` is always a string. It may be empty when nothing useful could be extracted.
@@ -39,7 +42,7 @@ Out of scope: HTTP services, a public OCR session API, decrypting files, audio/v
 ### CLI
 
 - The CLI reads either one filesystem path or stdin (`-`, or no path when stdin is not a TTY). Path and stdin are mutually exclusive.
-- After bytes are read, the CLI calls the same `convert()` contract. `--filename` / `--format` become the filename hint.
+- After bytes are read, the CLI creates an engine, calls the same `convert()` contract, and closes the engine. `--filename` / `--format` become the filename hint.
 - Default output writes `markdown` to stdout and warnings to stderr. `--json` writes the convert result object to stdout.
 - Unreadable path, empty stdin, or invalid usage exits 1 without calling `convert()`.
 - A completed `convert()` exits 0, including empty Markdown with warnings.

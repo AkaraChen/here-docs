@@ -10,6 +10,7 @@ export interface ConvertResult {
 
 export interface ConvertOptions {
   filename?: string;
+  engine: ConvertEngine;
 }
 
 export type ImageFormat = "jpeg" | "png" | "gif" | "webp" | "tiff" | "heic";
@@ -166,4 +167,8 @@ export interface ConvertDeps {
   ocr: OcrPort;
   pdf: PdfInspectorPort;
   images: ImageNormalizerPort;
+}
+
+export interface ConvertEngine extends ConvertDeps {
+  close(): Promise<void>;
 }

@@ -28,7 +28,7 @@ test("text-based PDFs keep structured markdown and skip whole-document OCR", asy
       },
     },
   });
-  const result = await convert(pdfBytes, {}, deps);
+  const result = await convert(pdfBytes, { engine: deps });
   assert.match(result.markdown, /Page one/);
   assert.match(result.markdown, /Page two/);
   assert.equal(ocr.documentRanges.length, 0);
@@ -53,7 +53,7 @@ test("scanned PDFs OCR the whole document", async () => {
       },
     },
   });
-  const result = await convert(pdfBytes, {}, deps);
+  const result = await convert(pdfBytes, { engine: deps });
   assert.match(result.markdown, /scan-a/);
   assert.match(result.markdown, /scan-b/);
   assert.equal(ocr.documentRanges.length, 1);
@@ -80,7 +80,7 @@ test("mixed PDFs OCR only pagesNeedingOcr using 1-based ranges", async () => {
       },
     },
   });
-  const result = await convert(pdfBytes, {}, deps);
+  const result = await convert(pdfBytes, { engine: deps });
   assert.match(result.markdown, /Digital one/);
   assert.match(result.markdown, /scanned middle/);
   assert.match(result.markdown, /Digital three/);
