@@ -28,11 +28,12 @@ Before any commit, review staged, unstaged, and untracked changes against `docs/
 
 # Commands
 
-Project: `project`.
+Project: `here-docs`.
 
-Document the repository's real build, test, lint, and format commands here after the first 质问 or when the stack is known.
-
-- Prefer the project's existing package manager and scripts over inventing new ones.
+- Install: `npm install`
+- Build: `npm run build`
+- Test: `npm test`
+- CLI (after build): `node dist/cli.js <file>` or `npx here-docs <file>`
 
 # Code style
 
