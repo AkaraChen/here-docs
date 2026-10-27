@@ -15,6 +15,8 @@ test("every supported host requires addons from all four engines", () => {
     hostPlatform({ platform: "darwin", arch: "arm64" }),
     hostPlatform({ platform: "linux", arch: "x64", libc: "gnu" }),
     hostPlatform({ platform: "linux", arch: "arm64", libc: "gnu" }),
+    hostPlatform({ platform: "linux", arch: "x64", libc: "musl" }),
+    hostPlatform({ platform: "linux", arch: "arm64", libc: "musl" }),
     hostPlatform({ platform: "win32", arch: "x64" }),
   ];
 
@@ -29,6 +31,11 @@ test("every supported host requires addons from all four engines", () => {
     assert.match(names, /@firecrawl\/anydoc-/);
     assert.match(names, /@firecrawl\/pdf-inspector-/);
     assert.match(names, /@img\/sharp-/);
+    if (host.libc) {
+      // gnu and musl addons are different binaries; a host must never load the other libc's build.
+      const other = host.libc === "gnu" ? "musl" : "gnu";
+      assert.doesNotMatch(names, new RegExp(`-${other}\\b|linux${other}-`), host.id);
+    }
   }
 });
 
@@ -43,14 +50,6 @@ test("unsupported hosts fail closed with the upstream gap named", () => {
     {
       host: hostPlatform({ platform: "darwin", arch: "x64" }),
       fragment: "pdf-inspector",
-    },
-    {
-      host: hostPlatform({ platform: "linux", arch: "x64", libc: "musl" }),
-      fragment: "light-ocr",
-    },
-    {
-      host: hostPlatform({ platform: "linux", arch: "arm64", libc: "musl" }),
-      fragment: "light-ocr",
     },
     {
       host: hostPlatform({ platform: "win32", arch: "arm64" }),

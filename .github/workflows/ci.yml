@@ -59,12 +59,43 @@ jobs:
           bun add "$GITHUB_WORKSPACE/here-docs-0.1.0.tgz"
           HERE_DOCS_SMOKE_PACKAGE=1 bun "$GITHUB_WORKSPACE/scripts/smoke-convert.js"
 
-  unsupported-musl:
-    name: alpine musl fail-closed
-    runs-on: ubuntu-24.04
-    container: node:22-alpine
+  musl:
+    name: alpine musl ${{ matrix.arch }} / Node ${{ matrix.node }}
+    # JavaScript actions cannot run inside Alpine containers on arm64 runners, so check out on the
+    # host and run every step in the container.
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { arch: x64, runner: ubuntu-24.04, node: 22 }
+          - { arch: x64, runner: ubuntu-24.04, node: 24 }
+          - { arch: arm64, runner: ubuntu-24.04-arm, node: 22 }
+          - { arch: arm64, runner: ubuntu-24.04-arm, node: 24 }
     steps:
       - uses: actions/checkout@v7
+      - name: Test and convert smoke in node:${{ matrix.node }}-alpine
+        run: |
+          docker run --rm -v "$PWD:/src:ro" node:${{ matrix.node }}-alpine sh -euc '
+            cp -r /src /work && cd /work
+            npm ci
+            npm test
+            npm run smoke
+            npm pack
+            mkdir /consumer && cd /consumer && npm init -y
+            npm install /work/here-docs-0.1.0.tgz
+            HERE_DOCS_SMOKE_PACKAGE=1 node /work/scripts/smoke-convert.js
+          '
+
+  unsupported-darwin-x64:
+    name: macOS x64 fail-closed
+    runs-on: macos-15-intel
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
       - name: Install JavaScript without optional addons
         run: npm ci --ignore-scripts
       - run: npm run build

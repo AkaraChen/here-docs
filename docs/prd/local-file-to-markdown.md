@@ -60,8 +60,8 @@ Supported v1 inputs:
 - Encrypted or unknown types return empty Markdown plus a warning and do not throw.
 - `convert()` accepts only bytes and a caller-owned engine; a string argument or a missing engine is an illegal call.
 - The CLI accepts a filesystem path or stdin (`-` or a pipe). `--json` prints the same `{ markdown, warnings }` object as the API.
-- On `darwin-arm64`, `linux-x64-gnu`, `linux-arm64-gnu`, and `win32-x64`, a GitHub or registry-style install that does not omit optional dependencies can call `createEngine()` and convert a raster image.
-- A host missing an upstream addon (Intel macOS, musl Linux, Windows ARM) fails at `createEngine()` with that gap named.
+- On `darwin-arm64`, `linux-x64-gnu`, `linux-arm64-gnu`, `linux-x64-musl`, `linux-arm64-musl`, and `win32-x64`, a GitHub or registry-style install that does not omit optional dependencies can call `createEngine()` and convert a raster image.
+- A host missing an upstream addon (Intel macOS, Windows ARM) fails at `createEngine()` with that gap named.
 - Omitting optional dependencies fails install or `createEngine()`, not a completed convert with empty Markdown.
 
 ## Exclusions and resolved product decisions

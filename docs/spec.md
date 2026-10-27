@@ -85,8 +85,8 @@ Detection prefers content signatures. CSV and other signature-less formats requi
 - Commit attempts should re-check the working tree against this specification and relevant PRDs/ADRs before landing.
 - Runtime is Node.js 22 or 24. Bun is supported as a consumer runtime: the `bun` export condition loads the TypeScript source, so no build step is needed.
 - Conversion is local: no network service is required after install.
-- Supported native hosts are `darwin-arm64`, `linux-x64-gnu`, `linux-arm64-gnu`, and `win32-x64`. Every official platform package those engines publish is declared so installers on each host receive their matching addon. Optional dependencies must not be omitted.
-- Continuous integration must exercise those four hosts with a real engine start and convert, and must show that an unsupported musl host fails closed at startup.
+- Supported native hosts are `darwin-arm64`, `linux-x64-gnu`, `linux-arm64-gnu`, `linux-x64-musl`, `linux-arm64-musl`, and `win32-x64`. Every official platform package those engines publish is declared so installers on each host receive their matching addon. Optional dependencies must not be omitted.
+- Continuous integration must exercise every supported host with a real engine start and convert, and must show that an unsupported host (Intel macOS) fails closed at startup.
 
 ## Current implementation status
 
