@@ -22,7 +22,7 @@ or in `package.json`:
 
 Git and local installs run `prepare` (`tsc`) so `dist/` exists before the package is linked.
 
-Bun resolves the `bun` export condition to the TypeScript source (`src/index.ts`), so a Bun install needs no build step: `bun add github:AkaraChen/here-docs` works even though Bun does not run `prepare` for untrusted dependencies. Bun 1.4 or later is tested in CI on Linux x64. `bun build --compile` executables cannot load the native engines from disk; run under `bun` instead.
+Bun resolves the `bun` export condition (listed first, so TypeScript with `customConditions: ["bun"]` type-checks against the same source) to the TypeScript source (`src/index.ts`), so a Bun install needs no build step: `bun add github:AkaraChen/here-docs` works even though Bun does not run `prepare` for untrusted dependencies. Bun 1.4 or later is tested in CI on Linux x64. `bun build --compile` executables cannot load the native engines from disk; run under `bun` instead.
 
 ## Programmable API
 
