@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 
 export const ENGINE_VERSIONS = {
-  lightOcr: "0.5.7",
+  lightOcr: "0.5.9",
   anydoc: "0.1.9",
   pdfInspector: "1.14.2",
   sharp: "0.35.3",
@@ -13,7 +13,9 @@ export const OFFICIAL_OPTIONAL_DEPENDENCIES: Record<string, string> = {
   "@arcships/light-ocr-darwin-arm64": ENGINE_VERSIONS.lightOcr,
   "@arcships/light-ocr-darwin-x64": ENGINE_VERSIONS.lightOcr,
   "@arcships/light-ocr-linux-arm64-gnu": ENGINE_VERSIONS.lightOcr,
+  "@arcships/light-ocr-linux-arm64-musl": ENGINE_VERSIONS.lightOcr,
   "@arcships/light-ocr-linux-x64-gnu": ENGINE_VERSIONS.lightOcr,
+  "@arcships/light-ocr-linux-x64-musl": ENGINE_VERSIONS.lightOcr,
   "@arcships/light-ocr-win32-arm64": ENGINE_VERSIONS.lightOcr,
   "@arcships/light-ocr-win32-x64": ENGINE_VERSIONS.lightOcr,
   "@firecrawl/anydoc-darwin-arm64": ENGINE_VERSIONS.anydoc,
@@ -59,7 +61,9 @@ export const OFFICIAL_OPTIONAL_DEPENDENCIES: Record<string, string> = {
 export const SUPPORTED_HOST_IDS = [
   "darwin-arm64",
   "linux-arm64-gnu",
+  "linux-arm64-musl",
   "linux-x64-gnu",
+  "linux-x64-musl",
   "win32-x64",
 ] as const;
 
@@ -101,12 +105,26 @@ const REQUIRED_BY_HOST: Record<SupportedHostId, readonly string[]> = {
     "@img/sharp-linux-arm64",
     "@img/sharp-libvips-linux-arm64",
   ],
+  "linux-arm64-musl": [
+    "@arcships/light-ocr-linux-arm64-musl",
+    "@firecrawl/anydoc-linux-arm64-musl",
+    "@firecrawl/pdf-inspector-linux-arm64-musl",
+    "@img/sharp-linuxmusl-arm64",
+    "@img/sharp-libvips-linuxmusl-arm64",
+  ],
   "linux-x64-gnu": [
     "@arcships/light-ocr-linux-x64-gnu",
     "@firecrawl/anydoc-linux-x64-gnu",
     "@firecrawl/pdf-inspector-linux-x64-gnu",
     "@img/sharp-linux-x64",
     "@img/sharp-libvips-linux-x64",
+  ],
+  "linux-x64-musl": [
+    "@arcships/light-ocr-linux-x64-musl",
+    "@firecrawl/anydoc-linux-x64-musl",
+    "@firecrawl/pdf-inspector-linux-x64-musl",
+    "@img/sharp-linuxmusl-x64",
+    "@img/sharp-libvips-linuxmusl-x64",
   ],
   "win32-x64": [
     "@arcships/light-ocr-win32-x64",
@@ -118,8 +136,6 @@ const REQUIRED_BY_HOST: Record<SupportedHostId, readonly string[]> = {
 
 const UPSTREAM_GAPS: Record<string, string> = {
   "darwin-x64": "@firecrawl/pdf-inspector does not publish a darwin-x64 binary",
-  "linux-arm64-musl": "@arcships/light-ocr does not publish a musl Linux binary",
-  "linux-x64-musl": "@arcships/light-ocr does not publish a musl Linux binary",
   "win32-arm64":
     "@firecrawl/anydoc and @firecrawl/pdf-inspector do not publish win32-arm64 binaries",
 };

@@ -123,11 +123,11 @@ CSV and other signature-less formats need `--filename` / `--format` or `options.
 ## Requirements
 
 - Node.js 22 or 24
-- A supported native host: **macOS arm64**, **Linux x64/arm64 glibc**, or **Windows x64**. Optional platform packages must be installed (do not use `--omit=optional`).
+- A supported native host: **macOS arm64**, **Linux x64/arm64** (glibc or musl/Alpine), or **Windows x64**. Optional platform packages must be installed (do not use `--omit=optional`).
 - Local native engines installed with the package: `@firecrawl/anydoc`, `@firecrawl/pdf-inspector`, `@arcships/light-ocr`, and `sharp`
 - No network service after install
 
-Intel macOS, musl/Alpine Linux, and Windows ARM are not supported: at least one upstream engine does not publish that binary. `createEngine()` throws instead of returning a half-working engine.
+Intel macOS and Windows ARM are not supported: at least one upstream engine does not publish that binary. `createEngine()` throws instead of returning a half-working engine.
 
 ## Development
 
@@ -139,6 +139,6 @@ npm run build
 node dist/cli.js --help
 ```
 
-CI runs unit tests and a real `createEngine()` / `convert()` / CLI smoke on the four supported hosts (Linux x64, Linux arm64, macOS arm64, Windows x64) for Node 22 and 24. Alpine/musl is checked only to confirm startup fails closed.
+CI runs unit tests and a real `createEngine()` / `convert()` / CLI smoke on every supported host (Linux x64 and arm64 on glibc and in Alpine/musl, macOS arm64, Windows x64) for Node 22 and 24. Intel macOS is checked only to confirm startup fails closed.
 
 Product contracts live in [`docs/spec.md`](docs/spec.md). Requirements and routing decisions are in [`docs/prd/`](docs/prd/) and [`docs/adr/`](docs/adr/).
