@@ -59,6 +59,29 @@ A completed call always returns:
 
 Encrypted, unknown, or unconvertible inputs resolve with empty `markdown` and at least one warning. They do not throw. Partial OCR or transcode failures keep the rest of the manuscript.
 
+### Page by page
+
+`convertPages()` takes the same arguments and yields the manuscript one part at a time. A PDF yields one part per page, in order, and each page is extracted or OCR'd only when you ask for it, so breaking out of the loop skips the rest. Other inputs yield a single part with `page: null`.
+
+```ts
+import { convertPages } from "here-docs";
+
+const parts = [];
+for await (const part of convertPages(bytes, { filename: "scan.pdf", engine })) {
+  // part: { page: number | null, pageCount: number | null, markdown: string, warnings }
+  parts.push(part.markdown);
+  if (parts.length === 5) break; // pages 6+ are never OCR'd
+}
+```
+
+### Cancellation
+
+Both `convert()` and `convertPages()` accept `signal`. Aborting rejects the call (or the pending iterator step) with `signal.reason`; it is not reported as a warning, and the engine stays usable. A native call that is already running finishes first, so the abort lands within about one page.
+
+```ts
+const result = await convert(bytes, { engine, signal: AbortSignal.timeout(30_000) });
+```
+
 ## CLI
 
 The CLI is the only surface that reads a path or stdin.
@@ -88,7 +111,7 @@ Detection prefers content signatures over the filename.
 | --- | --- |
 | Word, PowerPoint, Excel, OpenDocument, RTF, EPUB, CSV | Structured Markdown via anydoc. Embedded raster images are OCR'd and inserted at the original image position. |
 | Text-based PDF | Structured Markdown. The whole file is not sent through OCR. |
-| Scanned or image-only PDF | OCR Markdown. |
+| Scanned or image-only PDF | OCR Markdown, one page per OCR request, so long scans are not cut off by OCR limits. |
 | Mixed PDF | Extractable pages stay structured; pages that need OCR are recognized and merged in page order. |
 | JPEG, PNG | OCR only. |
 | WebP, TIFF, HEIC, GIF | Transcoded to PNG, then OCR. Transcode failure is a warning, not a throw. |

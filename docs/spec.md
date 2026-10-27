@@ -38,6 +38,16 @@ Out of scope: HTTP services, decrypting files, audio/video, directory batch conv
 - `markdown` is always a string. It may be empty when nothing useful could be extracted.
 - Encrypted, unknown, or unconvertible inputs complete with empty `markdown` and at least one warning. They do not throw.
 - Partial OCR or transcode failures add warnings and keep the rest of the manuscript.
+- `options.signal` (an `AbortSignal`) cancels the call: it rejects with `signal.reason`. An abort is never reported as a warning, and the engine stays usable afterwards.
+
+### convertPages
+
+- `convertPages(input, options)` takes the same arguments as `convert()` and returns an async iterator of parts `{ page, pageCount, markdown, warnings }`.
+- Illegal calls throw synchronously, before iteration starts.
+- A PDF yields one part per page in page order: `page` is 1-based and `pageCount` is the document's page count. Other inputs yield exactly one part with `page: null` and `pageCount: null`.
+- Work for a page happens only when that part is requested. Ending iteration early skips the remaining pages.
+- `markdown` of a part has no trailing newline and may be empty. Warnings belong to the part that produced them.
+- `convert()` equals draining `convertPages()`: non-empty parts joined by a blank line plus a final newline, and all warnings in order.
 
 ### CLI
 
@@ -66,6 +76,7 @@ Detection prefers content signatures. CSV and other signature-less formats requi
 - Scanned or image-only PDFs produce OCR Markdown.
 - Mixed PDFs include structured text for extractable pages and OCR text for pages that need OCR. Needing-OCR pages must not be dropped solely because structured extraction succeeded.
 - PDF page indexes from classification are 0-based. OCR page ranges are 1-based. Routing converts between them.
+- PDF OCR runs one page per OCR request, so a scanned PDF is not limited by the OCR engine's per-request page or pixel limits.
 
 ## System-wide constraints
 
@@ -80,4 +91,5 @@ Detection prefers content signatures. CSV and other signature-less formats requi
 ## Current implementation status
 
 - Local file-to-Markdown is specified in `docs/prd/local-file-to-markdown.md` and `docs/adr/`.
+- Page iteration and cancellation are specified in `docs/prd/page-iteration.md` and `docs/adr/lazy-page-conversion.md`.
 - The programmable API and CLI implement the contracts in this file.

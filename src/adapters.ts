@@ -46,14 +46,15 @@ async function createOcrPort(): Promise<OcrPort> {
   const lightOcr = await import("@arcships/light-ocr");
   const engine = await lightOcr.createEngine();
   return {
-    async recognizeEncoded(bytes) {
-      const result = await engine.recognizeEncoded(bytes);
+    async recognizeEncoded(bytes, options) {
+      const result = await engine.recognizeEncoded(bytes, { signal: options?.signal });
       return { lines: result.lines };
     },
     recognizeDocument(bytes, options) {
       return lightOcr.recognizeDocument(bytes, {
         engine,
         pageRange: options?.pageRange,
+        signal: options?.signal,
       });
     },
     async close() {
@@ -67,8 +68,8 @@ type InspectorModule = {
   classifyPdf?: (buffer: Buffer) => Record<string, unknown>;
   processPdfAsync?: (buffer: Buffer) => Promise<Record<string, unknown>>;
   processPdf?: (buffer: Buffer) => Record<string, unknown>;
-  extractPagesMarkdownAsync?: (buffer: Buffer) => Promise<unknown>;
-  extractPagesMarkdown?: (buffer: Buffer) => unknown;
+  extractPagesMarkdownAsync?: (buffer: Buffer, pages?: number[]) => Promise<unknown>;
+  extractPagesMarkdown?: (buffer: Buffer, pages?: number[]) => unknown;
 };
 
 async function createPdfPort(): Promise<PdfInspectorPort> {
@@ -93,11 +94,11 @@ async function createPdfPort(): Promise<PdfInspectorPort> {
         markdown: typeof result.markdown === "string" ? result.markdown : null,
       } satisfies PdfProcessResult;
     },
-    async extractPagesMarkdown(bytes) {
+    async extractPagesMarkdown(bytes, pages) {
       if (!extractFn) {
         return null;
       }
-      return normalizePages(await extractFn(toBuffer(bytes)));
+      return normalizePages(await extractFn(toBuffer(bytes), pages), pages);
     },
   };
 }
@@ -112,11 +113,13 @@ async function createImagePort(): Promise<ImageNormalizerPort> {
   };
 }
 
-function wrapSync<T>(fn: ((buffer: Buffer) => T) | undefined): ((buffer: Buffer) => Promise<T>) | undefined {
+function wrapSync<A extends unknown[], T>(
+  fn: ((buffer: Buffer, ...args: A) => T) | undefined,
+): ((buffer: Buffer, ...args: A) => Promise<T>) | undefined {
   if (!fn) {
     return undefined;
   }
-  return async (buffer) => fn(buffer);
+  return async (buffer, ...args) => fn(buffer, ...args);
 }
 
 function toBuffer(bytes: Uint8Array): Buffer {
@@ -134,17 +137,22 @@ function normalizeClassification(result: Record<string, unknown>): PdfClassifica
   };
 }
 
-function normalizePages(result: unknown): import("./types.js").ExtractedPdfPage[] | null {
+function normalizePages(
+  result: unknown,
+  requested?: number[],
+): import("./types.js").ExtractedPdfPage[] | null {
   if (!result) {
     return null;
   }
+  // Without a page number on the entry, its position maps to the requested index list (or the document).
+  const fallback = (index: number) => requested?.[index] ?? index;
   if (Array.isArray(result)) {
-    return result.map((page, index) => pageToExtracted(page, index));
+    return result.map((page, index) => pageToExtracted(page, fallback(index)));
   }
   if (typeof result === "object" && result !== null && "pages" in result) {
     const pages = (result as { pages: unknown }).pages;
     if (Array.isArray(pages)) {
-      return pages.map((page, index) => pageToExtracted(page, index));
+      return pages.map((page, index) => pageToExtracted(page, fallback(index)));
     }
   }
   return null;

@@ -11,6 +11,19 @@ export interface ConvertResult {
 export interface ConvertOptions {
   filename?: string;
   engine: ConvertEngine;
+  /** Aborting rejects the call (or the next iterator step) with `signal.reason`. */
+  signal?: AbortSignal;
+}
+
+/** One unit of a manuscript yielded by `convertPages()`. */
+export interface ConvertPart {
+  /** 1-based page number for paged inputs (PDF); null for inputs converted as a whole. */
+  page: number | null;
+  /** Page count of the whole document when known; null otherwise. */
+  pageCount: number | null;
+  /** Markdown for this part, without a trailing newline. May be empty. */
+  markdown: string;
+  warnings: Warning[];
 }
 
 export type ImageFormat = "jpeg" | "png" | "gif" | "webp" | "tiff" | "heic";
@@ -31,10 +44,13 @@ export interface OcrPage {
 }
 
 export interface OcrPort {
-  recognizeEncoded(bytes: Uint8Array): Promise<{ lines: readonly OcrLine[] }>;
+  recognizeEncoded(
+    bytes: Uint8Array,
+    options?: { signal?: AbortSignal },
+  ): Promise<{ lines: readonly OcrLine[] }>;
   recognizeDocument(
     bytes: Uint8Array,
-    options?: { pageRange?: { start: number; end: number } },
+    options?: { pageRange?: { start: number; end: number }; signal?: AbortSignal },
   ): AsyncIterable<OcrPage>;
   close(): Promise<void>;
 }
@@ -155,7 +171,8 @@ export interface ExtractedPdfPage {
 export interface PdfInspectorPort {
   classify(bytes: Uint8Array): Promise<PdfClassification>;
   process(bytes: Uint8Array): Promise<PdfProcessResult>;
-  extractPagesMarkdown(bytes: Uint8Array): Promise<ExtractedPdfPage[] | null>;
+  /** `pages` are 0-based indexes; omit for every page. */
+  extractPagesMarkdown(bytes: Uint8Array, pages?: number[]): Promise<ExtractedPdfPage[] | null>;
 }
 
 export interface ImageNormalizerPort {

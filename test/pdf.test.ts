@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { convert } from "../src/convert.js";
-import { toOneBasedRanges } from "../src/ocr.js";
 import { fakeDeps, pdfBytes, trackingOcr } from "./helpers.js";
 
 test("text-based PDFs keep structured markdown and skip whole-document OCR", async () => {
@@ -34,7 +33,7 @@ test("text-based PDFs keep structured markdown and skip whole-document OCR", asy
   assert.equal(ocr.documentRanges.length, 0);
 });
 
-test("scanned PDFs OCR the whole document", async () => {
+test("scanned PDFs OCR every page, one page per OCR request", async () => {
   const ocr = trackingOcr([
     { index: 0, lines: [{ text: "scan-a" }] },
     { index: 1, lines: [{ text: "scan-b" }] },
@@ -56,8 +55,10 @@ test("scanned PDFs OCR the whole document", async () => {
   const result = await convert(pdfBytes, { engine: deps });
   assert.match(result.markdown, /scan-a/);
   assert.match(result.markdown, /scan-b/);
-  assert.equal(ocr.documentRanges.length, 1);
-  assert.deepEqual(ocr.documentRanges[0], {});
+  assert.deepEqual(ocr.documentRanges, [
+    { start: 1, end: 1 },
+    { start: 2, end: 2 },
+  ]);
 });
 
 test("mixed PDFs OCR only pagesNeedingOcr using 1-based ranges", async () => {
@@ -85,11 +86,4 @@ test("mixed PDFs OCR only pagesNeedingOcr using 1-based ranges", async () => {
   assert.match(result.markdown, /scanned middle/);
   assert.match(result.markdown, /Digital three/);
   assert.deepEqual(ocr.documentRanges, [{ start: 2, end: 2 }]);
-});
-
-test("toOneBasedRanges converts 0-based page lists", () => {
-  assert.deepEqual(toOneBasedRanges([0, 1, 4]), [
-    { start: 1, end: 2 },
-    { start: 5, end: 5 },
-  ]);
 });
