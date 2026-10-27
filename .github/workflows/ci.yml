@@ -36,6 +36,29 @@ jobs:
           npm install "$GITHUB_WORKSPACE/here-docs-0.1.0.tgz"
           HERE_DOCS_SMOKE_PACKAGE=1 node "$GITHUB_WORKSPACE/scripts/smoke-convert.js"
 
+  bun:
+    name: ubuntu-24.04 / Bun
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: npm ci
+      - name: Convert smoke after packed consumer install under Bun (TypeScript source, no build)
+        run: |
+          npm pack
+          consumer="${RUNNER_TEMP}/here-docs-bun-consumer"
+          mkdir -p "$consumer"
+          cd "$consumer"
+          echo '{"name":"consumer","type":"module"}' > package.json
+          bun add "$GITHUB_WORKSPACE/here-docs-0.1.0.tgz"
+          HERE_DOCS_SMOKE_PACKAGE=1 bun "$GITHUB_WORKSPACE/scripts/smoke-convert.js"
+
   unsupported-musl:
     name: alpine musl fail-closed
     runs-on: ubuntu-24.04
