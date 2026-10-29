@@ -35,7 +35,8 @@ Project: `here-docs`.
 - Test: `npm test`
 - Smoke (real natives): `npm run smoke`
 - CLI (after build): `node dist/cli.js <file>` or `npx here-docs <file>`
-- Consumer install: `npm install github:AkaraChen/here-docs` (not the npm registry)
+- Consumer install: `npm install here-docs` (npm registry; `github:AkaraChen/here-docs` for unreleased commits)
+- Release: bump `version` in `package.json` and merge to `main`; `.github/workflows/release.yml` publishes it with npm trusted publishing (see `docs/adr/npm-trusted-publishing.md`)
 
 # Code style
 

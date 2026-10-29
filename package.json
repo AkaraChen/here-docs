@@ -18,7 +18,8 @@
   "files": [
     "dist",
     "src",
-    "scripts"
+    "scripts",
+    "LICENSE"
   ],
   "engines": {
     "node": ">=22"
@@ -31,7 +32,8 @@
     "url": "https://github.com/AkaraChen/here-docs/issues"
   },
   "homepage": "https://github.com/AkaraChen/here-docs#readme",
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "author": "akarachen",
   "scripts": {
     "build": "tsc",
     "test": "tsx --test test/*.test.ts",

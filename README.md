@@ -4,25 +4,17 @@ Local any-file-to-Markdown for Node.js. Drop office documents, PDFs, or images i
 
 ## Install
 
-Node.js 22 or 24 is required. Install from GitHub; the package is not published to the npm registry.
+Node.js 22 or 24 is required.
 
 ```bash
-npm install github:AkaraChen/here-docs
+npm install here-docs
 ```
 
-or in `package.json`:
+Releases are published from GitHub Actions with npm trusted publishing, so every version carries a provenance statement linking it to the commit and workflow run that built it. Installing straight from GitHub (`npm install github:AkaraChen/here-docs`) still works for unreleased commits.
 
-```json
-"here-docs": "github:AkaraChen/here-docs"
-```
+The published package ships `dist/`. Git and local installs run `prepare` (`tsc`) so `dist/` exists before the package is linked.
 
-```json
-"here-docs": "git+https://github.com/AkaraChen/here-docs.git"
-```
-
-Git and local installs run `prepare` (`tsc`) so `dist/` exists before the package is linked.
-
-Bun resolves the `bun` export condition (listed first, so TypeScript with `customConditions: ["bun"]` type-checks against the same source) to the TypeScript source (`src/index.ts`), so a Bun install needs no build step: `bun add github:AkaraChen/here-docs` works even though Bun does not run `prepare` for untrusted dependencies. Bun 1.4 or later is tested in CI on Linux x64. `bun build --compile` executables cannot load the native engines from disk; run under `bun` instead.
+Bun resolves the `bun` export condition (listed first, so TypeScript with `customConditions: ["bun"]` type-checks against the same source) to the TypeScript source (`src/index.ts`), so a Bun install needs no build step: `bun add here-docs` (or `bun add github:AkaraChen/here-docs`) works even though Bun does not run `prepare` for untrusted dependencies. Bun 1.4 or later is tested in CI on Linux x64. `bun build --compile` executables cannot load the native engines from disk; run under `bun` instead.
 
 ## Programmable API
 
