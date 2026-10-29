@@ -1,6 +1,6 @@
 {
   "name": "here-docs",
-  "version": "0.1.0-rc.0",
+  "version": "0.1.0",
   "description": "Local any-file-to-Markdown conversion for Node.js",
   "type": "module",
   "main": "./dist/index.js",
