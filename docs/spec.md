@@ -46,7 +46,7 @@ Out of scope: HTTP services, decrypting files, audio/video, directory batch conv
 - Illegal calls throw synchronously, before iteration starts.
 - A PDF yields one part per page in page order: `page` is 1-based and `pageCount` is the document's page count. Other inputs yield exactly one part with `page: null` and `pageCount: null`.
 - Work for a page happens only when that part is requested. Ending iteration early skips the remaining pages.
-- `markdown` of a part has no trailing newline and may be empty. Warnings belong to the part that produced them.
+- `markdown` of a part has no trailing newline and may be empty. An OCR'd page on which nothing is recognized, such as a blank page, has empty `markdown`. Warnings belong to the part that produced them.
 - `convert()` equals draining `convertPages()`: non-empty parts joined by a blank line plus a final newline, and all warnings in order.
 
 ### CLI

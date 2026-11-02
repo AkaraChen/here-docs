@@ -34,5 +34,5 @@ anydoc `ConvertError.code` selects a recovery strategy; it does not by itself de
 
 - A third native dependency is required. It is the same classifier anydoc already uses internally.
 - pdf-inspector page indexes are 0-based; light-ocr `pageRange` is 1-based. Routing must convert explicitly.
-- Encoding-issue flags from the inspector trigger extra OCR on those pages (best-effort).
+- A page whose text layer page extraction flags as unreliable (for example a font without a usable Unicode mapping) is OCR'd. The flag is per page; document-level classification does not report encoding issues.
 - Strategies are unit-tested with injected fakes; native engines stay behind a narrow port.

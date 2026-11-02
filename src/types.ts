@@ -155,7 +155,6 @@ export interface PdfClassification {
   pdfType: string;
   pageCount: number;
   pagesNeedingOcr: number[];
-  hasEncodingIssues?: boolean;
 }
 
 export interface PdfProcessResult extends PdfClassification {
