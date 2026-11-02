@@ -68,7 +68,7 @@ for await (const part of convertPages(bytes, { filename: "scan.pdf", engine })) 
 }
 ```
 
-Each part says where its Markdown came from. `source` is `text` (the document's own text), `ocr`, `mixed` (an office document with OCR text of embedded images inserted), or `none` (nothing could be converted; see `warnings`). A PDF page that was OCR'd also has `ocrReason`: `scanned-document`, `garbled-text` (its text layer does not decode), `page-flagged`, or `extraction-failed`. Everything else has `ocrReason: null`.
+Each part says where its Markdown came from. `source` is `text` (the document's own text), `ocr`, `mixed` (the document's text with OCR text of embedded images inserted), or `none` (nothing could be converted; see `warnings`). A PDF page that was OCR'd also has `ocrReason`: `scanned-document`, `garbled-text` (its text layer does not decode), `page-flagged`, or `extraction-failed`. Everything else has `ocrReason: null`.
 
 ### Cancellation
 
@@ -113,7 +113,7 @@ Detection prefers content signatures over the filename.
 | Input | What happens |
 | --- | --- |
 | Word, PowerPoint, Excel, OpenDocument, RTF, EPUB, CSV | Structured Markdown via anydoc. Embedded raster images are OCR'd and inserted at the original image position. |
-| Text-based PDF | Structured Markdown. The whole file is not sent through OCR. Web and mail link annotations become Markdown links. |
+| Text-based PDF | Structured Markdown. The whole file is not sent through OCR. Web and mail link annotations become Markdown links. Images large enough to hold text are OCR'd and their text inserted after the text above them. |
 | Scanned or image-only PDF | OCR Markdown, one page per OCR request, so long or large scans are not cut off by OCR limits. |
 | Mixed PDF | Extractable pages stay structured; pages that need OCR are recognized and merged in page order. |
 | JPEG, PNG | OCR only. |

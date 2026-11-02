@@ -1,14 +1,18 @@
 import { WarningCode } from "../errors.js";
 import { pageMarkdown } from "../markdown/from-ocr.js";
+import { insertImageText } from "../markdown/pdf-images.js";
 import { spliceLinks } from "../markdown/pdf-links.js";
 import { recognizeDocumentPages } from "../ocr.js";
+import { imagesWorthOcr, recognizeImageText } from "./pdf-images.js";
 import type {
   ConvertDeps,
   ConvertPart,
   ExtractedPdfPage,
   OcrReason,
+  PartSource,
   PdfClassification,
   PdfPageItem,
+  Warning,
 } from "../types.js";
 
 /** Text pages are extracted in growing batches so an early stop does not parse the whole document. */
@@ -83,7 +87,7 @@ export async function* pdfParts(
       const markdown = extracted?.get(index)?.markdown.trim() ?? "";
       yield reason
         ? await ocrPage(bytes, deps, index, pageCount, reason, signal)
-        : textPart(index + 1, pageCount, spliceLinks(markdown, items.get(index) ?? []));
+        : await textPage(bytes, deps, index, pageCount, markdown, items.get(index) ?? [], signal);
     }
   }
 }
@@ -128,6 +132,40 @@ async function extractPages(
     return null;
   }
   return new Map(pages.map((page, position) => [page.page ?? indexes[position] ?? position, page]));
+}
+
+/**
+ * An extracted page, enriched from its positioned items: the OCR text of pictures of text is inserted where the
+ * pictures are, and link annotations become Markdown links. A failed image OCR keeps the page's text with a warning.
+ */
+async function textPage(
+  bytes: Uint8Array,
+  deps: ConvertDeps,
+  index: number,
+  pageCount: number,
+  extracted: string,
+  items: readonly PdfPageItem[],
+  signal: AbortSignal | undefined,
+): Promise<ConvertPart> {
+  let markdown = extracted;
+  let source: PartSource = "text";
+  const warnings: Warning[] = [];
+  if (imagesWorthOcr(items).length > 0) {
+    try {
+      const images = await recognizeImageText(bytes, deps, index, items, signal);
+      if (images.length > 0) {
+        markdown = insertImageText(markdown, items, images);
+        source = "mixed";
+      }
+    } catch (error) {
+      signal?.throwIfAborted();
+      warnings.push({
+        code: WarningCode.pdfImageOcrFailed,
+        message: `page ${index + 1}: ${error instanceof Error ? error.message : "image OCR failed"}`,
+      });
+    }
+  }
+  return { page: index + 1, pageCount, markdown: spliceLinks(markdown, items), warnings, source, ocrReason: null };
 }
 
 /**

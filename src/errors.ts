@@ -10,6 +10,7 @@ export const WarningCode = {
   transcodeFailed: "transcode-failed",
   skippedAsset: "skipped-asset",
   pdfPageOcrFailed: "pdf-page-ocr-failed",
+  pdfImageOcrFailed: "pdf-image-ocr-failed",
 } as const;
 
 export class IllegalConvertInputError extends TypeError {

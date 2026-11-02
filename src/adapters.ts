@@ -54,8 +54,8 @@ async function createOcrPort(): Promise<OcrPort> {
       const result = await engine.recognizeEncoded(bytes, { signal: options?.signal });
       return { lines: result.lines };
     },
-    recognizeDocument(bytes, options) {
-      return lightOcr.recognizeDocument(bytes, {
+    async *recognizeDocument(bytes, options) {
+      const pages = lightOcr.recognizeDocument(bytes, {
         engine,
         pageRange: options?.pageRange,
         dpi: options?.dpi,
@@ -67,6 +67,14 @@ async function createOcrPort(): Promise<OcrPort> {
         maxTotalPixels: Number.MAX_SAFE_INTEGER,
         signal: options?.signal,
       });
+      for await (const page of pages) {
+        const pdf = page.source.appliedTransforms.pdf;
+        yield {
+          index: page.index,
+          lines: page.lines.map((line) => ({ text: line.text, box: line.box })),
+          render: pdf ? { rotation: pdf.rotation, cropBox: pdf.cropBox, scale: pdf.scale } : undefined,
+        };
+      }
     },
     async close() {
       await engine.close();

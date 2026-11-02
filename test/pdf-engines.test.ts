@@ -186,7 +186,15 @@ test("link annotations become Markdown links; unsafe and internal links stay pla
   );
 });
 
-// Known gaps, fixed later in the stack. `todo` tests run and report, but do not fail the suite.
+test("text inside an image on a text page is OCR'd in place; a logo-sized image is not", async (t) => {
+  const parts = await pages("text-with-image.pdf", t);
+  if (!parts) return;
+  assert.equal(parts[0]!.source, "mixed");
+  assert.equal(parts[0]!.ocrReason, null);
+  assert.match(parts[0]!.markdown, /scanned greeting[\s\S]*\n\nHELLO\n\nThe paragraph below the figure/);
+  assert.equal(parts[1]!.source, "text");
+  assert.doesNotMatch(parts[1]!.markdown, /HELLO/);
+});
 
 test("a blank scanned page yields an empty part", async (t) => {
   const parts = await pages("scan-with-blank-page.pdf", t);
@@ -195,7 +203,7 @@ test("a blank scanned page yields an empty part", async (t) => {
   assert.equal(parts[1]!.markdown, "");
 });
 
-
+// Known limitations. `todo` tests run and report, but do not fail the suite.
 
 test("text in an optional content group hidden by default is left out", { todo: "known limitation: pdf-inspector ignores optional content visibility" }, async (t) => {
   const parts = await pages("hidden-layer.pdf", t);
@@ -204,9 +212,3 @@ test("text in an optional content group hidden by default is left out", { todo: 
   assert.doesNotMatch(parts[0]!.markdown, /Hidden layer words/);
 });
 
-test("text inside an image on a text page is OCR'd in place", { todo: "images on text pages are not OCR'd" }, async (t) => {
-  const parts = await pages("text-with-image.pdf", t);
-  if (!parts) return;
-  assert.ok(!ocrd(parts[0]), parts[0]!.markdown);
-  assert.match(parts[0]!.markdown, /scanned greeting[\s\S]*HELLO[\s\S]*below the figure/);
-});
