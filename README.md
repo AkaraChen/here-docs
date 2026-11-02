@@ -113,7 +113,7 @@ Detection prefers content signatures over the filename.
 | Input | What happens |
 | --- | --- |
 | Word, PowerPoint, Excel, OpenDocument, RTF, EPUB, CSV | Structured Markdown via anydoc. Embedded raster images are OCR'd and inserted at the original image position. |
-| Text-based PDF | Structured Markdown. The whole file is not sent through OCR. |
+| Text-based PDF | Structured Markdown. The whole file is not sent through OCR. Web and mail link annotations become Markdown links. |
 | Scanned or image-only PDF | OCR Markdown, one page per OCR request, so long or large scans are not cut off by OCR limits. |
 | Mixed PDF | Extractable pages stay structured; pages that need OCR are recognized and merged in page order. |
 | JPEG, PNG | OCR only. |

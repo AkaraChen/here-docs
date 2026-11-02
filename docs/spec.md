@@ -80,6 +80,7 @@ Detection prefers content signatures. CSV and other signature-less formats requi
 - A scanned page whose only text is an invisible layer (a searchable scan) is OCR'd locally. The invisible layer is never returned as the page's text.
 - Mixed PDFs include structured text for extractable pages and OCR text for pages that need OCR. Needing-OCR pages must not be dropped solely because structured extraction succeeded.
 - A page needs OCR when either the document-level classification or the page-level extraction says so. When they disagree, OCR wins: a page with a little native text in a document classified as scanned or image-based is OCR'd, so its words survive without their structure rather than the scan being dropped.
+- On extracted PDF pages, link annotations with an `http`, `https`, or `mailto` target become Markdown links on the words they cover. A link whose words cannot be found is appended to its page as an autolink. No other link scheme ever becomes a Markdown link.
 - PDF page indexes from classification are 0-based. OCR page ranges are 1-based. Routing converts between them.
 - PDF OCR runs one page per OCR request. The OCR engine's whole-request limits (input size, page count, total pixels) do not limit a PDF: a scanned PDF of any size and length is OCR'd page by page.
 - A page too large to render within the OCR engine's per-page pixel limit is rendered at progressively lower resolutions before it becomes a page warning.
@@ -100,4 +101,5 @@ Detection prefers content signatures. CSV and other signature-less formats requi
 - Local file-to-Markdown is specified in `docs/prd/local-file-to-markdown.md` and `docs/adr/`.
 - Page iteration and cancellation are specified in `docs/prd/page-iteration.md` and `docs/adr/lazy-page-conversion.md`.
 - Part provenance is specified in `docs/prd/part-provenance.md` and `docs/adr/part-provenance.md`.
+- PDF links are specified in `docs/prd/pdf-links.md` and `docs/adr/pdf-link-splice.md`.
 - The programmable API and CLI implement the contracts in this file.

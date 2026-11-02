@@ -31,4 +31,5 @@ Whole-document OCR also has hard per-request limits in light-ocr (`maxPages` 100
 
 - A page whose OCR fails is reported per page (`pdf-page-ocr-failed`) instead of failing the whole scan (`ocr-failed`).
 - Native calls that are already running finish before the abort is observed.
+- Each batch of text pages also reads their positioned items once (links, see `pdf-link-splice.md`), so the batch is still the unit of native work.
 - Page order is preserved; pages are not processed in parallel.
