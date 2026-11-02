@@ -42,6 +42,9 @@ async function createAnydocPort(): Promise<AnydocPort> {
   };
 }
 
+/** light-ocr's ceiling for `maxPages`. */
+const MAX_DOCUMENT_PAGES = 10_000;
+
 async function createOcrPort(): Promise<OcrPort> {
   const lightOcr = await import("@arcships/light-ocr");
   const engine = await lightOcr.createEngine();
@@ -54,6 +57,13 @@ async function createOcrPort(): Promise<OcrPort> {
       return lightOcr.recognizeDocument(bytes, {
         engine,
         pageRange: options?.pageRange,
+        dpi: options?.dpi,
+        // The caller already holds the bytes, so a file-size cap protects nothing; it would only fail every page of
+        // a large PDF. Page count and total pixels are lifted for the same reason: pages are OCR'd one per request,
+        // and a whole-document request must not cut a long scan short. The per-page pixel cap stays.
+        maxFileBytes: Math.max(bytes.byteLength, 1),
+        maxPages: MAX_DOCUMENT_PAGES,
+        maxTotalPixels: Number.MAX_SAFE_INTEGER,
         signal: options?.signal,
       });
     },

@@ -34,7 +34,7 @@ const fixtures = {
   "searchable-scan.pdf": () =>
     documentWith([scanPage({ hiddenText: "Scanner layer words" }), scanPage({ hiddenText: "Scanner layer words" })]),
   "scan-with-blank-page.pdf": () => documentWith([scanPage(), blankPage()]),
-  "large-scanned-page.pdf": () => documentWith([scanPage({ width: 2400, height: 3400 })]),
+  "large-scanned-page.pdf": () => documentWith([scanPage({ width: 4800, height: 1200 })]),
   "cjk-predefined-cmap.pdf": () => documentWith([cjkPage("中文测试")]),
   "links.pdf": () => documentWith([linksPage()]),
   "hidden-layer.pdf": buildHiddenLayer,

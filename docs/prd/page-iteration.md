@@ -37,7 +37,7 @@ Separately, whole-document OCR of a scanned PDF hit the OCR engine's per-request
 ## User-visible states and failure behavior
 
 - Illegal call (not bytes, no engine): `convertPages()` throws synchronously, before iteration. `convert()` rejects as before.
-- A page whose OCR fails yields that page with empty Markdown and a `pdf-page-ocr-failed` warning. Later pages still come.
+- A page whose OCR fails yields that page with empty Markdown and a `pdf-page-ocr-failed` warning. Later pages still come. A page too large for OCR even at the lowest resolution fails this way.
 - Abort before or during a conversion rejects the pending step with `signal.reason`. It is never turned into a warning.
 - After an abort the engine can be used for the next conversion.
 
@@ -48,3 +48,5 @@ Separately, whole-document OCR of a scanned PDF hit the OCR engine's per-request
 - `convert()` output equals the joined parts.
 - An already-aborted signal rejects without doing any work; aborting mid-OCR rejects with the reason, not a warning.
 - A 60-page scanned PDF converts every page.
+- A scanned PDF larger than 100 MiB converts every page.
+- A page too large to render at the default OCR resolution (for example a poster-sized scan) is OCR'd at a lower resolution instead of failing.

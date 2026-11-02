@@ -48,9 +48,10 @@ export interface OcrPort {
     bytes: Uint8Array,
     options?: { signal?: AbortSignal },
   ): Promise<{ lines: readonly OcrLine[] }>;
+  /** `dpi` is the PDF render resolution; omit it for the engine's default. */
   recognizeDocument(
     bytes: Uint8Array,
-    options?: { pageRange?: { start: number; end: number }; signal?: AbortSignal },
+    options?: { pageRange?: { start: number; end: number }; dpi?: number; signal?: AbortSignal },
   ): AsyncIterable<OcrPage>;
   close(): Promise<void>;
 }

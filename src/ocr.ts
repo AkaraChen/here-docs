@@ -18,13 +18,35 @@ export async function recognizeWithRetry(
   }
 }
 
+/**
+ * Render resolutions to retry at when a page is too large for the OCR engine's per-page pixel limit at its default
+ * (150 dpi): halving the resolution quarters the pixels, and 36 dpi is the engine's minimum.
+ */
+export const FALLBACK_DPI = [75, 36] as const;
+
 export async function recognizeDocumentPages(
   ocr: OcrPort,
   bytes: Uint8Array,
   pageRange?: { start: number; end: number },
   signal?: AbortSignal,
 ): Promise<OcrPage[]> {
-  const options = { pageRange, signal };
+  const resolutions: Array<number | undefined> = [undefined, ...FALLBACK_DPI];
+  for (let attempt = 0; ; attempt += 1) {
+    try {
+      return await recognizeDocumentOnce(ocr, bytes, { pageRange, dpi: resolutions[attempt], signal });
+    } catch (error) {
+      if (signal?.aborted || ocrErrorCode(error) !== "resource_limit_exceeded" || attempt + 1 >= resolutions.length) {
+        throw error;
+      }
+    }
+  }
+}
+
+async function recognizeDocumentOnce(
+  ocr: OcrPort,
+  bytes: Uint8Array,
+  options: { pageRange?: { start: number; end: number }; dpi?: number; signal?: AbortSignal },
+): Promise<OcrPage[]> {
   const pages: OcrPage[] = [];
   try {
     for await (const page of ocr.recognizeDocument(bytes, options)) {
@@ -32,7 +54,7 @@ export async function recognizeDocumentPages(
     }
     return pages;
   } catch (error) {
-    if (signal?.aborted || ocrErrorCode(error) !== "inference_failed") {
+    if (options.signal?.aborted || ocrErrorCode(error) !== "inference_failed") {
       throw error;
     }
     const retried: OcrPage[] = [];
