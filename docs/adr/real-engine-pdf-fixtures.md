@@ -31,3 +31,4 @@ Running pdf-inspector on small handcrafted PDFs (the approach unpdf takes for pd
 - Each fixture needs enough text to look like a real page to the classifier (for example at least ten text-showing operators on a page with an image); a too-small fixture tests the classifier's thresholds instead of routing.
 - The suite runs real OCR, a few seconds in total, on every CI host.
 - Upgrading pdf-inspector or light-ocr is checked against these fixtures; a changed engine answer shows up as a failing or newly passing test.
+- Fixture PDFs are byte-exact. `.gitattributes` marks `*.pdf` as binary: a PDF without NUL bytes would otherwise be treated as text, Windows checkouts would convert its line endings, and its cross-reference offsets would break.
