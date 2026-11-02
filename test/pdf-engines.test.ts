@@ -40,9 +40,8 @@ async function pages(name: string, t: { skip: (message: string) => void }): Prom
   return parts;
 }
 
-/** OCR'd PDF pages carry a `## Page N` heading; structured extraction does not. */
 function ocrd(part: ConvertPart | undefined): boolean {
-  return /^## Page \d+/.test(part?.markdown ?? "");
+  return part?.source === "ocr";
 }
 
 test("a text PDF keeps every page structured and runs no OCR", async (t) => {
@@ -65,6 +64,7 @@ test("a scanned PDF is OCR'd page by page", async (t) => {
   assert.equal(parts.length, 2);
   for (const part of parts) {
     assert.ok(ocrd(part), part.markdown);
+    assert.equal(part.ocrReason, "scanned-document");
     assert.match(part.markdown, /HELLO/);
   }
 });
@@ -72,7 +72,14 @@ test("a scanned PDF is OCR'd page by page", async (t) => {
 test("a mixed PDF keeps text pages structured and OCRs only the scanned page", async (t) => {
   const parts = await pages("mixed.pdf", t);
   if (!parts) return;
-  assert.deepEqual(parts.map(ocrd), [false, true, false]);
+  assert.deepEqual(
+    parts.map((part) => [part.source, part.ocrReason]),
+    [
+      ["text", null],
+      ["ocr", "page-flagged"],
+      ["text", null],
+    ],
+  );
   assert.match(parts[0]!.markdown, /Alpha digital page/);
   assert.match(parts[1]!.markdown, /HELLO/);
   assert.match(parts[2]!.markdown, /Gamma digital page/);
@@ -83,7 +90,7 @@ test("a document the classifier calls image-based is OCR'd whole, short text pag
   // page. Routing takes the union, so the title page is OCR'd: its words survive, its structure does not.
   const parts = await pages("short-text-and-scan.pdf", t);
   if (!parts) return;
-  assert.deepEqual(parts.map(ocrd), [true, true, true]);
+  assert.deepEqual(parts.map((part) => part.ocrReason), ["scanned-document", "scanned-document", "scanned-document"]);
   assert.match(parts[0]!.markdown, /Alpha title page/);
   assert.match(parts[1]!.markdown, /HELLO/);
   assert.match(parts[2]!.markdown, /HELLO/);
@@ -102,6 +109,7 @@ test("a searchable scan is OCR'd by light-ocr; its invisible text layer is not u
   assert.equal(parts.length, 2);
   for (const part of parts) {
     assert.ok(ocrd(part), part.markdown);
+    assert.equal(part.ocrReason, "scanned-document");
     assert.match(part.markdown, /HELLO/);
     assert.doesNotMatch(part.markdown, /Scanner layer words/);
   }
@@ -110,7 +118,8 @@ test("a searchable scan is OCR'd by light-ocr; its invisible text layer is not u
 test("a text layer that does not decode falls back to OCR", async (t) => {
   const parts = await pages("cjk-predefined-cmap.pdf", t);
   if (!parts) return;
-  assert.ok(ocrd(parts[0]), parts[0]!.markdown);
+  assert.equal(parts[0]!.source, "ocr");
+  assert.equal(parts[0]!.ocrReason, "garbled-text");
   assert.match(parts[0]!.markdown, /中文测试/);
 });
 

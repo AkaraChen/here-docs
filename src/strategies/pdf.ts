@@ -1,7 +1,7 @@
 import { WarningCode } from "../errors.js";
 import { pageMarkdown } from "../markdown/from-ocr.js";
 import { recognizeDocumentPages } from "../ocr.js";
-import type { ConvertDeps, ConvertPart, ExtractedPdfPage, PdfClassification } from "../types.js";
+import type { ConvertDeps, ConvertPart, ExtractedPdfPage, OcrReason, PdfClassification } from "../types.js";
 
 /** Text pages are extracted in growing batches so an early stop does not parse the whole document. */
 const FIRST_BATCH = 8;
@@ -32,6 +32,8 @@ export async function* pdfParts(
           message: error instanceof Error ? error.message : "PDF classification failed",
         },
       ],
+      source: "none",
+      ocrReason: null,
     };
     return;
   }
@@ -45,7 +47,7 @@ export async function* pdfParts(
       return;
     }
     for (let index = 0; index < pageCount; index += 1) {
-      yield await ocrPage(bytes, deps, index, pageCount, signal);
+      yield await ocrPage(bytes, deps, index, pageCount, "scanned-document", signal);
     }
     return;
   }
@@ -63,14 +65,35 @@ export async function* pdfParts(
     for (const index of indexes) {
       signal?.throwIfAborted();
       const page = extracted?.get(index);
-      const markdown = page?.markdown.trim() ?? "";
-      // A batch that failed to extract keeps its pages by OCR instead of dropping them.
-      const needsOcr = !extracted || needingOcr.has(index) || page?.needsOcr === true;
-      yield needsOcr
-        ? await ocrPage(bytes, deps, index, pageCount, signal)
-        : { page: index + 1, pageCount, markdown, warnings: [] };
+      const reason = ocrReasonFor(page, extracted !== null, needingOcr.has(index));
+      yield reason
+        ? await ocrPage(bytes, deps, index, pageCount, reason, signal)
+        : textPart(index + 1, pageCount, page?.markdown.trim() ?? "");
     }
   }
+}
+
+/** Why a page of a text or mixed document goes to OCR, or null when its extracted text is kept. */
+function ocrReasonFor(
+  page: ExtractedPdfPage | undefined,
+  batchExtracted: boolean,
+  classifierFlagged: boolean,
+): OcrReason | null {
+  if (!batchExtracted) {
+    // A batch that failed to extract keeps its pages by OCR instead of dropping them.
+    return "extraction-failed";
+  }
+  if (page?.ocrReason === "suspected_garbled_text") {
+    return "garbled-text";
+  }
+  if (classifierFlagged || page?.needsOcr === true) {
+    return "page-flagged";
+  }
+  return null;
+}
+
+function textPart(page: number | null, pageCount: number | null, markdown: string): ConvertPart {
+  return { page, pageCount, markdown, warnings: [], source: "text", ocrReason: null };
 }
 
 async function extractPages(
@@ -107,11 +130,11 @@ async function* wholeDocument(
   }
   signal?.throwIfAborted();
   if (markdown?.trim()) {
-    yield { page: null, pageCount: pageCount || null, markdown: markdown.trimEnd(), warnings: [] };
+    yield textPart(null, pageCount || null, markdown.trimEnd());
   }
   for (const index of [...needingOcr].sort((a, b) => a - b)) {
     if (index < pageCount) {
-      yield await ocrPage(bytes, deps, index, pageCount, signal);
+      yield await ocrPage(bytes, deps, index, pageCount, "page-flagged", signal);
     }
   }
 }
@@ -121,6 +144,7 @@ async function ocrPage(
   deps: ConvertDeps,
   index: number,
   pageCount: number,
+  ocrReason: OcrReason,
   signal: AbortSignal | undefined,
 ): Promise<ConvertPart> {
   const page = index + 1;
@@ -128,7 +152,7 @@ async function ocrPage(
   try {
     const pages = await recognizeDocumentPages(deps.ocr, bytes, { start: page, end: page }, signal);
     const lines = pages.flatMap((p) => p.lines);
-    return { page, pageCount, markdown: pageMarkdown(page, lines).trimEnd(), warnings: [] };
+    return { page, pageCount, markdown: pageMarkdown(page, lines).trimEnd(), warnings: [], source: "ocr", ocrReason };
   } catch (error) {
     signal?.throwIfAborted();
     return {
@@ -141,6 +165,8 @@ async function ocrPage(
           message: `page ${page}: ${error instanceof Error ? error.message : "OCR failed"}`,
         },
       ],
+      source: "none",
+      ocrReason,
     };
   }
 }
@@ -153,7 +179,14 @@ async function* ocrWholePdf(
 ): AsyncGenerator<ConvertPart> {
   try {
     for await (const page of deps.ocr.recognizeDocument(bytes, { signal })) {
-      yield { page: page.index + 1, pageCount: null, markdown: pageMarkdown(page.index + 1, page.lines).trimEnd(), warnings: [] };
+      yield {
+        page: page.index + 1,
+        pageCount: null,
+        markdown: pageMarkdown(page.index + 1, page.lines).trimEnd(),
+        warnings: [],
+        source: "ocr",
+        ocrReason: "scanned-document",
+      };
     }
   } catch (error) {
     signal?.throwIfAborted();
@@ -167,6 +200,8 @@ async function* ocrWholePdf(
           message: error instanceof Error ? error.message : "PDF OCR failed",
         },
       ],
+      source: "none",
+      ocrReason: "scanned-document",
     };
   }
 }

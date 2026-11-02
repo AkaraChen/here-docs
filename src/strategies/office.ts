@@ -56,7 +56,7 @@ export async function* officeParts(
     }
   }
 
-  yield wholePart(documentToMarkdown(document, ocrByAssetId), warnings);
+  yield wholePart(documentToMarkdown(document, ocrByAssetId), warnings, ocrByAssetId.size > 0 ? "mixed" : "text");
 }
 
 async function* recoverOfficeError(
@@ -108,7 +108,7 @@ function looksLikePdf(bytes: Uint8Array): boolean {
 }
 
 function warningResult(code: string, message: string): ConvertPart {
-  return wholePart("", [{ code, message }]);
+  return wholePart("", [{ code, message }], "none");
 }
 
 function messageOf(error: unknown, fallback: string): string {

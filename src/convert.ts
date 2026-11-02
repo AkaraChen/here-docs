@@ -51,7 +51,7 @@ async function* parts(
       yield* officeParts(input, detected.format, engine, signal);
       return;
     default:
-      yield wholePart("", [{ code: WarningCode.unknownType, message: "unrecognized file type" }]);
+      yield wholePart("", [{ code: WarningCode.unknownType, message: "unrecognized file type" }], "none");
   }
 }
 

@@ -15,6 +15,19 @@ export interface ConvertOptions {
   signal?: AbortSignal;
 }
 
+/**
+ * Where a part's Markdown came from: the document's own text (`text`), OCR (`ocr`), the document's text with OCR
+ * text of its embedded images spliced in (`mixed`), or nowhere because nothing could be converted (`none`).
+ */
+export type PartSource = "text" | "ocr" | "mixed" | "none";
+
+/**
+ * Why a PDF page was OCR'd instead of extracted: the whole document was classified as scanned or image-based
+ * (`scanned-document`), the page's text layer does not decode (`garbled-text`), the classifier or the page
+ * extractor flagged the page for another reason (`page-flagged`), or structured extraction failed (`extraction-failed`).
+ */
+export type OcrReason = "scanned-document" | "garbled-text" | "page-flagged" | "extraction-failed";
+
 /** One unit of a manuscript yielded by `convertPages()`. */
 export interface ConvertPart {
   /** 1-based page number for paged inputs (PDF); null for inputs converted as a whole. */
@@ -24,6 +37,9 @@ export interface ConvertPart {
   /** Markdown for this part, without a trailing newline. May be empty. */
   markdown: string;
   warnings: Warning[];
+  source: PartSource;
+  /** Set on PDF pages that were routed to OCR, whether or not OCR succeeded; null otherwise. */
+  ocrReason: OcrReason | null;
 }
 
 export type ImageFormat = "jpeg" | "png" | "gif" | "webp" | "tiff" | "heic";
@@ -166,6 +182,8 @@ export interface ExtractedPdfPage {
   markdown: string;
   page?: number;
   needsOcr?: boolean;
+  /** The extractor's machine-readable reason, such as `suspected_garbled_text`, when it knows one. */
+  ocrReason?: string;
 }
 
 export interface PdfInspectorPort {

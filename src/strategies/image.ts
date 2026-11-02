@@ -22,7 +22,7 @@ export async function* imageParts(
         code: WarningCode.transcodeFailed,
         message: error instanceof Error ? error.message : "image transcode failed",
       },
-    ]);
+    ], "none");
     return;
   }
 
@@ -37,8 +37,8 @@ export async function* imageParts(
         code: WarningCode.ocrFailed,
         message: error instanceof Error ? error.message : "image OCR failed",
       },
-    ]);
+    ], "none");
     return;
   }
-  yield wholePart(markdown, []);
+  yield wholePart(markdown, [], "ocr");
 }

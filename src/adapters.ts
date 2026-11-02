@@ -172,11 +172,12 @@ function pageToExtracted(page: unknown, index: number): import("./types.js").Ext
     return { markdown: page, page: index };
   }
   if (page && typeof page === "object") {
-    const record = page as { markdown?: unknown; page?: unknown; needsOcr?: unknown };
+    const record = page as { markdown?: unknown; page?: unknown; needsOcr?: unknown; ocrReason?: unknown };
     return {
       markdown: typeof record.markdown === "string" ? record.markdown : "",
       page: typeof record.page === "number" ? record.page : index,
       needsOcr: typeof record.needsOcr === "boolean" ? record.needsOcr : undefined,
+      ocrReason: typeof record.ocrReason === "string" ? record.ocrReason : undefined,
     };
   }
   return { markdown: "", page: index };
