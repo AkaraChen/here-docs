@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted
+Superseded by `hidden-layer-check.md`, which removes hidden-layer text by checking pages against their rendering.
 
 ## Context and forces
 

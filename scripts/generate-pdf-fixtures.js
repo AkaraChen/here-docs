@@ -148,7 +148,10 @@ function linksPage() {
   };
 }
 
-/** Visible prose plus a line inside an optional content group the document turns off by default. */
+/**
+ * Visible prose, a line in an optional content group the document shows by default, and a line in one it turns off
+ * by default.
+ */
 function buildHiddenLayer() {
   return documentWith(
     [
@@ -157,17 +160,23 @@ function buildHiddenLayer() {
         height: 200,
         content:
           textLines(prose("Visible"), 160) +
-          "\n/OC /Off BDC\n" +
-          textLines(["Hidden layer words"], 60) +
+          "\n/OC /On BDC\n" +
+          textLines(["Shown layer words"], 70) +
+          "\nEMC\n/OC /Off BDC\n" +
+          textLines(["Hidden layer words"], 45) +
           "\nEMC",
         fonts: { F1: HELVETICA },
-        properties: (ocg) => ({ Off: ocg }),
+        properties: (groups) => ({ On: groups.on, Off: groups.off }),
       },
     ],
     {
       catalog: (add, context) => {
-        context.ocg = add("<< /Type /OCG /Name (Draft notes) >>");
-        return `/OCProperties << /OCGs [${context.ocg}] /D << /Order [${context.ocg}] /OFF [${context.ocg}] >> >>`;
+        context.on = add("<< /Type /OCG /Name (Final) >>");
+        context.off = add("<< /Type /OCG /Name (Draft notes) >>");
+        return (
+          `/OCProperties << /OCGs [${context.on} ${context.off}] ` +
+          `/D << /Order [${context.on} ${context.off}] /OFF [${context.off}] >> >>`
+        );
       },
     },
   );
@@ -242,7 +251,7 @@ function documentWith(pages, { catalog: catalogExtra } = {}) {
       resources.push(`/XObject << ${images.join(" ")} >>`);
     }
     if (page.properties) {
-      const entries = Object.entries(page.properties(context.ocg)).map(([name, ref]) => `/${name} ${ref}`);
+      const entries = Object.entries(page.properties(context)).map(([name, ref]) => `/${name} ${ref}`);
       resources.push(`/Properties << ${entries.join(" ")} >>`);
     }
     const contents = add(stream("", Buffer.from(page.content, "latin1")));

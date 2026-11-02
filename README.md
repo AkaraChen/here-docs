@@ -121,7 +121,7 @@ Detection prefers content signatures over the filename.
 
 CSV and other signature-less formats need `--filename` / `--format` or `options.filename`.
 
-Known limitation: on text PDF pages, text in layers (optional content) that the document hides by default is extracted as if visible. The PDF text extractor does not honor layer visibility yet.
+PDF layers (optional content) that a document hides by default are left out. When a document has them, its text pages are checked against their rendering with OCR. A hidden layer placed exactly over visible text, and very small text, are not detected.
 
 ## Requirements
 

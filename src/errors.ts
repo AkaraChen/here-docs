@@ -11,6 +11,7 @@ export const WarningCode = {
   skippedAsset: "skipped-asset",
   pdfPageOcrFailed: "pdf-page-ocr-failed",
   pdfImageOcrFailed: "pdf-image-ocr-failed",
+  pdfLayerCheckFailed: "pdf-layer-check-failed",
 } as const;
 
 export class IllegalConvertInputError extends TypeError {
