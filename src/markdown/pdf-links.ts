@@ -1,4 +1,5 @@
 import type { PdfPageItem } from "../types.js";
+import { isCjk, textPattern } from "./locate.js";
 
 /** Link schemes that become Markdown links. Anything else (javascript:, file:, data:, ...) stays plain text. */
 const SAFE_SCHEMES = new Set(["http:", "https:", "mailto:"]);
@@ -172,33 +173,14 @@ function words(chars: readonly string[]): Array<{ start: number; end: number }> 
   return out;
 }
 
-/**
- * Finds `anchor` in `markdown` at or after `cursor` (else anywhere), outside ranges already linked. Whitespace may
- * differ and Markdown may have escaped punctuation; a Latin anchor must start and end on word boundaries.
- */
+/** Finds `anchor` in `markdown` at or after `cursor` (else anywhere), outside ranges already linked. */
 function findAnchor(
   markdown: string,
   anchor: string,
   cursor: number,
   linked: ReadonlyArray<readonly [number, number]>,
 ): [number, number] | null {
-  // Between words the Markdown may have line breaks, emphasis markers, or inline HTML such as <u>.
-  const gap = "(?:\\s|</?[a-z]+>|[*_~]{1,2})+";
-  let source = "";
-  for (const char of anchor) {
-    if (/\s/.test(char)) {
-      if (!source.endsWith(gap)) source += gap;
-    } else if (/[\\`*_{}[\]()#+\-.!|<>~]/.test(char)) {
-      // Markdown may escape this punctuation.
-      source += `\\\\?${escapeRegExp(char)}`;
-    } else {
-      source += escapeRegExp(char);
-    }
-  }
-  const before = /^[\p{L}\p{N}]/u.test(anchor) && !isCjk(anchor[0]!) ? "(?<![\\p{L}\\p{N}])" : "";
-  const after = /[\p{L}\p{N}]$/u.test(anchor) && !isCjk(anchor.at(-1)!) ? "(?![\\p{L}\\p{N}])" : "";
-  const pattern = new RegExp(`${before}${source}${after}`, "gu");
-
+  const pattern = textPattern(anchor);
   const candidates: Array<[number, number]> = [];
   for (const match of markdown.matchAll(pattern)) {
     const start = match.index;
@@ -223,10 +205,6 @@ function balancedTags(slice: string): boolean {
   return open.length === 0;
 }
 
-function escapeRegExp(char: string): string {
-  return char.replace(/[\\^$.*+?()[\]{}|/]/g, "\\$&");
-}
-
 /** Relative advance width of a character: Helvetica's for printable ASCII, a full em for CJK, otherwise average. */
 function advanceWeight(char: string): number {
   const code = char.charCodeAt(0);
@@ -234,10 +212,6 @@ function advanceWeight(char: string): number {
     return HELVETICA_WIDTHS[code - 32]!;
   }
   return isCjk(char) ? 1000 : 556;
-}
-
-function isCjk(char: string): boolean {
-  return /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u.test(char);
 }
 
 /** Helvetica advance widths (1/1000 em) for printable ASCII, used as a generic proportional-font estimate. */
