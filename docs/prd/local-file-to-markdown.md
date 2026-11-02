@@ -57,6 +57,7 @@ Later additions (text, HTML, e-mail, MHTML, OFD, notebooks, templates, TIFF page
 - A raster image yields Markdown produced only by OCR.
 - A text-based PDF yields structured Markdown and is not sent through whole-document OCR.
 - A scanned or image-only PDF yields OCR Markdown.
+- A searchable scan (scanned pages with an invisible OCR text layer) yields the local OCR engine's reading of the pages, not the text of the invisible layer.
 - A mixed PDF includes OCR text for pages that need OCR and keeps structured text for extractable pages.
 - WebP/TIFF/HEIC/GIF transcode when possible; otherwise a warning and no throw.
 - Encrypted or unknown types return empty Markdown plus a warning and do not throw.
@@ -71,6 +72,7 @@ Later additions (text, HTML, e-mail, MHTML, OFD, notebooks, templates, TIFF page
 - Output is always Markdown, never a raw OCR line array as the top-level contract.
 - Filename on `convert()` is only a format hint (especially CSV), never a path to read.
 - `convert()` does not create or close the OCR engine. The caller does.
+- Searchable scans are re-OCR'd with the bundled OCR engine instead of trusting the invisible text layer another tool left behind. Output quality is then the same for every scan, whatever produced it.
 - Path and stdin are mutually exclusive on the CLI.
 - A completed `convert()` — including empty Markdown with warnings — is a successful CLI run (exit 0).
 - Native addons are required on every supported OS. A macOS-only package list is not sufficient.

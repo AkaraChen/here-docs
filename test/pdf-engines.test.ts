@@ -96,6 +96,17 @@ test("a scan with a little native text is still OCR'd, so the scan is not droppe
   assert.match(parts[0]!.markdown, /HELLO/);
 });
 
+test("a searchable scan is OCR'd by light-ocr; its invisible text layer is not used", async (t) => {
+  const parts = await pages("searchable-scan.pdf", t);
+  if (!parts) return;
+  assert.equal(parts.length, 2);
+  for (const part of parts) {
+    assert.ok(ocrd(part), part.markdown);
+    assert.match(part.markdown, /HELLO/);
+    assert.doesNotMatch(part.markdown, /Scanner layer words/);
+  }
+});
+
 test("a text layer that does not decode falls back to OCR", async (t) => {
   const parts = await pages("cjk-predefined-cmap.pdf", t);
   if (!parts) return;
