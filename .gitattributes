@@ -1,0 +1,2 @@
+# Fixture PDFs are byte-exact: line-ending conversion would break their cross-reference offsets.
+*.pdf binary
