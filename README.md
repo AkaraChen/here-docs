@@ -121,6 +121,8 @@ Detection prefers content signatures over the filename.
 
 CSV and other signature-less formats need `--filename` / `--format` or `options.filename`.
 
+Known limitation: on text PDF pages, text in layers (optional content) that the document hides by default is extracted as if visible. The PDF text extractor does not honor layer visibility yet.
+
 ## Requirements
 
 - Node.js 22 or 24

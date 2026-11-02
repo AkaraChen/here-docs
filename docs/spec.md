@@ -85,6 +85,10 @@ Detection prefers content signatures. CSV and other signature-less formats requi
 - PDF OCR runs one page per OCR request. The OCR engine's whole-request limits (input size, page count, total pixels) do not limit a PDF: a scanned PDF of any size and length is OCR'd page by page.
 - A page too large to render within the OCR engine's per-page pixel limit is rendered at progressively lower resolutions before it becomes a page warning.
 
+### Known limitations
+
+- On extracted PDF pages, text in optional content (layers) that the document hides by default is included, because the text extractor does not honor optional content visibility. OCR'd pages are not affected. See `docs/adr/hidden-optional-content.md`.
+
 ## System-wide constraints
 
 - Repository agent entrypoint is root `AGENTS.md` (`CLAUDE.md` is a symlink to it).

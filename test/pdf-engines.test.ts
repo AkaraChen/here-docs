@@ -197,7 +197,7 @@ test("a blank scanned page yields an empty part", async (t) => {
 
 
 
-test("text in an optional content group hidden by default is left out", { todo: "pdf-inspector extracts hidden layers" }, async (t) => {
+test("text in an optional content group hidden by default is left out", { todo: "known limitation: pdf-inspector ignores optional content visibility" }, async (t) => {
   const parts = await pages("hidden-layer.pdf", t);
   if (!parts) return;
   assert.match(parts[0]!.markdown, /Visible digital page/);
