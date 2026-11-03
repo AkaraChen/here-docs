@@ -1,7 +1,15 @@
 import { WarningCode } from "../errors.js";
 import { pageMarkdown } from "../markdown/from-ocr.js";
+import { spliceLinks } from "../markdown/pdf-links.js";
 import { recognizeDocumentPages } from "../ocr.js";
-import type { ConvertDeps, ConvertPart, ExtractedPdfPage, OcrReason, PdfClassification } from "../types.js";
+import type {
+  ConvertDeps,
+  ConvertPart,
+  ExtractedPdfPage,
+  OcrReason,
+  PdfClassification,
+  PdfPageItem,
+} from "../types.js";
 
 /** Text pages are extracted in growing batches so an early stop does not parse the whole document. */
 const FIRST_BATCH = 8;
@@ -62,13 +70,20 @@ export async function* pdfParts(
       yield* wholeDocument(bytes, deps, pageCount, needingOcr, signal);
       return;
     }
-    for (const index of indexes) {
+    const reasons = indexes.map((index) => ocrReasonFor(extracted?.get(index), extracted !== null, needingOcr.has(index)));
+    const items = await pageItems(
+      bytes,
+      deps,
+      indexes.filter((_, position) => reasons[position] === null),
+      signal,
+    );
+    for (const [position, index] of indexes.entries()) {
       signal?.throwIfAborted();
-      const page = extracted?.get(index);
-      const reason = ocrReasonFor(page, extracted !== null, needingOcr.has(index));
+      const reason = reasons[position];
+      const markdown = extracted?.get(index)?.markdown.trim() ?? "";
       yield reason
         ? await ocrPage(bytes, deps, index, pageCount, reason, signal)
-        : textPart(index + 1, pageCount, page?.markdown.trim() ?? "");
+        : textPart(index + 1, pageCount, spliceLinks(markdown, items.get(index) ?? []));
     }
   }
 }
@@ -113,6 +128,33 @@ async function extractPages(
     return null;
   }
   return new Map(pages.map((page, position) => [page.page ?? indexes[position] ?? position, page]));
+}
+
+/**
+ * Positioned items of the batch's text pages, by page index. They are enrichment: when the engine cannot report
+ * them, the pages keep their extracted text without links.
+ */
+async function pageItems(
+  bytes: Uint8Array,
+  deps: ConvertDeps,
+  indexes: number[],
+  signal: AbortSignal | undefined,
+): Promise<Map<number, PdfPageItem[]>> {
+  const byPage = new Map<number, PdfPageItem[]>();
+  if (indexes.length === 0 || !deps.pdf.pageItems) {
+    return byPage;
+  }
+  let items: PdfPageItem[] = [];
+  try {
+    items = await deps.pdf.pageItems(bytes, indexes);
+  } catch {
+    // Keep the text without links.
+  }
+  signal?.throwIfAborted();
+  for (const item of items) {
+    byPage.set(item.page, [...(byPage.get(item.page) ?? []), item]);
+  }
+  return byPage;
 }
 
 async function* wholeDocument(

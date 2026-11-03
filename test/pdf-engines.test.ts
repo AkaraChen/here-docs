@@ -175,6 +175,17 @@ function padPdf(pdf: Uint8Array, size: number): Uint8Array {
   return Buffer.from(text.slice(0, header) + padding + body, "latin1");
 }
 
+test("link annotations become Markdown links; unsafe and internal links stay plain text", async (t) => {
+  const parts = await pages("links.pdf", t);
+  if (!parts) return;
+  assert.equal(
+    parts[0]!.markdown,
+    "Read the [here-docs repository](https://github.com/AkaraChen/here-docs) for the details. " +
+      "Write to [the maintainers](mailto:maintainers@example.com) with questions. " +
+      "This script action stays plain text. Jump back to the top of this page.",
+  );
+});
+
 // Known gaps, fixed later in the stack. `todo` tests run and report, but do not fail the suite.
 
 test("a blank scanned page yields an empty part", async (t) => {
@@ -185,11 +196,6 @@ test("a blank scanned page yields an empty part", async (t) => {
 });
 
 
-test("link annotations become Markdown links", { todo: "pdf-inspector Markdown drops link URLs" }, async (t) => {
-  const parts = await pages("links.pdf", t);
-  if (!parts) return;
-  assert.match(parts[0]!.markdown, /\[here-docs repository\]\(https:\/\/github\.com\/AkaraChen\/here-docs\)/);
-});
 
 test("text in an optional content group hidden by default is left out", { todo: "pdf-inspector extracts hidden layers" }, async (t) => {
   const parts = await pages("hidden-layer.pdf", t);

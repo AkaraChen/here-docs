@@ -10,6 +10,7 @@ import type {
   OcrPort,
   PdfClassification,
   PdfInspectorPort,
+  PdfPageItem,
   PdfProcessResult,
 } from "./types.js";
 
@@ -83,6 +84,8 @@ type InspectorModule = {
   processPdf?: (buffer: Buffer) => Record<string, unknown>;
   extractPagesMarkdownAsync?: (buffer: Buffer, pages?: number[]) => Promise<unknown>;
   extractPagesMarkdown?: (buffer: Buffer, pages?: number[]) => unknown;
+  /** Synchronous; `pages` are 1-based. */
+  extractTextWithPositions?: (buffer: Buffer, pages?: number[]) => unknown;
 };
 
 async function createPdfPort(): Promise<PdfInspectorPort> {
@@ -113,7 +116,41 @@ async function createPdfPort(): Promise<PdfInspectorPort> {
       }
       return normalizePages(await extractFn(toBuffer(bytes), pages), pages);
     },
+    async pageItems(bytes, pages) {
+      // No async variant exists; its cost scales with the pages requested (a batch at a time).
+      const items = inspector.extractTextWithPositions?.(
+        toBuffer(bytes),
+        pages.map((page) => page + 1),
+      );
+      return Array.isArray(items) ? items.flatMap(toPageItem) : [];
+    },
   };
+}
+
+const ITEM_KINDS: Record<string, PdfPageItem["kind"]> = { Text: "text", Link: "link", Image: "image" };
+
+function toPageItem(item: unknown): PdfPageItem[] {
+  if (!item || typeof item !== "object") {
+    return [];
+  }
+  const record = item as Record<string, unknown>;
+  const kind = typeof record.itemType === "string" ? ITEM_KINDS[record.itemType] : undefined;
+  const numbers = [record.page, record.x, record.y, record.width, record.height];
+  if (!kind || !numbers.every((value) => typeof value === "number" && Number.isFinite(value))) {
+    return [];
+  }
+  return [
+    {
+      page: (record.page as number) - 1,
+      kind,
+      text: typeof record.text === "string" ? record.text : "",
+      x: record.x as number,
+      y: record.y as number,
+      width: record.width as number,
+      height: record.height as number,
+      url: typeof record.linkUrl === "string" ? record.linkUrl : undefined,
+    },
+  ];
 }
 
 /**

@@ -114,7 +114,7 @@ Detection prefers content. Binary signatures come first, then the filename hint,
 | --- | --- |
 | Word, PowerPoint, Excel, OpenDocument (and their templates), Kingsoft WPS binaries, RTF, EPUB | Structured Markdown via anydoc. Embedded raster and SVG images are OCR'd and inserted at the original image position. |
 | CSV, TSV | A table. Legacy encodings (GBK, Big5, Shift_JIS, ...) are decoded first. Without a filename hint they are converted as plain text. |
-| Text-based PDF | Structured Markdown. The whole file is not sent through OCR. |
+| Text-based PDF | Structured Markdown. The whole file is not sent through OCR. Web and mail link annotations become Markdown links. |
 | Scanned or image-only PDF | OCR Markdown, one page per OCR request, so long or large scans are not cut off by OCR limits. |
 | Mixed PDF | Extractable pages stay structured; pages that need OCR are recognized and merged in page order. |
 | OFD (e-invoices, official documents) | One part per page. Text, including template text, comes out in reading order; image-only pages are OCR'd. |

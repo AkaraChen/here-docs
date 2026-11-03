@@ -195,11 +195,28 @@ export interface ExtractedPdfPage {
   ocrReason?: string;
 }
 
+/** A positioned item on a PDF page. Bounds are PDF points with the origin at the page's bottom left. */
+export interface PdfPageItem {
+  /** 0-based page index. */
+  page: number;
+  kind: "text" | "link" | "image";
+  /** The run's text for text items. */
+  text: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  /** The link target for link items. */
+  url?: string;
+}
+
 export interface PdfInspectorPort {
   classify(bytes: Uint8Array): Promise<PdfClassification>;
   process(bytes: Uint8Array): Promise<PdfProcessResult>;
   /** `pages` are 0-based indexes; omit for every page. */
   extractPagesMarkdown(bytes: Uint8Array, pages?: number[]): Promise<ExtractedPdfPage[] | null>;
+  /** Positioned text, link, and image items of the given 0-based pages. Absent when the engine cannot report them. */
+  pageItems?(bytes: Uint8Array, pages: number[]): Promise<PdfPageItem[]>;
 }
 
 export interface ImageNormalizerPort {
