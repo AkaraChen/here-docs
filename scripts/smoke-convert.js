@@ -45,6 +45,57 @@ function assertUsable(result, label) {
   }
 }
 
+/** Formats parsed in JavaScript, plus the image paths that need sharp's decoders (SVG, AVIF, TIFF pages). */
+async function convertNewFormats(convert, engine) {
+  const { default: sharp } = await import("sharp");
+  const helloSvg = Buffer.from(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="140"><rect width="100%" height="100%" fill="white"/>' +
+      '<text x="24" y="96" font-family="sans-serif" font-size="64">HELLO</text></svg>',
+  );
+  const pngDataUri = `data:image/png;base64,${helloPng.toString("base64")}`;
+  // "第一章 你好" in GBK.
+  const gbkText = Buffer.from("b5dad2bbd5c220c4e3bac30a", "hex");
+  const eml = [
+    "From: Alice <alice@example.com>",
+    "To: bob@example.com",
+    "Subject: Smoke",
+    "MIME-Version: 1.0",
+    'Content-Type: multipart/mixed; boundary="b"',
+    "",
+    "--b",
+    "Content-Type: text/html; charset=utf-8",
+    "",
+    `<p>Body <img src="${pngDataUri}"></p>`,
+    "--b",
+    'Content-Type: application/pdf; name="hello.pdf"',
+    'Content-Disposition: attachment; filename="hello.pdf"',
+    "Content-Transfer-Encoding: base64",
+    "",
+    helloPdf.toString("base64"),
+    "--b--",
+    "",
+  ].join("\r\n");
+  const tiffPages = await sharp([helloPng, helloPng], { join: { animated: true } }).tiff().toBuffer();
+  const checks = [
+    ["html", Buffer.from(`<!doctype html><h1>Title</h1><p>See <img src="${pngDataUri}"></p>`), "page.html", /# Title[\s\S]*HELLO/i],
+    ["eml", Buffer.from(eml), "mail.eml", /# Smoke[\s\S]*HELLO[\s\S]*### hello\.pdf[\s\S]*HELLO PDF/i],
+    ["text", gbkText, "novel.txt", /第一章 你好/],
+    ["svg", helloSvg, "hello.svg", /HELLO/i],
+    ["avif", await sharp(helloPng).avif().toBuffer(), "hello.avif", /HELLO/i],
+    ["tiff", tiffPages, "pages.tiff", /## Page 1[\s\S]*HELLO[\s\S]*## Page 2[\s\S]*HELLO/i],
+  ];
+  const out = {};
+  for (const [label, bytes, filename, expected] of checks) {
+    const result = await convert(bytes, { filename, engine });
+    assertUsable(result, label);
+    if (!expected.test(result.markdown) || result.warnings.length > 0) {
+      fail(`${label} did not convert`, result);
+    }
+    out[label] = result.markdown.trim();
+  }
+  return out;
+}
+
 async function loadApi() {
   if (process.env.HERE_DOCS_SMOKE_PACKAGE) {
     return import("here-docs");
@@ -73,12 +124,15 @@ try {
     fail("anydoc did not convert CSV", csv);
   }
 
+  const formats = await convertNewFormats(convert, engine);
+
   console.log(
     JSON.stringify(
       {
         image: image.markdown.trim(),
         pdf: pdf.markdown.trim(),
         csv: csv.markdown.trim(),
+        ...formats,
       },
       null,
       2,

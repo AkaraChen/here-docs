@@ -38,6 +38,7 @@
     "build": "tsc",
     "test": "tsx --test test/*.test.ts",
     "smoke": "node scripts/smoke-convert.js",
+    "corpus": "node test/corpus/run.js",
     "prepare": "tsc && node -e \"require('node:fs').chmodSync('dist/cli.js', 0o755)\"",
     "postinstall": "node scripts/check-natives.js"
   },
@@ -45,6 +46,16 @@
     "@arcships/light-ocr": "0.5.9",
     "@firecrawl/anydoc": "0.1.9",
     "@firecrawl/pdf-inspector": "1.14.2",
+    "@kenjiuno/decompressrtf": "0.1.4",
+    "@kenjiuno/msgreader": "1.29.0",
+    "chardet": "2.2.0",
+    "domhandler": "6.0.1",
+    "fflate": "0.8.3",
+    "htmlparser2": "12.0.0",
+    "iconv-lite": "0.7.3",
+    "libheif-js": "1.23.5",
+    "postal-mime": "4.2.0",
+    "rtf-stream-parser": "4.0.0",
     "sharp": "0.35.3"
   },
   "optionalDependencies": {
@@ -97,6 +108,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
+    "cfb": "1.2.2",
     "publint": "^0.3.23",
     "tsx": "^4.20.0",
     "typescript": "^5.9.0"

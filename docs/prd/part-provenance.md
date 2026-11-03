@@ -31,10 +31,11 @@ The engines already know: pdf-inspector reports why a page needs OCR, and the ro
 
 ## User-visible states and failure behavior
 
-- `text`: the Markdown came from the document's own text (an office document without OCR'd images, a PDF text page, the whole-document PDF fallback).
-- `ocr`: the Markdown came from OCR (a raster image, an OCR'd PDF page). It may be empty when nothing was recognized.
+- `text`: the Markdown came from the document's own text (an office document without OCR'd images, a PDF text page, the whole-document PDF fallback, plain text, an OFD text page, an SVG with text).
+- `ocr`: the Markdown came from OCR (a raster image, an OCR'd PDF page, a TIFF page, an image-only OFD page, an SVG without text, an office file that is only pictures). It may be empty when nothing was recognized.
 - `mixed`: the document's own text, with OCR text of embedded images inserted in place.
-- `none`: nothing could be converted (unknown, encrypted, or unconvertible input, a failed image OCR or transcode, a PDF page whose OCR failed). Warnings explain why.
+- `none`: nothing could be converted (unknown, encrypted, or unconvertible input, a failed image OCR or transcode, a PDF page whose OCR failed, an OFD page whose every image failed). Warnings explain why.
+- HTML, MHTML, notebooks, and e-mail are `text`, or `mixed` when OCR text of an embedded image, an image output, or an attachment is part of the manuscript.
 - A PDF page whose OCR failed has `source: "none"` and keeps the `ocrReason` it was sent to OCR for.
 
 ## Minimum acceptance criteria
