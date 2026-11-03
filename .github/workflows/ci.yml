@@ -101,7 +101,7 @@ jobs:
           cache: npm
       - uses: actions/cache@v6
         with:
-          path: .corpus-cache
+          path: ~/.cache/here-docs/corpus
           key: corpus-${{ hashFiles('test/corpus/manifest.json') }}
           restore-keys: corpus-
       - run: npm ci

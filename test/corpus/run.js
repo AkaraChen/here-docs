@@ -1,6 +1,8 @@
 // Real-world corpus check: downloads the public sample files listed in test/corpus/manifest.json
-// (verified by SHA-256, cached in .corpus-cache/), converts each one with the real engines, and checks
-// the expected text. The files themselves are not committed: they come from many projects and licenses.
+// (verified by SHA-256, cached in the user cache directory, never in the repository), converts each one
+// with the real engines, and checks
+// the expected text. The files are not committed: they come from many projects and licenses.
+// HERE_DOCS_CORPUS_CACHE overrides the cache directory.
 //
 //   npm run corpus                      every entry
 //   npm run corpus -- --format ofd      one format
@@ -8,12 +10,13 @@
 import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { homedir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, "..", "..");
-const cacheDir = process.env.HERE_DOCS_CORPUS_CACHE ?? join(root, ".corpus-cache");
+const cacheDir = process.env.HERE_DOCS_CORPUS_CACHE || userCacheDir();
 const manifest = JSON.parse(await readFile(join(here, "manifest.json"), "utf8"));
 const args = process.argv.slice(2);
 const option = (name) => {
@@ -22,6 +25,17 @@ const option = (name) => {
 };
 const onlyFormat = option("--format");
 const writeDir = option("--write");
+
+/** The platform's per-user cache directory, so downloads never land in the working tree. */
+function userCacheDir() {
+  if (process.platform === "win32") {
+    return join(process.env.LOCALAPPDATA || join(homedir(), "AppData", "Local"), "here-docs", "corpus");
+  }
+  if (process.platform === "darwin") {
+    return join(homedir(), "Library", "Caches", "here-docs", "corpus");
+  }
+  return join(process.env.XDG_CACHE_HOME || join(homedir(), ".cache"), "here-docs", "corpus");
+}
 
 async function fetchCached(entry) {
   const file = join(cacheDir, entry.sha256);
@@ -54,6 +68,7 @@ async function download(url) {
 }
 
 const { convert, createEngine } = await import(pathToFileURL(join(root, "dist", "index.js")).href);
+console.log(`corpus cache: ${cacheDir}`);
 const engine = await createEngine();
 const failures = [];
 let checked = 0;
