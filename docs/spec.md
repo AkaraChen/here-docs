@@ -83,6 +83,7 @@ Text is decoded by BOM (or the NUL pattern of BOM-less UTF-16), then ISO-2022-JP
 - Office documents produce structured Markdown. OCR text from embedded raster assets is inserted at the image’s original position. Images the document does not place are not OCR'd, unless the document has no text and places no image (an image-only slide deck): then the OCR text of its images is the manuscript.
 - Text-based PDF pages produce structured Markdown and are not sent through whole-document OCR.
 - Scanned or image-only PDFs produce OCR Markdown.
+- A scanned page whose only text is an invisible layer (a searchable scan) is OCR'd locally. The invisible layer is never returned as the page's text.
 - Mixed PDFs include structured text for extractable pages and OCR text for pages that need OCR. Needing-OCR pages must not be dropped solely because structured extraction succeeded.
 - A page needs OCR when either the document-level classification or the page-level extraction says so. When they disagree, OCR wins: a page with a little native text in a document classified as scanned or image-based is OCR'd, so its words survive without their structure rather than the scan being dropped.
 - PDF page indexes from classification are 0-based. OCR page ranges are 1-based. Routing converts between them.
