@@ -141,7 +141,7 @@ npm run build
 node dist/cli.js --help
 ```
 
-`npm run corpus` converts several hundred public real-world files (e-mail from a dozen mail clients, OFD invoices, legacy-encoded text and CSV, saved web pages, notebooks, TIFF scans, HEIC/AVIF photos, SVG diagrams, Office templates, and Kingsoft WPS files) with the real engines and checks the expected text. The files are listed with their source URL and SHA-256 in [`test/corpus/manifest.json`](test/corpus/manifest.json); they are downloaded on first use into your user cache directory (`~/.cache/here-docs/corpus` on Linux; set `HERE_DOCS_CORPUS_CACHE` to move it), never into the repository.
+`npm run corpus` converts several hundred public real-world files (e-mail from a dozen mail clients, OFD invoices, legacy-encoded text and CSV, saved web pages, notebooks, TIFF scans, HEIC/AVIF photos, SVG diagrams, Office templates, and Kingsoft WPS files) with the real engines and checks the expected text. The files live in `test/corpus/files/`, so the check runs offline; [`test/corpus/manifest.json`](test/corpus/manifest.json) lists each file's source and expected text. They are third-party test files kept under their original projects' licenses and are not part of the npm package.
 
 CI runs unit tests and a real `createEngine()` / `convert()` / CLI smoke on every supported host (Linux x64 and arm64 on glibc and in Alpine/musl, macOS arm64, Windows x64) for Node 22 and 24. Intel macOS is checked only to confirm startup fails closed.
 

@@ -1,0 +1,89 @@
+X-Mozilla-Status: 0800
+X-Mozilla-Status2: 00000000
+Message-ID: <1f559aba-f74f-4017-921a-b515b7fd6076@example.com>
+Date: Tue, 29 Aug 2023 19:35:39 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: root@example.com
+From: sender <sender@example.com>
+Subject: Test Email ID:2
+X-Mozilla-Draft-Info: internal/draft; vcard=0; receipt=0; DSN=0; uuencode=0;
+ attachmentreminder=0; deliveryformat=1
+X-Identity-Key: id1
+Fcc: imap://sender%40example.com@.example.com/Sent
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-512; boundary="------------ms060104030103070206000606"
+
+This is a cryptographically signed message in MIME format.
+
+--------------ms060104030103070206000606
+Content-Type: multipart/mixed; boundary="------------5bTJu71y0e4RaxyyRgqLplkg"
+
+--------------5bTJu71y0e4RaxyyRgqLplkg
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+This is a test email with a text attachment.
+ID:2
+
+--------------5bTJu71y0e4RaxyyRgqLplkg
+Content-Type: text/plain; charset=UTF-8; name="text-attachment.txt"
+Content-Disposition: attachment; filename="text-attachment.txt"
+Content-Transfer-Encoding: base64
+
+VGhpcyBpcyBhIHRlc3QgYXR0YWNobWVudC4gIFRoZSBtYWdpYyB3b3JkIGlzOiAgemFuemli
+YXIuCg==
+
+--------------5bTJu71y0e4RaxyyRgqLplkg--
+
+--------------ms060104030103070206000606
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+w9+K5ueBQt7qb7XsbSoRQgAAAAAAAA==
+--------------ms060104030103070206000606--

@@ -89,7 +89,7 @@ jobs:
           '
 
   corpus:
-    # Downloads several hundred public sample files, so it runs on demand rather than on every push.
+    # Converts several hundred real-world files (a few minutes of OCR), so it runs on demand.
     name: real-world corpus
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-24.04
@@ -99,11 +99,6 @@ jobs:
         with:
           node-version: 24
           cache: npm
-      - uses: actions/cache@v6
-        with:
-          path: ~/.cache/here-docs/corpus
-          key: corpus-${{ hashFiles('test/corpus/manifest.json') }}
-          restore-keys: corpus-
       - run: npm ci
       - run: npm run build
       - run: npm run corpus

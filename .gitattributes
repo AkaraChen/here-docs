@@ -1,0 +1,2 @@
+# Real-world sample files are kept byte for byte: no line-ending conversion, no textual diffs.
+test/corpus/files/** -text -diff linguist-vendored
