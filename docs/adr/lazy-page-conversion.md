@@ -20,6 +20,7 @@ Whole-document OCR also has hard per-request limits in light-ocr (`maxPages` 100
 - Scanned and image-only PDFs are OCR'd one page per request as well. That keeps every request under light-ocr's page-count and total-pixel limits, at the cost of reopening the document per page, which is small next to OCR itself. The input-size and per-page pixel limits are handled in `ocr-resource-limits.md`.
 - `options.signal` is checked before each step and passed to every OCR call. `catch` blocks that turn failures into warnings rethrow when the signal is aborted.
 - If per-page extraction is unavailable for the first batch, fall back to whole-document `process()` as one part, followed by the OCR'd pages. If a later batch fails, its pages are OCR'd instead of dropped.
+- `convert()` and attachment conversion read every page, so laziness buys them nothing. pdf-inspector pays a whole-document pass on every page-extraction call, however few pages it is asked for, so they extract all PDF text in one call. On a 269-page document `convert()` drops from 61 s to 18 s; on a 430-page one with heavy tables, from several minutes to 92 s. If that call fails, they fall back to the batches above, so a page that breaks extraction stays confined to its batch. Positioned items are still read 64 pages at a time, and OCR still runs per page. `convertPages()` keeps the batches. The output is identical either way.
 
 ## Considered alternatives
 

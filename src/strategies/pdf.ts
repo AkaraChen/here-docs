@@ -22,6 +22,14 @@ import type {
 const FIRST_BATCH = 8;
 const MAX_BATCH = 64;
 
+export interface PdfPartsOptions {
+  /**
+   * The caller reads every page (`convert()`, attachments). pdf-inspector pays a whole-document pass on every
+   * page-extraction call, so all text is then extracted in one call instead of in batches. OCR still runs per page.
+   */
+  eager?: boolean;
+}
+
 /**
  * Yields one part per page, in page order. Each page is extracted or OCR'd only when the consumer asks
  * for it, so stopping early skips the remaining work.
@@ -30,6 +38,7 @@ export async function* pdfParts(
   bytes: Uint8Array,
   deps: ConvertDeps,
   signal?: AbortSignal,
+  { eager = false }: PdfPartsOptions = {},
 ): AsyncGenerator<ConvertPart> {
   signal?.throwIfAborted();
   let classification: PdfClassification;
@@ -69,31 +78,70 @@ export async function* pdfParts(
 
   const needingOcr = new Set(classification.pagesNeedingOcr.filter((page) => page >= 0));
   const checkLayers = hidesOptionalContent(bytes);
+  const context = { bytes, deps, pageCount, needingOcr, checkLayers, signal };
+  if (eager && pageCount > FIRST_BATCH) {
+    const indexes = range(0, pageCount);
+    const extracted = await extractPages(bytes, deps, indexes, signal);
+    if (extracted) {
+      // Positioned items are still read a chunk at a time: that call is synchronous and grows with the pages.
+      for (let start = 0; start < pageCount; start += MAX_BATCH) {
+        yield* extractedParts(context, indexes.slice(start, start + MAX_BATCH), extracted);
+      }
+      return;
+    }
+    // One call for everything failed; batches below confine a page that breaks extraction to its batch.
+  }
+
   let batchSize = FIRST_BATCH;
   for (let start = 0; start < pageCount; start += batchSize, batchSize = Math.min(batchSize * 2, MAX_BATCH)) {
-    const indexes = Array.from({ length: Math.min(batchSize, pageCount - start) }, (_, i) => start + i);
+    const indexes = range(start, Math.min(start + batchSize, pageCount));
     const extracted = await extractPages(bytes, deps, indexes, signal);
     if (!extracted && start === 0) {
       // Per-page extraction is unavailable for this document: fall back to one whole-document part.
       yield* wholeDocument(bytes, deps, pageCount, needingOcr, signal);
       return;
     }
-    const reasons = indexes.map((index) => ocrReasonFor(extracted?.get(index), extracted !== null, needingOcr.has(index)));
-    const items = await pageItems(
-      bytes,
-      deps,
-      indexes.filter((_, position) => reasons[position] === null),
-      signal,
-    );
-    for (const [position, index] of indexes.entries()) {
-      signal?.throwIfAborted();
-      const reason = reasons[position];
-      const markdown = extracted?.get(index)?.markdown.trim() ?? "";
-      yield reason
-        ? await ocrPage(bytes, deps, index, pageCount, reason, signal)
-        : await textPage(bytes, deps, index, pageCount, markdown, items.get(index) ?? [], checkLayers, signal);
-    }
+    yield* extractedParts(context, indexes, extracted);
   }
+}
+
+interface PdfContext {
+  bytes: Uint8Array;
+  deps: ConvertDeps;
+  pageCount: number;
+  needingOcr: ReadonlySet<number>;
+  checkLayers: boolean;
+  signal: AbortSignal | undefined;
+}
+
+/**
+ * Yields the parts of `indexes` from their extraction (null when it failed: the pages are OCR'd instead of dropped).
+ * Positioned items are read once for the text pages among them; OCR runs per page, when the page is requested.
+ */
+async function* extractedParts(
+  { bytes, deps, pageCount, needingOcr, checkLayers, signal }: PdfContext,
+  indexes: number[],
+  extracted: ReadonlyMap<number, ExtractedPdfPage> | null,
+): AsyncGenerator<ConvertPart> {
+  const reasons = indexes.map((index) => ocrReasonFor(extracted?.get(index), extracted !== null, needingOcr.has(index)));
+  const items = await pageItems(
+    bytes,
+    deps,
+    indexes.filter((_, position) => reasons[position] === null),
+    signal,
+  );
+  for (const [position, index] of indexes.entries()) {
+    signal?.throwIfAborted();
+    const reason = reasons[position];
+    const markdown = extracted?.get(index)?.markdown.trim() ?? "";
+    yield reason
+      ? await ocrPage(bytes, deps, index, pageCount, reason, signal)
+      : await textPage(bytes, deps, index, pageCount, markdown, items.get(index) ?? [], checkLayers, signal);
+  }
+}
+
+function range(start: number, end: number): number[] {
+  return Array.from({ length: Math.max(0, end - start) }, (_, i) => start + i);
 }
 
 /** Why a page of a text or mixed document goes to OCR, or null when its extracted text is kept. */

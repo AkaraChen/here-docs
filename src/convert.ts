@@ -23,9 +23,14 @@ export const MAX_ATTACHMENT_DEPTH = 3;
  * pending (or next) step with `signal.reason`.
  */
 export function convertPages(input: Uint8Array, options: ConvertOptions): AsyncGenerator<ConvertPart> {
+  return pagesOf(input, options, false);
+}
+
+/** `eager` when the caller reads every part: PDF text is then extracted in one native call (see `pdfParts`). */
+function pagesOf(input: Uint8Array, options: ConvertOptions, eager: boolean): AsyncGenerator<ConvertPart> {
   assertBytes(input);
   const engine = requireEngine(options);
-  return clean(parts(input, options.filename, engine, options.signal, 0));
+  return clean(parts(input, options.filename, engine, options.signal, 0, eager));
 }
 
 /** Control characters (NUL padding in Outlook fields, stray form feeds) never reach the manuscript. */
@@ -38,7 +43,8 @@ async function* clean(source: AsyncGenerator<ConvertPart>): AsyncGenerator<Conve
 export async function convert(input: Uint8Array, options: ConvertOptions): Promise<ConvertResult> {
   const sections: string[] = [];
   const warnings: Warning[] = [];
-  for await (const part of convertPages(input, options)) {
+  // convert() reads every part, so nothing is gained by extracting PDF text lazily.
+  for await (const part of pagesOf(input, options, true)) {
     if (part.markdown.trim()) {
       sections.push(part.markdown);
     }
@@ -53,6 +59,7 @@ async function* parts(
   engine: ConvertEngine,
   signal: AbortSignal | undefined,
   depth: number,
+  eager: boolean,
 ): AsyncGenerator<ConvertPart> {
   signal?.throwIfAborted();
   const detected = detectKind(input, filename, engine.anydoc);
@@ -61,7 +68,7 @@ async function* parts(
       yield* imageParts(input, detected.format, engine, signal);
       return;
     case "pdf":
-      yield* pdfParts(input, engine, signal);
+      yield* pdfParts(input, engine, signal, { eager });
       return;
     case "office":
       yield* officeParts(input, detected.format, engine, signal);
@@ -74,7 +81,8 @@ async function* parts(
       return;
     case "message": {
       const nested: NestedConvert | null =
-        depth < MAX_ATTACHMENT_DEPTH ? (bytes, name) => parts(bytes, name, engine, signal, depth + 1) : null;
+        // Attachments are converted whole, every page read, so they are eager too.
+        depth < MAX_ATTACHMENT_DEPTH ? (bytes, name) => parts(bytes, name, engine, signal, depth + 1, true) : null;
       yield* messageParts(input, detected.format, engine, signal, nested);
       return;
     }
