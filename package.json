@@ -38,6 +38,7 @@
     "build": "tsc",
     "test": "tsx --test test/*.test.ts",
     "smoke": "node scripts/smoke-convert.js",
+    "corpus": "node test/corpus/run.js",
     "prepare": "tsc && node -e \"require('node:fs').chmodSync('dist/cli.js', 0o755)\"",
     "postinstall": "node scripts/check-natives.js"
   },
