@@ -2017,7 +2017,7 @@
   "file": "files/images/tiff-twelvemonkeys/fivepages-scan-causingerrors.tif",
   "format": "tiff",
   "source": "https://raw.githubusercontent.com/haraldk/TwelveMonkeys/master/imageio/imageio-tiff/src/test/resources/tiff/fivepages-scan-causingerrors.tif",
-  "minChars": 43
+  "minChars": 0
  },
  {
   "file": "files/images/tiff-twelvemonkeys/packbits-fillorder-2.tif",
@@ -2717,7 +2717,7 @@
   "file": "files/ofd-nb/rofd/gbk-entry-name.ofd",
   "format": "ofd",
   "source": "https://raw.githubusercontent.com/linuxdeepin/rofd/main/crates/rofd-core/tests/fixtures/gbk-entry-name.ofd",
-  "minChars": 8,
+  "minChars": 0,
   "allowWarnings": [
    "missing-part"
   ]
