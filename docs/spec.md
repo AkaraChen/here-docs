@@ -104,6 +104,10 @@ Text is decoded by BOM (or the NUL pattern of BOM-less UTF-16), then ISO-2022-JP
 - SVG images, embedded or standalone, contribute the text they draw (`<text>` and `foreignObject` labels, read as an English-language renderer shows them), with embedded raster images OCR'd in place. An SVG without text is rendered locally and OCR'd. EMF/WMF assets are skipped with a warning.
 - Before OCR, transparent images are flattened onto a background that contrasts with their visible content, and images above the OCR engine's size limits are shrunk. Image decoding is best-effort: a truncated scan yields its readable part.
 
+### Known limitations
+
+- On extracted PDF pages, text in optional content (layers) that the document hides by default is included, because the text extractor does not honor optional content visibility. OCR'd pages are not affected. See `docs/adr/hidden-optional-content.md`.
+
 ## System-wide constraints
 
 - Repository agent entrypoint is root `AGENTS.md` (`CLAUDE.md` is a symlink to it).
