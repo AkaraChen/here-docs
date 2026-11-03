@@ -131,7 +131,7 @@ HTML or tab-separated text saved under an Office name (`export.xls`, `report.wps
 
 Deliberately unsupported: Apple iWork, InDesign, LaTeX and other pandoc markups, HWP, XPS, Visio/OneNote/Publisher, MOBI/DjVu, and archives. See [`docs/prd/format-coverage.md`](docs/prd/format-coverage.md).
 
-Known limitation: on text PDF pages, text in layers (optional content) that the document hides by default is extracted as if visible. The PDF text extractor does not honor layer visibility yet.
+PDF layers (optional content) that a document hides by default are left out. When a document has them, its text pages are checked against their rendering with OCR. A hidden layer placed exactly over visible text, and very small text, are not detected.
 
 ## Requirements
 

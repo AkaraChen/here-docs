@@ -17,6 +17,7 @@ Accepted
 - Join each image's lines like any OCR text and insert them as a block after the block that holds the nearest text run above the image (preferring runs that overlap the image horizontally). The run is located in the Markdown by its text, else its last four words. Without a run above, the block goes first; if the run cannot be found, it goes last.
 - Insert image text before splicing links, so link anchors are matched on the final Markdown.
 - Pages with `/Rotate` are skipped: rendered pixels are rotated, and mapping them onto pdf-inspector's coordinates would rest on an unverified convention.
+- The page OCR is shared with the hidden-layer check (`hidden-layer-check.md`); runs found unseen there are not treated as native text over an image.
 
 ## Considered alternatives
 

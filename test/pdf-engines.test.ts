@@ -203,12 +203,12 @@ test("a blank scanned page yields an empty part", async (t) => {
   assert.equal(parts[1]!.markdown, "");
 });
 
-// Known limitations. `todo` tests run and report, but do not fail the suite.
-
-test("text in an optional content group hidden by default is left out", { todo: "known limitation: pdf-inspector ignores optional content visibility" }, async (t) => {
+test("text in a layer hidden by default is dropped; text in a shown layer stays", async (t) => {
   const parts = await pages("hidden-layer.pdf", t);
   if (!parts) return;
+  assert.equal(parts[0]!.source, "text");
   assert.match(parts[0]!.markdown, /Visible digital page/);
+  assert.match(parts[0]!.markdown, /Shown layer words/);
   assert.doesNotMatch(parts[0]!.markdown, /Hidden layer words/);
 });
 

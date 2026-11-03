@@ -90,6 +90,7 @@ Text is decoded by BOM (or the NUL pattern of BOM-less UTF-16), then ISO-2022-JP
 - A scanned page whose only text is an invisible layer (a searchable scan) is OCR'd locally. The invisible layer is never returned as the page's text.
 - Mixed PDFs include structured text for extractable pages and OCR text for pages that need OCR. Needing-OCR pages must not be dropped solely because structured extraction succeeded.
 - A page needs OCR when either the document-level classification or the page-level extraction says so. When they disagree, OCR wins: a page with a little native text in a document classified as scanned or image-based is OCR'd, so its words survive without their structure rather than the scan being dropped.
+- In a document that hides optional content (layers) by default, extracted text the rendered page does not show is left out, and text in shown layers stays. Documents without hidden layers are not OCR'd for this. A failed check keeps the page text and adds a `pdf-layer-check-failed` warning. When the check cannot judge a run, the run is kept.
 - On extracted PDF pages, link annotations with an `http`, `https`, or `mailto` target become Markdown links on the words they cover. A link whose words cannot be found is appended to its page as an autolink. No other link scheme ever becomes a Markdown link.
 - PDF page indexes from classification are 0-based. OCR page ranges are 1-based. Routing converts between them.
 - PDF OCR runs one page per OCR request. The OCR engine's whole-request limits (input size, page count, total pixels) do not limit a PDF: a scanned PDF of any size and length is OCR'd page by page.
@@ -107,7 +108,7 @@ Text is decoded by BOM (or the NUL pattern of BOM-less UTF-16), then ISO-2022-JP
 
 ### Known limitations
 
-- On extracted PDF pages, text in optional content (layers) that the document hides by default is included, because the text extractor does not honor optional content visibility. OCR'd pages are not affected. See `docs/adr/hidden-optional-content.md`.
+- Hidden-layer text is detected by position. A hidden layer drawn at the same place as visible text, text under 8 pt, and runs on rotated pages are not removed. Pages from the whole-document fallback are not checked. See `docs/adr/hidden-layer-check.md`.
 
 ## System-wide constraints
 
@@ -128,4 +129,5 @@ Text is decoded by BOM (or the NUL pattern of BOM-less UTF-16), then ISO-2022-JP
 - Part provenance is specified in `docs/prd/part-provenance.md` and `docs/adr/part-provenance.md`.
 - PDF links are specified in `docs/prd/pdf-links.md` and `docs/adr/pdf-link-splice.md`.
 - OCR of images on PDF text pages is specified in `docs/prd/pdf-embedded-image-ocr.md` and `docs/adr/pdf-image-ocr.md`.
+- Hidden PDF layers are specified in `docs/prd/hidden-pdf-layers.md` and `docs/adr/hidden-layer-check.md`.
 - The programmable API and CLI implement the contracts in this file.

@@ -2,12 +2,15 @@ import { WarningCode } from "../errors.js";
 import { pageMarkdown } from "../markdown/from-ocr.js";
 import { insertImageText } from "../markdown/pdf-images.js";
 import { spliceLinks } from "../markdown/pdf-links.js";
+import { removeRuns } from "../markdown/remove-runs.js";
 import { recognizeDocumentPages } from "../ocr.js";
-import { imagesWorthOcr, recognizeImageText } from "./pdf-images.js";
+import { imagesWorthOcr, imageText } from "./pdf-images.js";
+import { hidesOptionalContent, unseenRuns } from "./pdf-layers.js";
 import type {
   ConvertDeps,
   ConvertPart,
   ExtractedPdfPage,
+  OcrPage,
   OcrReason,
   PartSource,
   PdfClassification,
@@ -65,6 +68,7 @@ export async function* pdfParts(
   }
 
   const needingOcr = new Set(classification.pagesNeedingOcr.filter((page) => page >= 0));
+  const checkLayers = hidesOptionalContent(bytes);
   let batchSize = FIRST_BATCH;
   for (let start = 0; start < pageCount; start += batchSize, batchSize = Math.min(batchSize * 2, MAX_BATCH)) {
     const indexes = Array.from({ length: Math.min(batchSize, pageCount - start) }, (_, i) => start + i);
@@ -87,7 +91,7 @@ export async function* pdfParts(
       const markdown = extracted?.get(index)?.markdown.trim() ?? "";
       yield reason
         ? await ocrPage(bytes, deps, index, pageCount, reason, signal)
-        : await textPage(bytes, deps, index, pageCount, markdown, items.get(index) ?? [], signal);
+        : await textPage(bytes, deps, index, pageCount, markdown, items.get(index) ?? [], checkLayers, signal);
     }
   }
 }
@@ -135,8 +139,10 @@ async function extractPages(
 }
 
 /**
- * An extracted page, enriched from its positioned items: the OCR text of pictures of text is inserted where the
- * pictures are, and link annotations become Markdown links. A failed image OCR keeps the page's text with a warning.
+ * An extracted page, corrected and enriched from its positioned items. In a document that hides layers by default,
+ * text the rendered page does not show is removed. The OCR text of pictures of text is inserted where the pictures
+ * are, and link annotations become Markdown links. Both checks share one OCR of the page; if it fails, the page keeps
+ * its extracted text with a warning.
  */
 async function textPage(
   bytes: Uint8Array,
@@ -145,27 +151,45 @@ async function textPage(
   pageCount: number,
   extracted: string,
   items: readonly PdfPageItem[],
+  checkLayers: boolean,
   signal: AbortSignal | undefined,
 ): Promise<ConvertPart> {
   let markdown = extracted;
+  let visible = items;
   let source: PartSource = "text";
   const warnings: Warning[] = [];
-  if (imagesWorthOcr(items).length > 0) {
-    try {
-      const images = await recognizeImageText(bytes, deps, index, items, signal);
-      if (images.length > 0) {
-        markdown = insertImageText(markdown, items, images);
-        source = "mixed";
-      }
-    } catch (error) {
-      signal?.throwIfAborted();
-      warnings.push({
-        code: WarningCode.pdfImageOcrFailed,
-        message: `page ${index + 1}: ${error instanceof Error ? error.message : "image OCR failed"}`,
-      });
-    }
+  const hasImages = imagesWorthOcr(items).length > 0;
+  const hasText = items.some((item) => item.kind === "text");
+  if (!hasImages && !(checkLayers && hasText)) {
+    return { page: index + 1, pageCount, markdown: spliceLinks(markdown, items), warnings, source, ocrReason: null };
   }
-  return { page: index + 1, pageCount, markdown: spliceLinks(markdown, items), warnings, source, ocrReason: null };
+
+  let ocrPages: OcrPage[];
+  try {
+    ocrPages = await recognizeDocumentPages(deps.ocr, bytes, { start: index + 1, end: index + 1 }, signal);
+  } catch (error) {
+    signal?.throwIfAborted();
+    const reason = error instanceof Error ? error.message : "OCR failed";
+    if (checkLayers && hasText) {
+      warnings.push({ code: WarningCode.pdfLayerCheckFailed, message: `page ${index + 1}: ${reason}` });
+    }
+    if (hasImages) {
+      warnings.push({ code: WarningCode.pdfImageOcrFailed, message: `page ${index + 1}: ${reason}` });
+    }
+    return { page: index + 1, pageCount, markdown: spliceLinks(markdown, items), warnings, source, ocrReason: null };
+  }
+
+  if (checkLayers) {
+    const unseen = unseenRuns(ocrPages, items);
+    markdown = removeRuns(markdown, unseen);
+    visible = items.filter((item) => !unseen.includes(item));
+  }
+  const images = hasImages ? imageText(ocrPages, visible) : [];
+  if (images.length > 0) {
+    markdown = insertImageText(markdown, visible, images);
+    source = "mixed";
+  }
+  return { page: index + 1, pageCount, markdown: spliceLinks(markdown, visible), warnings, source, ocrReason: null };
 }
 
 /**
