@@ -87,3 +87,26 @@ test("mixed PDFs OCR only pagesNeedingOcr using 1-based ranges", async () => {
   assert.match(result.markdown, /Digital three/);
   assert.deepEqual(ocr.documentRanges, [{ start: 2, end: 2 }]);
 });
+
+test("an OCR'd page with no recognized text yields empty markdown, not a bare heading", async () => {
+  const ocr = trackingOcr([
+    { index: 0, lines: [{ text: "scan" }] },
+    { index: 1, lines: [] },
+  ]);
+  const deps = fakeDeps({
+    ocr,
+    pdf: {
+      async classify() {
+        return { pdfType: "Scanned", pageCount: 2, pagesNeedingOcr: [0, 1] };
+      },
+      async process() {
+        return { pdfType: "Scanned", pageCount: 2, pagesNeedingOcr: [0, 1], markdown: null };
+      },
+      async extractPagesMarkdown() {
+        return null;
+      },
+    },
+  });
+  const result = await convert(pdfBytes, { engine: deps });
+  assert.equal(result.markdown, "## Page 1\n\nscan\n");
+});

@@ -236,7 +236,6 @@ function normalizeClassification(result: Record<string, unknown>): PdfClassifica
     pagesNeedingOcr: Array.isArray(result.pagesNeedingOcr)
       ? result.pagesNeedingOcr.filter((page): page is number => typeof page === "number")
       : [],
-    hasEncodingIssues: typeof result.hasEncodingIssues === "boolean" ? result.hasEncodingIssues : undefined,
   };
 }
 

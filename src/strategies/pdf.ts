@@ -65,11 +65,7 @@ export async function* pdfParts(
       const page = extracted?.get(index);
       const markdown = page?.markdown.trim() ?? "";
       // A batch that failed to extract keeps its pages by OCR instead of dropping them.
-      const needsOcr =
-        !extracted ||
-        needingOcr.has(index) ||
-        page?.needsOcr === true ||
-        (classification.hasEncodingIssues === true && markdown.length === 0);
+      const needsOcr = !extracted || needingOcr.has(index) || page?.needsOcr === true;
       yield needsOcr
         ? await ocrPage(bytes, deps, index, pageCount, signal)
         : { page: index + 1, pageCount, markdown, warnings: [] };

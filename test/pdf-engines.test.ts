@@ -115,7 +115,7 @@ test("convert() over the real engines joins the parts", async (t) => {
 
 // Known gaps, fixed later in the stack. `todo` tests run and report, but do not fail the suite.
 
-test("a blank scanned page yields an empty part", { todo: "blank OCR pages still emit a bare page heading" }, async (t) => {
+test("a blank scanned page yields an empty part", async (t) => {
   const parts = await pages("scan-with-blank-page.pdf", t);
   if (!parts) return;
   assert.match(parts[0]!.markdown, /HELLO/);

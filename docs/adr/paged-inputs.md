@@ -13,7 +13,7 @@ Accepted
 
 ## Decision
 
-- **TIFF**: the image adapter reports the page count. A TIFF with more than one page yields one part per page (`page` 1..N, `pageCount` N). Each page is decoded and OCR'd only when it is requested, and the Markdown uses the same `## Page n` heading as scanned PDF pages. Single-page images still yield one `page: null` part. Animated GIF frames are not pages.
+- **TIFF**: the image adapter reports the page count. A TIFF with more than one page yields one part per page (`page` 1..N, `pageCount` N). Each page is decoded and OCR'd only when it is requested, and the Markdown uses the same `## Page n` heading as scanned PDF pages. Like them, a page on which nothing is recognized has empty Markdown, not a bare heading. Single-page images still yield one `page: null` part. Animated GIF frames are not pages.
 - **OFD**: the package is parsed once (its XML parts only). Each page then yields one part, in document order and on demand:
   - The text objects of the page and of the template pages it references are placed by absolute position: boundary plus text-code offset, transformed by the object's matrix. Composite objects (shared graphic units from the resources, which some producers use for whole pages) contribute their text through their own matrix and boundary, nested at most eight deep. Text is grouped into lines by baseline and ordered left to right, with a space inserted where the horizontal gap exceeds about half a glyph.
   - A page with no text but with images is OCR'd image by image, in reading order, under a `## Page n` heading like a scanned PDF page. Images on text pages (logos, seals) are not OCR'd, matching the rule that text pages are not sent through OCR.
