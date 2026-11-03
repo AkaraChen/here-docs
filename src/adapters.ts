@@ -1,3 +1,6 @@
+import type { Sharp } from "sharp";
+import { decodeBmp, isBmp } from "./bmp.js";
+import { detectImageFormat } from "./detect.js";
 import { assertNativePackages } from "./natives.js";
 import type {
   AnydocDocument,
@@ -158,14 +161,114 @@ function toPageItem(item: unknown): PdfPageItem[] {
   ];
 }
 
+/**
+ * The OCR engine reads transparent pixels as black, so dark text on a transparent background disappears.
+ * Transparency is flattened onto white, or onto black when the visible content is light (a white logo).
+ */
+async function opaquePng(image: Sharp): Promise<Buffer> {
+  const { hasAlpha } = await image.metadata();
+  if (!hasAlpha) {
+    return image.png().toBuffer();
+  }
+  const { data, info } = await image
+    .clone()
+    .resize(64, 64, { fit: "inside" })
+    .toColourspace("srgb")
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  let luminance = 0;
+  let visible = 0;
+  for (let i = 0; i + 3 < data.length; i += info.channels) {
+    if (data[i + 3]! > 127) {
+      luminance += 0.299 * data[i]! + 0.587 * data[i + 1]! + 0.114 * data[i + 2]!;
+      visible += 1;
+    }
+  }
+  const background = visible > 0 && luminance / visible > 160 ? "#000000" : "#ffffff";
+  return image.flatten({ background }).png().toBuffer();
+}
+
+/** light-ocr rejects images above about 40 Mi pixels or 10k pixels per side; shrink to safely below that. */
+const OCR_MAX_PIXELS = 32_000_000;
+const OCR_MAX_SIDE = 8192;
+
 async function createImagePort(): Promise<ImageNormalizerPort> {
   const sharpMod = await import("sharp");
   const sharp = sharpMod.default;
+  // Best effort: libtiff tag warnings and truncated scans still yield the readable part of the image.
+  const open = (bytes: Uint8Array, page = 0) => sharp(bytes, { page, failOn: "none" });
   return {
-    async toPng(bytes) {
-      return sharp(bytes).png().toBuffer();
+    async toPng(bytes, page = 0) {
+      if (isBmp(bytes)) {
+        const image = decodeBmp(bytes);
+        return opaquePng(sharp(image.data, { raw: { width: image.width, height: image.height, channels: 4 } }));
+      }
+      try {
+        return await opaquePng(open(bytes, page));
+      } catch (error) {
+        // sharp's libheif decodes AV1 only; HEVC-coded HEIC (iPhone photos) needs the WebAssembly decoder.
+        if (detectImageFormat(bytes) !== "heic") {
+          throw error;
+        }
+        const image = await decodeHeic(bytes);
+        return opaquePng(sharp(image.data, { raw: { width: image.width, height: image.height, channels: 4 } }));
+      }
+    },
+    async pageCount(bytes) {
+      return (await open(bytes).metadata()).pages ?? 1;
+    },
+    async fitForOcr(bytes) {
+      const { width = 0, height = 0 } = await open(bytes).metadata();
+      const scale = Math.min(1, Math.sqrt(OCR_MAX_PIXELS / Math.max(1, width * height)), OCR_MAX_SIDE / Math.max(1, width, height));
+      return open(bytes)
+        .resize(Math.max(1, Math.floor(width * scale)), Math.max(1, Math.floor(height * scale)))
+        .png()
+        .toBuffer();
     },
   };
+}
+
+interface HeifImage {
+  get_width(): number;
+  get_height(): number;
+  is_primary(): boolean;
+  display(target: { data: Uint8ClampedArray; width: number; height: number }, done: (result: unknown) => void): void;
+  free(): void;
+}
+
+/** Decodes the primary image of a HEIF file; grids, overlays, and bursts list other images first. */
+async function decodeHeic(bytes: Uint8Array): Promise<{ width: number; height: number; data: Uint8Array }> {
+  // A variable specifier keeps the untyped CommonJS module out of type resolution (and out of startup).
+  const specifier = "libheif-js/wasm-bundle.js";
+  const imported = (await import(specifier)) as { default?: unknown };
+  const libheif = (imported.default ?? imported) as { ready: Promise<void>; HeifDecoder: new () => { decode(input: Uint8Array): HeifImage[]; decoder: { delete(): void } } };
+  await libheif.ready;
+  const decoder = new libheif.HeifDecoder();
+  const images = decoder.decode(bytes);
+  try {
+    const image = images.find((candidate) => candidate.is_primary()) ?? images[0];
+    if (!image) {
+      throw new Error("HEIF file contains no image");
+    }
+    const width = image.get_width();
+    const height = image.get_height();
+    const data = await new Promise<Uint8ClampedArray>((resolve, reject) => {
+      image.display({ data: new Uint8ClampedArray(width * height * 4), width, height }, (result) => {
+        if (!result) {
+          reject(new Error("HEIF image could not be decoded"));
+          return;
+        }
+        resolve((result as { data: Uint8ClampedArray }).data);
+      });
+    });
+    return { width, height, data: new Uint8Array(data.buffer, data.byteOffset, data.byteLength) };
+  } finally {
+    for (const image of images) {
+      image.free();
+    }
+    decoder.decoder.delete();
+  }
 }
 
 function wrapSync<A extends unknown[], T>(
