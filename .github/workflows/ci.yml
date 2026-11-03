@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 jobs:
   supported:
@@ -86,6 +87,26 @@ jobs:
             npm install /work/here-docs-*.tgz
             HERE_DOCS_SMOKE_PACKAGE=1 node /work/scripts/smoke-convert.js
           '
+
+  corpus:
+    # Downloads several hundred public sample files, so it runs on demand rather than on every push.
+    name: real-world corpus
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/cache@v6
+        with:
+          path: .corpus-cache
+          key: corpus-${{ hashFiles('test/corpus/manifest.json') }}
+          restore-keys: corpus-
+      - run: npm ci
+      - run: npm run build
+      - run: npm run corpus
 
   unsupported-darwin-x64:
     name: macOS x64 fail-closed
