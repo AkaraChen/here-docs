@@ -24,9 +24,10 @@ export async function renderMessage(
   deps: ConvertDeps,
   signal: AbortSignal | undefined,
   nested: NestedConvert | null,
-): Promise<{ markdown: string; warnings: Warning[] }> {
+): Promise<{ markdown: string; warnings: Warning[]; ocr: boolean }> {
   const warnings: Warning[] = [];
   const sections: string[] = [];
+  let ocr = false;
 
   const header: AnydocBlock[] = [];
   if (message.subject) {
@@ -76,6 +77,7 @@ export async function renderMessage(
     });
     pushSection(sections, body.markdown);
     warnings.push(...body.warnings);
+    ocr ||= body.ocr;
   } else if (message.text) {
     pushSection(sections, normalizeText(message.text));
   }
@@ -98,6 +100,7 @@ export async function renderMessage(
     for await (const part of nested(attachment.content, name)) {
       if (part.markdown.trim()) {
         parts.push(part.markdown);
+        ocr ||= part.source === "ocr" || part.source === "mixed";
       }
       for (const warning of part.warnings) {
         warnings.push({ code: warning.code, message: `attachment "${name}": ${warning.message}` });
@@ -105,7 +108,7 @@ export async function renderMessage(
     }
     pushSection(sections, parts.join("\n\n"));
   }
-  return { markdown: sections.join("\n\n"), warnings };
+  return { markdown: sections.join("\n\n"), warnings, ocr };
 }
 
 function pushSection(sections: string[], markdown: string): void {

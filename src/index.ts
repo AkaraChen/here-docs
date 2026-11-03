@@ -6,4 +6,12 @@ export {
   UnsupportedPlatformError,
   WarningCode,
 } from "./errors.js";
-export type { ConvertEngine, ConvertOptions, ConvertPart, ConvertResult, Warning } from "./types.js";
+export type {
+  ConvertEngine,
+  ConvertOptions,
+  ConvertPart,
+  ConvertResult,
+  OcrReason,
+  PartSource,
+  Warning,
+} from "./types.js";

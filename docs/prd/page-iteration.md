@@ -29,7 +29,7 @@ Separately, whole-document OCR of a scanned PDF hit the OCR engine's per-request
 
 1. The caller creates an engine.
 2. The caller calls `convertPages(bytes, { engine, filename?, signal? })` and iterates it with `for await`.
-3. For a PDF, each step yields `{ page, pageCount, markdown, warnings }` for the next page, in page order. Text pages come from structured extraction, pages that need OCR from OCR.
+3. For a PDF, each step yields `{ page, pageCount, markdown, warnings, source, ocrReason }` for the next page, in page order. Text pages come from structured extraction, pages that need OCR from OCR.
 4. For other inputs, the iterator yields one part with `page: null` and `pageCount: null`. OFD and multi-page TIFF are paged like PDF (`docs/prd/format-coverage.md`).
 5. Breaking out of the loop ends the conversion. No further pages are processed.
 6. `convert()` is the iterator drained: non-empty parts joined by a blank line, warnings concatenated.

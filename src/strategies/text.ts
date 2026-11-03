@@ -8,10 +8,10 @@ export async function* textParts(bytes: Uint8Array, signal?: AbortSignal): Async
   signal?.throwIfAborted();
   const decoded = decodeText(bytes);
   if (!decoded) {
-    yield wholePart("", [{ code: WarningCode.unsupported, message: "the file does not contain readable text" }]);
+    yield wholePart("", [{ code: WarningCode.unsupported, message: "the file does not contain readable text" }], "none");
     return;
   }
-  yield wholePart(normalizeText(decoded.text), []);
+  yield wholePart(normalizeText(decoded.text), [], "text");
 }
 
 export function normalizeText(text: string): string {

@@ -34,12 +34,12 @@ export async function* messageParts(
     }
   } catch (error) {
     signal?.throwIfAborted();
-    yield wholePart("", [{ code: WarningCode.malformed, message: error instanceof Error ? error.message : "unreadable message" }]);
+    yield wholePart("", [{ code: WarningCode.malformed, message: error instanceof Error ? error.message : "unreadable message" }], "none");
     return;
   }
   signal?.throwIfAborted();
   const rendered = await renderMessage(message, deps, signal, nested);
-  yield wholePart(rendered.markdown, [...warnings, ...rendered.warnings]);
+  yield wholePart(rendered.markdown, [...warnings, ...rendered.warnings], rendered.ocr ? "mixed" : "text");
 }
 
 /**
@@ -68,11 +68,11 @@ async function webArchive(bytes: Uint8Array, deps: ConvertDeps, signal: AbortSig
   try {
     archive = parseMhtml(bytes);
   } catch (error) {
-    return wholePart("", [{ code: WarningCode.malformed, message: error instanceof Error ? error.message : "unreadable web archive" }]);
+    return wholePart("", [{ code: WarningCode.malformed, message: error instanceof Error ? error.message : "unreadable web archive" }], "none");
   }
   if (!archive) {
-    return wholePart("", [{ code: WarningCode.malformed, message: "web archive has no HTML page" }]);
+    return wholePart("", [{ code: WarningCode.malformed, message: "web archive has no HTML page" }], "none");
   }
-  const { markdown, warnings } = await renderHtml(archive.html, deps, signal, archive.resolveImage);
-  return wholePart(markdown, warnings);
+  const { markdown, warnings, ocr } = await renderHtml(archive.html, deps, signal, archive.resolveImage);
+  return wholePart(markdown, warnings, ocr ? "mixed" : "text");
 }

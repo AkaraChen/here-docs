@@ -48,13 +48,14 @@ export async function* notebookParts(bytes: Uint8Array, deps: ConvertDeps, signa
   try {
     notebook = JSON.parse(decodeText(bytes)?.text ?? "") as Notebook;
   } catch (error) {
-    yield wholePart("", [{ code: WarningCode.malformed, message: error instanceof Error ? error.message : "notebook is not JSON" }]);
+    yield wholePart("", [{ code: WarningCode.malformed, message: error instanceof Error ? error.message : "notebook is not JSON" }], "none");
     return;
   }
   const cells = notebook.cells ?? notebook.worksheets?.flatMap((sheet) => sheet.cells ?? []) ?? [];
   const lang = notebook.metadata?.kernelspec?.language ?? notebook.metadata?.language_info?.name ?? notebook.metadata?.language ?? "";
   const sections: string[] = [];
   const warnings: Warning[] = [];
+  const state = { ocr: false };
   for (const cell of cells) {
     signal?.throwIfAborted();
     const source = joinSource(cell.source ?? cell.input).replace(/\s+$/, "");
@@ -68,7 +69,7 @@ export async function* notebookParts(bytes: Uint8Array, deps: ConvertDeps, signa
       case "code":
         push(sections, source ? fence(source, lang) : "");
         for (const output of cell.outputs ?? []) {
-          push(sections, await renderOutput(output, deps, signal, warnings));
+          push(sections, await renderOutput(output, deps, signal, warnings, state));
         }
         break;
       case "raw":
@@ -76,7 +77,7 @@ export async function* notebookParts(bytes: Uint8Array, deps: ConvertDeps, signa
         break;
     }
   }
-  yield wholePart(sections.join("\n\n"), warnings);
+  yield wholePart(sections.join("\n\n"), warnings, state.ocr ? "mixed" : "text");
 }
 
 async function renderOutput(
@@ -84,6 +85,7 @@ async function renderOutput(
   deps: ConvertDeps,
   signal: AbortSignal | undefined,
   warnings: Warning[],
+  state: { ocr: boolean },
 ): Promise<string> {
   if (output.output_type === "stream") {
     const text = stripAnsi(joinSource(output.text));
@@ -108,6 +110,7 @@ async function renderOutput(
   if (html.trim()) {
     const rendered = await renderHtml(html, deps, signal);
     warnings.push(...rendered.warnings);
+    state.ocr ||= rendered.ocr;
     return rendered.markdown.trim();
   }
   for (const type of ["image/png", "image/jpeg"]) {
@@ -118,6 +121,7 @@ async function renderOutput(
     const asset = { id: 0, mediaType: type, originPart: "output", data: new Uint8Array(Buffer.from(base64, "base64")) };
     const ocr = await recognizeAssets([asset], deps, signal);
     warnings.push(...ocr.warnings);
+    state.ocr ||= ocr.ocrByAssetId.size > 0;
     return ocr.ocrByAssetId.get(0) ?? "";
   }
   const plain = stripAnsi(joinSource(data["text/plain"]));

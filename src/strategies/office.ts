@@ -31,11 +31,11 @@ export async function* officeParts(
   if (text.trim() === "" && placed.size === 0 && document.assets.length > 0) {
     // Nothing but unplaced pictures (an image-only slide deck): their OCR text is the manuscript, as for a scan.
     const { ocrByAssetId, warnings } = await recognizeAssets(document.assets, deps, signal);
-    yield wholePart([...ocrByAssetId.values()].join("\n\n"), warnings);
+    yield wholePart([...ocrByAssetId.values()].join("\n\n"), warnings, ocrByAssetId.size > 0 ? "ocr" : "none");
     return;
   }
   const { ocrByAssetId, warnings } = await recognizeAssets(document.assets.filter((asset) => placed.has(asset.id)), deps, signal);
-  yield wholePart(documentToMarkdown(document, ocrByAssetId), warnings);
+  yield wholePart(documentToMarkdown(document, ocrByAssetId), warnings, ocrByAssetId.size > 0 ? "mixed" : "text");
 }
 
 function placedAssetIds(document: AnydocDocument): Set<number> {
@@ -110,7 +110,7 @@ function looksLikePdf(bytes: Uint8Array): boolean {
 }
 
 function warningResult(code: string, message: string): ConvertPart {
-  return wholePart("", [{ code, message }]);
+  return wholePart("", [{ code, message }], "none");
 }
 
 function messageOf(error: unknown, fallback: string): string {

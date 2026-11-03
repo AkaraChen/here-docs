@@ -19,6 +19,8 @@ Out of scope: HTTP services, decrypting files, audio/video, directory batch conv
 - **Paged input**: an input that `convertPages()` yields page by page: PDF, OFD, and multi-page TIFF.
 - **Filename hint**: an optional name or extension used only to detect signature-less formats. It is never a path to read.
 - **Engine**: the caller-owned handle from `createEngine()`. It must be passed to `convert()` and closed by the caller.
+- **Part source**: where a part's Markdown came from — `text` (the document's own text), `ocr`, `mixed` (own text with OCR text of embedded images inserted in place), or `none` (nothing could be converted).
+- **OCR reason**: why a PDF page was routed to OCR — `scanned-document`, `garbled-text`, `page-flagged`, or `extraction-failed`.
 
 ## Observable contracts
 
@@ -44,7 +46,8 @@ Out of scope: HTTP services, decrypting files, audio/video, directory batch conv
 
 ### convertPages
 
-- `convertPages(input, options)` takes the same arguments as `convert()` and returns an async iterator of parts `{ page, pageCount, markdown, warnings }`.
+- `convertPages(input, options)` takes the same arguments as `convert()` and returns an async iterator of parts `{ page, pageCount, markdown, warnings, source, ocrReason }`.
+- Every part has a `source`. `ocrReason` is set on PDF pages routed to OCR, including pages whose OCR failed (`source: "none"`), and is `null` on every other part.
 - Illegal calls throw synchronously, before iteration starts.
 - A paged input (PDF, OFD, or a TIFF with more than one page) yields one part per page in page order: `page` is 1-based and `pageCount` is the document's page count. Other inputs, including e-mail with its attachments, yield exactly one part with `page: null` and `pageCount: null`.
 - Work for a page happens only when that part is requested. Ending iteration early skips the remaining pages.
@@ -116,4 +119,5 @@ Text is decoded by BOM (or the NUL pattern of BOM-less UTF-16), then ISO-2022-JP
 - Local file-to-Markdown is specified in `docs/prd/local-file-to-markdown.md` and `docs/adr/`.
 - Page iteration and cancellation are specified in `docs/prd/page-iteration.md` and `docs/adr/lazy-page-conversion.md`.
 - Format coverage (text, HTML, e-mail, MHTML, OFD, notebooks, templates, WPS, TIFF pages, HEIC/AVIF/SVG) is specified in `docs/prd/format-coverage.md`, with decisions in `docs/adr/text-detection-and-encoding.md`, `docs/adr/pure-js-format-parsers.md`, `docs/adr/email-attachments.md`, and `docs/adr/paged-inputs.md`.
+- Part provenance is specified in `docs/prd/part-provenance.md` and `docs/adr/part-provenance.md`.
 - The programmable API and CLI implement the contracts in this file.

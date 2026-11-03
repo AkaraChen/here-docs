@@ -10,10 +10,10 @@ export async function renderHtml(
   deps: ConvertDeps,
   signal: AbortSignal | undefined,
   resolveImage?: ImageResolver,
-): Promise<{ markdown: string; warnings: Warning[] }> {
+): Promise<{ markdown: string; warnings: Warning[]; ocr: boolean }> {
   const document = htmlToDocument(html, { resolveImage });
   const { ocrByAssetId, warnings } = await recognizeAssets(document.assets, deps, signal);
-  return { markdown: documentToMarkdown(document, ocrByAssetId), warnings };
+  return { markdown: documentToMarkdown(document, ocrByAssetId), warnings, ocr: ocrByAssetId.size > 0 };
 }
 
 /**

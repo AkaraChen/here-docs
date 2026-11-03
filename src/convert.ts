@@ -85,7 +85,7 @@ async function* parts(
       yield* notebookParts(input, engine, signal);
       return;
     default:
-      yield wholePart("", [{ code: WarningCode.unknownType, message: "unrecognized file type" }]);
+      yield wholePart("", [{ code: WarningCode.unknownType, message: "unrecognized file type" }], "none");
   }
 }
 

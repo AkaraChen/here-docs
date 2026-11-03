@@ -62,11 +62,13 @@ import { convertPages } from "here-docs";
 
 const parts = [];
 for await (const part of convertPages(bytes, { filename: "scan.pdf", engine })) {
-  // part: { page: number | null, pageCount: number | null, markdown: string, warnings }
+  // part: { page, pageCount, markdown, warnings, source, ocrReason }
   parts.push(part.markdown);
   if (parts.length === 5) break; // pages 6+ are never OCR'd
 }
 ```
+
+Each part says where its Markdown came from. `source` is `text` (the document's own text), `ocr`, `mixed` (the document's text with OCR text of embedded images inserted), or `none` (nothing could be converted; see `warnings`). A PDF page that was OCR'd also has `ocrReason`: `scanned-document`, `garbled-text` (its text layer does not decode), `page-flagged`, or `extraction-failed`. Everything else has `ocrReason: null`.
 
 ### Cancellation
 

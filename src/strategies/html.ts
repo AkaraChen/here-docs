@@ -8,6 +8,6 @@ export async function* htmlParts(
   signal?: AbortSignal,
 ): AsyncGenerator<ConvertPart> {
   signal?.throwIfAborted();
-  const { markdown, warnings } = await renderHtml(decodeHtmlBytes(bytes), deps, signal);
-  yield wholePart(markdown, warnings);
+  const { markdown, warnings, ocr } = await renderHtml(decodeHtmlBytes(bytes), deps, signal);
+  yield wholePart(markdown, warnings, ocr ? "mixed" : "text");
 }

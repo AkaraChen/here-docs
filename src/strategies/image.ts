@@ -3,7 +3,8 @@ import { linesToMarkdown, pageMarkdown } from "../markdown/from-ocr.js";
 import { toRasterBytes } from "../normalize-image.js";
 import { imageText } from "../assets.js";
 import { recognizeWithRetry } from "../ocr.js";
-import type { ConvertDeps, ConvertPart, ImageFormat } from "../types.js";
+import { type SvgItem, svgItems } from "../svg.js";
+import type { ConvertDeps, ConvertPart, ImageFormat, PartSource } from "../types.js";
 import { wholePart } from "./part.js";
 
 export async function* imageParts(
@@ -27,10 +28,10 @@ export async function* imageParts(
   if (format === "svg") {
     // SVG text is read from the drawing; only text-less drawings are rendered and OCR'd.
     try {
-      yield wholePart(await imageText(bytes, format, deps, signal), []);
+      yield wholePart(await imageText(bytes, format, deps, signal), [], svgSource(bytes));
     } catch (error) {
       signal?.throwIfAborted();
-      yield wholePart("", [{ code: WarningCode.transcodeFailed, message: error instanceof Error ? error.message : "SVG could not be rendered" }]);
+      yield wholePart("", [{ code: WarningCode.transcodeFailed, message: error instanceof Error ? error.message : "SVG could not be rendered" }], "none");
     }
     return;
   }
@@ -43,7 +44,7 @@ export async function* imageParts(
         code: WarningCode.transcodeFailed,
         message: error instanceof Error ? error.message : "image transcode failed",
       },
-    ]);
+    ], "none");
     return;
   }
 
@@ -58,10 +59,10 @@ export async function* imageParts(
         code: WarningCode.ocrFailed,
         message: error instanceof Error ? error.message : "image OCR failed",
       },
-    ]);
+    ], "none");
     return;
   }
-  yield wholePart(markdown, []);
+  yield wholePart(markdown, [], "ocr");
 }
 
 async function countPages(bytes: Uint8Array, deps: ConvertDeps): Promise<number> {
@@ -92,7 +93,7 @@ async function tiffPage(
   signal?.throwIfAborted();
   try {
     const lines = await recognizeWithRetry(deps.ocr, raster, signal, deps.images);
-    return { page, pageCount, markdown: pageMarkdown(page, lines).trimEnd(), warnings: [] };
+    return { page, pageCount, markdown: pageMarkdown(page, lines).trimEnd(), warnings: [], source: "ocr", ocrReason: null };
   } catch (error) {
     signal?.throwIfAborted();
     return emptyPage(page, pageCount, WarningCode.ocrFailed, error, "OCR failed");
@@ -105,5 +106,21 @@ function emptyPage(page: number, pageCount: number, code: string, error: unknown
     pageCount,
     markdown: "",
     warnings: [{ code, message: `page ${page}: ${error instanceof Error ? error.message : fallback}` }],
+    source: "none",
+    ocrReason: null,
   };
+}
+
+/** An SVG with text is read as text (mixed when it also embeds raster images); one without is rendered and OCR'd. */
+function svgSource(bytes: Uint8Array): PartSource {
+  let items: SvgItem[];
+  try {
+    items = svgItems(bytes);
+  } catch {
+    return "ocr";
+  }
+  if (!items.some((item) => item.kind === "text")) {
+    return "ocr";
+  }
+  return items.some((item) => item.kind === "image") ? "mixed" : "text";
 }
