@@ -7,6 +7,7 @@ import type {
   AnydocStyle,
   AnydocTable,
 } from "../types.js";
+import { fence } from "./fence.js";
 
 const PLAIN: AnydocStyle = { bold: false, italic: false, strike: false, code: false };
 
@@ -67,10 +68,8 @@ function renderBlock(
         .map((line) => (line.length > 0 ? `> ${line}` : ">"))
         .join("\n");
     }
-    case "codeBlock": {
-      const lang = block.lang ?? "";
-      return `\`\`\`${lang}\n${block.text ?? ""}\n\`\`\``;
-    }
+    case "codeBlock":
+      return fence(block.text ?? "", block.lang ?? "");
     case "rule":
       return "---";
     default:
@@ -193,7 +192,7 @@ function renderTable(
 }
 
 function escapeCell(text: string): string {
-  return text.replace(/\n+/g, " ").replace(/\|/g, "\\|").trim();
+  return text.replace(/\\\n/g, " ").replace(/\n+/g, " ").replace(/\|/g, "\\|").trim();
 }
 
 function renderInlines(
