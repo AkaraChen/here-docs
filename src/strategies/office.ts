@@ -1,10 +1,9 @@
+import { recognizeAssets } from "../assets.js";
 import { detectImageFormat } from "../detect.js";
 import { anydocErrorCode, WarningCode } from "../errors.js";
 import { documentToMarkdown } from "../markdown/from-document.js";
-import { linesToMarkdown } from "../markdown/from-ocr.js";
-import { assetLooksRaster, toRasterBytes } from "../normalize-image.js";
-import { recognizeWithRetry } from "../ocr.js";
-import type { AnydocDocument, ConvertDeps, ConvertPart, Warning } from "../types.js";
+import { toUtf8 } from "../text/decode.js";
+import type { AnydocBlock, AnydocDocument, AnydocInline, ConvertDeps, ConvertPart } from "../types.js";
 import { imageParts } from "./image.js";
 import { wholePart } from "./part.js";
 import { pdfParts } from "./pdf.js";
@@ -18,45 +17,48 @@ export async function* officeParts(
   signal?.throwIfAborted();
   let document: AnydocDocument;
   try {
-    document = await deps.anydoc.toDocument(bytes, format);
+    // anydoc reads CSV as UTF-8; legacy encodings (GBK, Shift_JIS, ...) are decoded first.
+    document = await deps.anydoc.toDocument(format === "csv" ? toUtf8(bytes) : bytes, format);
   } catch (error) {
     signal?.throwIfAborted();
     yield* recoverOfficeError(bytes, format, deps, error, signal);
     return;
   }
 
-  const warnings: Warning[] = [];
-  const ocrByAssetId = new Map<number, string>();
-  for (const asset of document.assets) {
-    signal?.throwIfAborted();
-    const rasterKind = assetLooksRaster(asset.mediaType, asset.data);
-    if (!rasterKind) {
-      warnings.push({
-        code: WarningCode.skippedAsset,
-        message: `skipped non-raster asset ${asset.id} (${asset.mediaType || "unknown"})`,
-      });
-      continue;
-    }
-    try {
-      const raster = await toRasterBytes(asset.data, rasterKind, deps.images);
-      const lines = await recognizeWithRetry(deps.ocr, raster, signal);
-      const text = linesToMarkdown(lines).trim();
-      if (text.length > 0) {
-        ocrByAssetId.set(asset.id, text);
-      }
-    } catch (error) {
-      signal?.throwIfAborted();
-      warnings.push({
-        code: WarningCode.ocrFailed,
-        message:
-          error instanceof Error
-            ? `asset ${asset.id}: ${error.message}`
-            : `asset ${asset.id}: OCR failed`,
-      });
-    }
+  // Only images the document places are OCR'd: their text goes where they stand.
+  const placed = placedAssetIds(document);
+  const text = documentToMarkdown(document, new Map());
+  if (text.trim() === "" && placed.size === 0 && document.assets.length > 0) {
+    // Nothing but unplaced pictures (an image-only slide deck): their OCR text is the manuscript, as for a scan.
+    const { ocrByAssetId, warnings } = await recognizeAssets(document.assets, deps, signal);
+    yield wholePart([...ocrByAssetId.values()].join("\n\n"), warnings);
+    return;
   }
-
+  const { ocrByAssetId, warnings } = await recognizeAssets(document.assets.filter((asset) => placed.has(asset.id)), deps, signal);
   yield wholePart(documentToMarkdown(document, ocrByAssetId), warnings);
+}
+
+function placedAssetIds(document: AnydocDocument): Set<number> {
+  const ids = new Set<number>();
+  const visitInlines = (inlines: readonly AnydocInline[] | undefined) => {
+    for (const inline of inlines ?? []) {
+      if (inline.kind === "image" && inline.source?.kind === "asset" && inline.source.assetId !== undefined) {
+        ids.add(inline.source.assetId);
+      }
+      visitInlines(inline.content);
+    }
+  };
+  const visitBlocks = (blocks: readonly AnydocBlock[] | undefined) => {
+    for (const block of blocks ?? []) {
+      visitInlines(block.content);
+      visitBlocks(block.blocks);
+      for (const item of block.list?.items ?? []) visitBlocks(item.blocks);
+      for (const row of block.table?.grid ?? []) for (const slot of row) visitBlocks(slot.cell?.blocks);
+    }
+  };
+  visitBlocks(document.blocks);
+  for (const note of document.notes) visitBlocks(note.blocks);
+  return ids;
 }
 
 async function* recoverOfficeError(

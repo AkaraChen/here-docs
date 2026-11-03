@@ -39,6 +39,8 @@ Supported v1 inputs:
 - JPEG and PNG.
 - WebP, TIFF, HEIC, and GIF after a local raster transcode to PNG.
 
+Later additions (text, HTML, e-mail, MHTML, OFD, notebooks, templates, TIFF pages, and more) are specified in `docs/prd/format-coverage.md`.
+
 ## User-visible states and failure behavior
 
 - Success: `markdown` is a string, possibly empty, and `warnings` lists skipped pages, assets, transcodes, or unsupported/encrypted inputs.

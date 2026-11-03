@@ -34,6 +34,7 @@ Project: `here-docs`.
 - Build: `npm run build`
 - Test: `npm test`
 - Smoke (real natives): `npm run smoke`
+- Real-world corpus (public sample files in `test/corpus/files/`, offline): `npm run build && npm run corpus` (`-- --format ofd` for one format, `-- --write out/` to keep the manuscripts)
 - CLI (after build): `node dist/cli.js <file>` or `npx here-docs <file>`
 - Consumer install: `npm install here-docs` (npm registry; `github:AkaraChen/here-docs` for unreleased commits)
 - Release: bump `version` in `package.json` and merge to `main`; `.github/workflows/release.yml` publishes it with npm trusted publishing (see `docs/adr/npm-trusted-publishing.md`)
