@@ -17,7 +17,7 @@ Whole-document OCR also has hard per-request limits in light-ocr (`maxPages` 100
 
 - Strategies are async generators of `ConvertPart`. `convertPages()` returns that generator; `convert()` drains it.
 - PDFs: classify once, then walk pages in order. Text pages are extracted in batches of 8, doubling up to 64, so an early stop parses little and a full run does not re-parse per page. Pages that need OCR are OCR'd one page per request, when reached.
-- Scanned and image-only PDFs are OCR'd one page per request as well. That keeps every request under light-ocr's limits, at the cost of reopening the document per page, which is small next to OCR itself.
+- Scanned and image-only PDFs are OCR'd one page per request as well. That keeps every request under light-ocr's page-count and total-pixel limits, at the cost of reopening the document per page, which is small next to OCR itself. The input-size and per-page pixel limits are handled in `ocr-resource-limits.md`.
 - `options.signal` is checked before each step and passed to every OCR call. `catch` blocks that turn failures into warnings rethrow when the signal is aborted.
 - If per-page extraction is unavailable for the first batch, fall back to whole-document `process()` as one part, followed by the OCR'd pages. If a later batch fails, its pages are OCR'd instead of dropped.
 

@@ -76,6 +76,13 @@ Both `convert()` and `convertPages()` accept `signal`. Aborting rejects the call
 const result = await convert(bytes, { engine, signal: AbortSignal.timeout(30_000) });
 ```
 
+### Large and untrusted inputs
+
+- **Size.** PDF pages are OCR'd one per request, so the OCR engine's whole-request limits do not apply: a 100+ MiB or 1000-page scan converts every page. A page too large to render at 150 dpi (a poster or drawing) is retried at 75 and 36 dpi; if it still does not fit, that page is skipped with a `pdf-page-ocr-failed` warning.
+- **Time.** Pass `signal: AbortSignal.timeout(ms)` to bound a conversion. Classification, text extraction, and a single page's OCR are native calls that finish before the abort is seen.
+- **Pages.** Use `convertPages()` and stop iterating to cap work by page count. Pages you never request are never extracted or OCR'd.
+- **Memory.** The input stays in memory for the whole conversion. Each OCR'd PDF page is rendered at up to 4096 × 4096 pixels.
+
 ## CLI
 
 The CLI is the only surface that reads a path or stdin.
@@ -106,7 +113,7 @@ Detection prefers content. Binary signatures come first, then the filename hint,
 | Word, PowerPoint, Excel, OpenDocument (and their templates), Kingsoft WPS binaries, RTF, EPUB | Structured Markdown via anydoc. Embedded raster and SVG images are OCR'd and inserted at the original image position. |
 | CSV, TSV | A table. Legacy encodings (GBK, Big5, Shift_JIS, ...) are decoded first. Without a filename hint they are converted as plain text. |
 | Text-based PDF | Structured Markdown. The whole file is not sent through OCR. |
-| Scanned or image-only PDF | OCR Markdown, one page per OCR request, so long scans are not cut off by OCR limits. |
+| Scanned or image-only PDF | OCR Markdown, one page per OCR request, so long or large scans are not cut off by OCR limits. |
 | Mixed PDF | Extractable pages stay structured; pages that need OCR are recognized and merged in page order. |
 | OFD (e-invoices, official documents) | One part per page. Text, including template text, comes out in reading order; image-only pages are OCR'd. |
 | HTML, XHTML | Headings, lists, tables, quotes, code, and links. Layout tables render as content. `data:` images are OCR'd in place; remote images are never fetched. |

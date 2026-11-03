@@ -113,6 +113,48 @@ test("convert() over the real engines joins the parts", async (t) => {
   assert.deepEqual(result.warnings, []);
 });
 
+test("a page too large to render at the default resolution is OCR'd at a lower one", async (t) => {
+  const parts = await pages("large-scanned-page.pdf", t);
+  if (!parts) return;
+  assert.deepEqual(parts[0]!.warnings, []);
+  assert.match(parts[0]!.markdown, /HELLO/);
+});
+
+test("a scanned PDF over 100 MiB is OCR'd page by page", async (t) => {
+  if (!engine) {
+    t.skip(unavailable ?? "native engines unavailable");
+    return;
+  }
+  const bytes = padPdf(await readFile(join(fixtures, "scanned.pdf")), 101 * 1024 * 1024);
+  const parts: ConvertPart[] = [];
+  for await (const part of convertPages(bytes, { engine })) {
+    parts.push(part);
+  }
+  assert.deepEqual(
+    parts.map((part) => [part.page, /HELLO/.test(part.markdown), part.warnings]),
+    [
+      [1, true, []],
+      [2, true, []],
+    ],
+  );
+});
+
+/**
+ * Grows one of the generated fixtures to at least `size` bytes with comment lines after the header, shifting its
+ * cross-reference offsets to match. Only for the simple, uncompressed layout the fixture generator writes.
+ */
+function padPdf(pdf: Uint8Array, size: number): Uint8Array {
+  const text = Buffer.from(pdf).toString("latin1");
+  const header = text.indexOf("\n", text.indexOf("\n") + 1) + 1;
+  const line = `%${" ".repeat(1022)}\n`;
+  const padding = line.repeat(Math.ceil(size / line.length));
+  const shift = padding.length;
+  const body = text.slice(header).replace(/^(\d{10}) 00000 n $/gm, (_, offset: string) =>
+    `${String(Number(offset) + shift).padStart(10, "0")} 00000 n `,
+  ).replace(/startxref\n(\d+)/, (_, offset: string) => `startxref\n${Number(offset) + shift}`);
+  return Buffer.from(text.slice(0, header) + padding + body, "latin1");
+}
+
 // Known gaps, fixed later in the stack. `todo` tests run and report, but do not fail the suite.
 
 test("a blank scanned page yields an empty part", async (t) => {
@@ -122,12 +164,6 @@ test("a blank scanned page yields an empty part", async (t) => {
   assert.equal(parts[1]!.markdown, "");
 });
 
-test("a page too large to render at the default resolution is still OCR'd", { todo: "light-ocr maxPagePixels" }, async (t) => {
-  const parts = await pages("large-scanned-page.pdf", t);
-  if (!parts) return;
-  assert.deepEqual(parts[0]!.warnings, []);
-  assert.match(parts[0]!.markdown, /HELLO/);
-});
 
 test("link annotations become Markdown links", { todo: "pdf-inspector Markdown drops link URLs" }, async (t) => {
   const parts = await pages("links.pdf", t);

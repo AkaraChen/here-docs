@@ -86,7 +86,8 @@ Text is decoded by BOM (or the NUL pattern of BOM-less UTF-16), then ISO-2022-JP
 - Mixed PDFs include structured text for extractable pages and OCR text for pages that need OCR. Needing-OCR pages must not be dropped solely because structured extraction succeeded.
 - A page needs OCR when either the document-level classification or the page-level extraction says so. When they disagree, OCR wins: a page with a little native text in a document classified as scanned or image-based is OCR'd, so its words survive without their structure rather than the scan being dropped.
 - PDF page indexes from classification are 0-based. OCR page ranges are 1-based. Routing converts between them.
-- PDF OCR runs one page per OCR request, so a scanned PDF is not limited by the OCR engine's per-request page or pixel limits.
+- PDF OCR runs one page per OCR request. The OCR engine's whole-request limits (input size, page count, total pixels) do not limit a PDF: a scanned PDF of any size and length is OCR'd page by page.
+- A page too large to render within the OCR engine's per-page pixel limit is rendered at progressively lower resolutions before it becomes a page warning.
 - Plain text and Markdown are emitted as decoded, with line endings normalized. They are not escaped.
 - HTML, e-mail bodies, MHTML, and notebook HTML outputs produce structured Markdown through the same document model as Office documents. Embedded images (`data:` URIs, `cid:` references, archived resources) are OCR'd at their position. External images are never fetched.
 - Layout tables in HTML (`role="presentation"`, nested tables, a single row or column) render as their content, not as Markdown tables.
