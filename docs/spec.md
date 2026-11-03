@@ -85,6 +85,7 @@ Text is decoded by BOM (or the NUL pattern of BOM-less UTF-16), then ISO-2022-JP
 - Raster images produce OCR Markdown only.
 - Office documents produce structured Markdown. OCR text from embedded raster assets is inserted at the image’s original position. Images the document does not place are not OCR'd, unless the document has no text and places no image (an image-only slide deck): then the OCR text of its images is the manuscript.
 - Text-based PDF pages produce structured Markdown and are not sent through whole-document OCR.
+- On an extracted PDF page, OCR text of images large enough to hold text (at least 72 × 24 pt) is inserted as a block after the text above each image, and the part's source is `mixed`. Native text drawn over an image is not repeated. A failed image OCR keeps the page text and adds a `pdf-image-ocr-failed` warning.
 - Scanned or image-only PDFs produce OCR Markdown.
 - A scanned page whose only text is an invisible layer (a searchable scan) is OCR'd locally. The invisible layer is never returned as the page's text.
 - Mixed PDFs include structured text for extractable pages and OCR text for pages that need OCR. Needing-OCR pages must not be dropped solely because structured extraction succeeded.
@@ -126,4 +127,5 @@ Text is decoded by BOM (or the NUL pattern of BOM-less UTF-16), then ISO-2022-JP
 - Format coverage (text, HTML, e-mail, MHTML, OFD, notebooks, templates, WPS, TIFF pages, HEIC/AVIF/SVG) is specified in `docs/prd/format-coverage.md`, with decisions in `docs/adr/text-detection-and-encoding.md`, `docs/adr/pure-js-format-parsers.md`, `docs/adr/email-attachments.md`, and `docs/adr/paged-inputs.md`.
 - Part provenance is specified in `docs/prd/part-provenance.md` and `docs/adr/part-provenance.md`.
 - PDF links are specified in `docs/prd/pdf-links.md` and `docs/adr/pdf-link-splice.md`.
+- OCR of images on PDF text pages is specified in `docs/prd/pdf-embedded-image-ocr.md` and `docs/adr/pdf-image-ocr.md`.
 - The programmable API and CLI implement the contracts in this file.

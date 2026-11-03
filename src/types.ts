@@ -61,11 +61,22 @@ export type DetectedKind =
 
 export interface OcrLine {
   text: string;
+  /** Corners in rendered-page pixels, origin top left. Absent for engines that do not report boxes. */
+  box?: ReadonlyArray<{ x: number; y: number }>;
+}
+
+/** How an OCR'd PDF page was rendered: its crop box in PDF points, `/Rotate`, and pixels per point. */
+export interface OcrPdfRender {
+  rotation: number;
+  cropBox: { x: number; y: number; width: number; height: number };
+  scale: number;
 }
 
 export interface OcrPage {
   index: number;
   lines: readonly OcrLine[];
+  /** Present for pages rendered from a PDF. */
+  render?: OcrPdfRender;
 }
 
 export interface OcrPort {
@@ -208,6 +219,12 @@ export interface PdfPageItem {
   height: number;
   /** The link target for link items. */
   url?: string;
+}
+
+/** The OCR text found inside one image of a PDF text page. */
+export interface ImageText {
+  image: PdfPageItem;
+  markdown: string;
 }
 
 export interface PdfInspectorPort {

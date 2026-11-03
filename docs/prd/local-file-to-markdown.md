@@ -59,6 +59,7 @@ Later additions (text, HTML, e-mail, MHTML, OFD, notebooks, templates, TIFF page
 - A scanned or image-only PDF yields OCR Markdown.
 - A searchable scan (scanned pages with an invisible OCR text layer) yields the local OCR engine's reading of the pages, not the text of the invisible layer.
 - A mixed PDF includes OCR text for pages that need OCR and keeps structured text for extractable pages.
+- Text inside an image on an extractable PDF page appears next to the surrounding text, as on office documents.
 - WebP/TIFF/HEIC/GIF transcode when possible; otherwise a warning and no throw.
 - Encrypted or unknown types return empty Markdown plus a warning and do not throw.
 - `convert()` accepts only bytes and a caller-owned engine; a string argument or a missing engine is an illegal call.
