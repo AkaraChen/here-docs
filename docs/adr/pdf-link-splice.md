@@ -6,7 +6,7 @@ Accepted
 
 ## Context and forces
 
-pdf-inspector 1.14.2 renders page Markdown without link targets. Its `extractTextWithPositions(buffer, pages)` reports text runs and link annotations with their boxes in PDF points (origin bottom-left), and link items carry `linkUrl`. Text runs are whole `Tj` runs, often a full line, so a link that covers part of a line has no run of its own. The positioned-items API is synchronous, takes 1-based page numbers, and costs roughly in proportion to the pages requested (about 0.5 s for 64 pages of a 269-page document).
+pdf-inspector (1.14.2 and 1.25.2) renders page Markdown without link targets. Its `extractTextWithPositions(buffer, pages)` reports text runs and link annotations with their boxes in PDF points (origin bottom-left), and link items carry `linkUrl`. Text runs are whole `Tj` runs, often a full line, so a link that covers part of a line has no run of its own. The positioned-items API is synchronous, takes 1-based page numbers, and costs roughly in proportion to the pages requested (about 0.5 s for 64 pages of a 269-page document).
 
 ## Decision
 
