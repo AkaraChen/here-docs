@@ -19,6 +19,7 @@ The Office path already owns a Markdown serializer for anydoc's document model (
   - `fflate`: OFD ZIP packages.
   - `chardet` and `iconv-lite`: encodings.
   - `libheif-js`: HEVC-coded HEIC.
+- BMP uses a small in-house decoder (uncompressed palette, 16/24/32-bit, and bit-field images), because sharp's prebuilt libvips has no BMP loader and older Outlook mail embeds BMP.
 - MHTML uses a small in-house `multipart/related` reader, because `postal-mime` does not expose each part's `Content-Location`, which is how archived pages reference their images.
 - HTML (from files, e-mail bodies, MHTML, and notebook outputs) is converted into anydoc's document model and rendered by the existing serializer. Embedded images become document assets and go through the same OCR splice as Office images. Formats that are Markdown already (notebook markdown cells, plain text) are passed through.
 - sharp's bundled libheif decodes only AV1 (AVIF), so iPhone HEIC photos fail there. The image adapter falls back to `libheif-js` (libheif compiled to WebAssembly) when sharp cannot read a HEIC input, and decodes the file's primary image: grids, overlays, and bursts list tiles or frames first. The decoder is imported only on that path.

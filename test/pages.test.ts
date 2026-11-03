@@ -192,3 +192,38 @@ test("aborting between pages stops the iterator", async () => {
   controller.abort(new Error("enough"));
   await assert.rejects(() => pages.next(), /enough/);
 });
+
+test("a multi-page TIFF yields one OCR'd part per page; a failed page keeps the others", async () => {
+  const tiff = Uint8Array.from([0x49, 0x49, 0x2a, 0x00, 0x08, 0x00]);
+  const decoded: number[] = [];
+  const engine = fakeDeps({
+    images: {
+      async pageCount() {
+        return 3;
+      },
+      async toPng(_bytes, page) {
+        decoded.push(page ?? -1);
+        if (page === 1) {
+          throw new Error("bad strip");
+        }
+        return jpegBytes;
+      },
+    },
+  });
+  const parts = await collect(convertPages(tiff, { engine }));
+  assert.deepEqual(
+    parts.map((p) => [p.page, p.pageCount, p.markdown]),
+    [
+      [1, 3, "## Page 1\n\nOCR"],
+      [2, 3, ""],
+      [3, 3, "## Page 3\n\nOCR"],
+    ],
+  );
+  assert.equal(parts[1]?.warnings[0]?.code, WarningCode.transcodeFailed);
+  assert.match(parts[1]?.warnings[0]?.message ?? "", /^page 2: bad strip/);
+  assert.deepEqual(decoded, [0, 1, 2]);
+
+  const first = await collect(convertPages(tiff, { engine }), 1);
+  assert.equal(first.length, 1);
+  assert.deepEqual(decoded, [0, 1, 2, 0]);
+});
