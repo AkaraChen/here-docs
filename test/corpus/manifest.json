@@ -1,0 +1,5007 @@
+[
+ {
+  "file": "files/email/akkana-mailtests/applemail.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/akkana/scripts/master/mailtests/applemail.eml",
+  "expect": [
+   "Lots of attachments from Apple mail",
+   "simpledocx.docx",
+   "canyon tree frog"
+  ],
+  "minChars": 780
+ },
+ {
+  "file": "files/email/akkana-mailtests/thunderbird.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/akkana/scripts/master/mailtests/thunderbird.eml",
+  "expect": [
+   "Email with attachments from Thunderbird",
+   "simplepdf.pdf",
+   "Hello, world!"
+  ],
+  "minChars": 712
+ },
+ {
+  "file": "files/email/aspose/EmailWithAttachEmbedded.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/aspose-email/Aspose.Email-for-.NET/master/Examples/Data/Email/EmailWithAttachEmbedded.eml",
+  "expect": [
+   "Email with Attachments and Embedded Images",
+   "TxtAttachmnet.txt",
+   "At Aspose, we are putting all our efforts"
+  ],
+  "minChars": 308
+ },
+ {
+  "file": "files/email/aspose/Meeting_with_Recurring_Occurrences.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/aspose-email/Aspose.Email-for-.NET/master/Examples/Data/Email/Meeting%20with%20Recurring%20Occurrences.msg",
+  "expect": [
+   "Meeting with Recurring Occurrences",
+   "This is what I have found about Aspose."
+  ],
+  "minChars": 3476
+ },
+ {
+  "file": "files/email/aspose/TestAppointment.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/aspose-email/Aspose.Email-for-.NET/master/Examples/Data/MAPI/TestAppointment.eml",
+  "expect": [
+   "Test Appointment",
+   "Test Appointment Body."
+  ],
+  "minChars": 1494
+ },
+ {
+  "file": "files/email/aspose/Test_Meeting.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/aspose-email/Aspose.Email-for-.NET/master/Examples/Data/MAPI/Test%20Meeting.msg",
+  "expect": [
+   "Test Meeting"
+  ],
+  "minChars": 176
+ },
+ {
+  "file": "files/email/aspose/signed.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/aspose-email/Aspose.Email-for-.NET/master/Examples/Data/Email/signed.eml",
+  "expect": [
+   "Another year"
+  ],
+  "minChars": 116,
+  "allowWarnings": [
+   "unsupported"
+  ]
+ },
+ {
+  "file": "files/email/aspose/tnefWithMsgInside.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/aspose-email/Aspose.Email-for-.NET/master/Examples/Data/Email/tnefWithMsgInside.eml",
+  "expect": [
+   "asvasfvasvf"
+  ],
+  "minChars": 185,
+  "allowWarnings": [
+   "unknown-type"
+  ]
+ },
+ {
+  "file": "files/email/bestpractical-rt/2-signed-attachment.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/bestpractical/rt/stable/t/data/smime/mails/2-signed-attachment.eml",
+  "expect": [
+   "Test Email ID:2",
+   "text-attachment.txt",
+   "This is a test email with a text attachment."
+  ],
+  "minChars": 219
+ },
+ {
+  "file": "files/email/cpython/msg_02.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/test/test_email/data/msg_02.txt",
+  "expect": [
+   "Ppp digest, Vol 1 #2 - 5 msgs",
+   "[Ppp] testing #1"
+  ],
+  "minChars": 1312
+ },
+ {
+  "file": "files/email/cpython/msg_10.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/test/test_email/data/msg_10.txt",
+  "expect": [
+   "Lyrics",
+   "This is a Base64 encoded message.",
+   "This is a Quoted Printable encoded message!"
+  ],
+  "minChars": 272
+ },
+ {
+  "file": "files/email/cpython/msg_45.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/test/test_email/data/msg_45.txt",
+  "expect": [
+   "This is the signed contents."
+  ],
+  "minChars": 67
+ },
+ {
+  "file": "files/email/cpython/msg_46.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/test/test_email/data/msg_46.txt",
+  "expect": [
+   "GroupwiseForwardingTest",
+   "Testing email forwarding with Groupwise 1.2.2010"
+  ],
+  "minChars": 300
+ },
+ {
+  "file": "files/email/email-outlook-message-perl/gpg_signed.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/mvz/email-outlook-message-perl/master/t/files/gpg_signed.msg",
+  "expect": [
+   "Test for MSGConvert",
+   "This is yet another test."
+  ],
+  "minChars": 274
+ },
+ {
+  "file": "files/email/email-outlook-message-perl/plain_jpeg_attached.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/mvz/email-outlook-message-perl/master/t/files/plain_jpeg_attached.msg",
+  "expect": [
+   "test.jpg"
+  ],
+  "minChars": 142
+ },
+ {
+  "file": "files/email/go-gmime/inline-attachment.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/sendgrid/go-gmime/master/gmime/fixtures/inline-attachment.eml",
+  "expect": [
+   "test inline image attachment",
+   "kien image below"
+  ],
+  "minChars": 187
+ },
+ {
+  "file": "files/email/go-gmime/text_attachment.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/sendgrid/go-gmime/master/gmime/fixtures/text_attachment.eml",
+  "expect": [
+   "Distilled Content-Type headers (outbound & failed)",
+   "content-type-sorted-distilled.txt",
+   "Attached are the content headers library should handle it."
+  ],
+  "minChars": 1080
+ },
+ {
+  "file": "files/email/joruri-mail/attachment-rfc2231.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/ytmknd/joruri-mail/master/test/fixtures/emails/attachment/rfc2231.eml",
+  "expect": [
+   "添付ファイル RFC2231テスト",
+   "複数行テスト複数行テスト.txt"
+  ],
+  "minChars": 172,
+  "allowWarnings": [
+   "unsupported"
+  ]
+ },
+ {
+  "file": "files/email/joruri-mail/attachment-uuencode.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/ytmknd/joruri-mail/master/test/fixtures/emails/attachment/uuencode.eml",
+  "expect": [
+   "添付ファイル uuencode"
+  ],
+  "minChars": 402
+ },
+ {
+  "file": "files/email/joruri-mail/charset-euc-jp.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/ytmknd/joruri-mail/master/test/fixtures/emails/charset/euc-jp.eml",
+  "expect": [
+   "エンコードテスト EUC-JP",
+   "エンコードテスト.txt"
+  ],
+  "minChars": 148,
+  "allowWarnings": [
+   "unsupported"
+  ]
+ },
+ {
+  "file": "files/email/joruri-mail/charset-euc-kr.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/ytmknd/joruri-mail/master/test/fixtures/emails/charset/euc-kr.eml",
+  "expect": [
+   "エンコードテスト EUC-KR테스트",
+   "테스트.txt"
+  ],
+  "minChars": 134,
+  "allowWarnings": [
+   "unsupported"
+  ]
+ },
+ {
+  "file": "files/email/joruri-mail/charset-gb2312.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/ytmknd/joruri-mail/master/test/fixtures/emails/charset/gb2312.eml",
+  "expect": [
+   "字符串转GB2312",
+   "字符串转GB2312.txt"
+  ],
+  "minChars": 155,
+  "allowWarnings": [
+   "unsupported"
+  ]
+ },
+ {
+  "file": "files/email/joruri-mail/charset-iso-2022-jp-2.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/ytmknd/joruri-mail/master/test/fixtures/emails/charset/iso-2022-jp-2.eml",
+  "expect": [
+   "エンコードテスト ISO-2022-JP-2"
+  ],
+  "minChars": 140,
+  "allowWarnings": [
+   "unsupported"
+  ]
+ },
+ {
+  "file": "files/email/joruri-mail/charset-shift_jis.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/ytmknd/joruri-mail/master/test/fixtures/emails/charset/shift_jis.eml",
+  "expect": [
+   "エンコードテスト Shift_JIS",
+   "エンコードテスト.txt"
+  ],
+  "minChars": 152,
+  "allowWarnings": [
+   "unsupported"
+  ]
+ },
+ {
+  "file": "files/email/joruri-mail/charset-unicode-1-1-utf-7.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/ytmknd/joruri-mail/master/test/fixtures/emails/charset/unicode-1-1-utf-7.eml",
+  "minChars": 184,
+  "allowWarnings": [
+   "unsupported"
+  ]
+ },
+ {
+  "file": "files/email/kingmos-gui/about_Demo_Program.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/172625145/Kingmos-GUI/master/email/in/about%20Demo%20Program.eml",
+  "expect": [
+   "about Demo Program",
+   "Demo Program 目前所測試到的問題"
+  ],
+  "minChars": 311
+ },
+ {
+  "file": "files/email/mailcore2/1015-windows-1252.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/MailCore/mailcore2/master/unittest/data/summary/input/1015-windows-1252.eml",
+  "expect": [
+   "Re: Test test",
+   "microphone wasn’t showing up"
+  ],
+  "minChars": 296
+ },
+ {
+  "file": "files/email/mailcore2/1021-chinese.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/MailCore/mailcore2/master/unittest/data/summary/input/1021-chinese.eml",
+  "expect": [
+   "哈哈"
+  ],
+  "minChars": 89
+ },
+ {
+  "file": "files/email/mailcore2/1798-korean.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/MailCore/mailcore2/master/unittest/data/summary/input/1798-korean.eml",
+  "expect": [
+   "[주말특가] 일본정품 후끈후끈 핫팩, 손난로 주말특가!"
+  ],
+  "minChars": 120
+ },
+ {
+  "file": "files/email/mailcore2/1808-winmail-dat.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/MailCore/mailcore2/master/unittest/data/summary/input/1808-winmail-dat.eml",
+  "expect": [
+   "Installation Hyperion sous Linux",
+   "les print ecran"
+  ],
+  "minChars": 323,
+  "allowWarnings": [
+   "unknown-type"
+  ]
+ },
+ {
+  "file": "files/email/mailcore2/2195-greek.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/MailCore/mailcore2/master/unittest/data/summary/input/2195-greek.eml",
+  "expect": [
+   "Έκδοση μηνιαίου λογαριασμού",
+   "Αγαπητέ συνδρομητή"
+  ],
+  "minChars": 636
+ },
+ {
+  "file": "files/email/mailcore2/4850-russian.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/MailCore/mailcore2/master/unittest/data/summary/input/4850-russian.eml",
+  "expect": [
+   "Рассылка: Уведомление участникам тендеров",
+   "Уведомление участникам тендера № 158/11"
+  ],
+  "minChars": 308
+ },
+ {
+  "file": "files/email/mailcore2/4851-chinese.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/MailCore/mailcore2/master/unittest/data/summary/input/4851-chinese.eml",
+  "expect": [
+   "Cheeky Chuck Champ | Chinese name",
+   "奇奇咔咔冠军版"
+  ],
+  "minChars": 618
+ },
+ {
+  "file": "files/email/mailcore2/4925-japanese.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/MailCore/mailcore2/master/unittest/data/summary/input/4925-japanese.eml",
+  "expect": [
+   "ＥＴＣマイレージからのお知らせ",
+   "ＥＴＣマイレージサービスをご利用いただき"
+  ],
+  "minChars": 2163
+ },
+ {
+  "file": "files/email/mailcore2/5229-cyrillic-asian.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/MailCore/mailcore2/master/unittest/data/summary/input/5229-cyrillic-asian.eml",
+  "expect": [
+   "REGGI",
+   "Комментарии"
+  ],
+  "minChars": 7420
+ },
+ {
+  "file": "files/email/mailcore2/5230-thai-chinese.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/MailCore/mailcore2/master/unittest/data/summary/input/5230-thai-chinese.eml",
+  "expect": [
+   "เหตุทำให้สมองเสื่อมไว"
+  ],
+  "minChars": 1526
+ },
+ {
+  "file": "files/email/mailcore2/6094-japanese-1.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/MailCore/mailcore2/master/unittest/data/summary/input/6094-japanese-1.eml",
+  "expect": [
+   "Re: 緊急ミーティング",
+   "どの日でもいいですよ。"
+  ],
+  "minChars": 2964
+ },
+ {
+  "file": "files/email/mailcore2/950-japanese-chinese-3.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/MailCore/mailcore2/master/unittest/data/summary/input/950-japanese-chinese-3.eml",
+  "expect": [
+   "[PressNetwork Digest] 2010年12月08日(水) [3件]",
+   "プレスネットワークダイジェスト"
+  ],
+  "minChars": 779
+ },
+ {
+  "file": "files/email/mailcore2/989-encoding-4.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/MailCore/mailcore2/master/unittest/data/summary/input/989-encoding-4.eml",
+  "expect": [
+   "услуги перевода в Турции",
+   "Добрый день, Марина."
+  ],
+  "minChars": 440
+ },
+ {
+  "file": "files/email/mailparser/base64encodedroot.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/nodemailer/mailparser/master/test/fixtures/base64encodedroot.eml",
+  "expect": [
+   "screenshot.png"
+  ],
+  "minChars": 54
+ },
+ {
+  "file": "files/email/mailparser/delivery-status.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/nodemailer/mailparser/master/test/fixtures/delivery-status.eml",
+  "expect": [
+   "Delivery Status Notification (Failure)",
+   "An error occurred while trying to deliver the mail"
+  ],
+  "minChars": 709
+ },
+ {
+  "file": "files/email/mailparser/nodemailer.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/nodemailer/mailparser/master/examples/nodemailer.eml",
+  "expect": [
+   "Nodemailer is unicode friendly ✔",
+   "notes.txt"
+  ],
+  "minChars": 311
+ },
+ {
+  "file": "files/email/mhtml-asidorova/CreateThread.mht",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/a-sidorova/operation_systems_course/master/lab3/docs/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F%20CreateThread.mht",
+  "expect": [
+   "создает поток, который выполняется в пределах виртуального адресного пространства"
+  ],
+  "minChars": 8647
+ },
+ {
+  "file": "files/email/mhtml-avrxml/readme.mht",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/avrxml/asf/master/xmega/applications/xmega_c3_xplained_demo/readme.mht",
+  "expect": [
+   "ASF Demo application for XMEGA-C3 Xplained",
+   "The Atmel AVR XMEGA-C3 Xplained evaluation kit demo software"
+  ],
+  "minChars": 2868
+ },
+ {
+  "file": "files/email/mhtml-blink-layouttests/page_with_css_and_js_ie.mht",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/nwjs/blink/nw12/LayoutTests/mhtml/page_with_css_and_js_ie.mht",
+  "expect": [
+   "This page tests that CSS and JavaScript resources are"
+  ],
+  "minChars": 241
+ },
+ {
+  "file": "files/email/mhtml-blink-layouttests/page_with_image_ie.mht",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/nwjs/blink/nw12/LayoutTests/mhtml/page_with_image_ie.mht",
+  "expect": [
+   "This is a red square:"
+  ],
+  "minChars": 18
+ },
+ {
+  "file": "files/email/mhtml-chrome-angelwish/angelwish-guide.mht",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/jyxjyx1234/AngelWish_CHS/main/%E6%94%BB%E7%95%A5.mht",
+  "expect": [
+   "放課後の召使いにチュッ！",
+   "修正パッチがあります。"
+  ],
+  "minChars": 8474
+ },
+ {
+  "file": "files/email/mhtml-chrome-tamgu/curl-copyright.mhtml",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/naver/tamgu/master/libcurl/curl%20-%20copyright.mhtml",
+  "expect": [
+   "Curl and libcurl are true Open Source/Free Software"
+  ],
+  "minChars": 2056
+ },
+ {
+  "file": "files/email/mhtml-gfxview/pcx-format.mht",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/witchcraft2001/gfxview/master/doc/%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%20pcx.mht",
+  "expect": [
+   "Описание формата PCX и некоторых утилит PC Paintbrush",
+   "Перевод с английского языка"
+  ],
+  "minChars": 9321
+ },
+ {
+  "file": "files/email/mhtml-graduatedcylinder/NMEA_Transmitted_Messages.mht",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/EddieGarmon/GraduatedCylinder/master/Docs/NMEA%20Transmitted%20Messages.mht",
+  "expect": [
+   "NMEA Transmitted Messages",
+   "Global positioning system fixed data"
+  ],
+  "minChars": 3632
+ },
+ {
+  "file": "files/email/mhtml-nts2r/tenchi2_encaunt.mht",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/NTS2R/DoaE2-NTS2R-Basics-Evolution/master/doc/Other%20information/tenchi2_encaunt.mht",
+  "expect": [
+   "Xレジスタに、#$04をロード"
+  ],
+  "minChars": 10804
+ },
+ {
+  "file": "files/email/mhtml-ofrontplus/Oberon-07-2016.mht",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/Oleg-N-Cher/OfrontPlus/master/Docu/Oberon-07-2016.mht",
+  "expect": [
+   "Язык программирования Оберон",
+   "Никлаус Вирт"
+  ],
+  "minChars": 36176
+ },
+ {
+  "file": "files/email/mhtml-openpreserve/lorem-ipsum.mht",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/openpreserve/format-corpus/master/variations/variations/multipart/related/lorem-ipsum.mht",
+  "expect": [
+   "Variatio Ipsius",
+   "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  ],
+  "minChars": 3574
+ },
+ {
+  "file": "files/email/mhtml-romcenter/unif.mht",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/ebolefeysot/RomcenterPlugins/master/Plugins.net/nes/doc/unif.mht",
+  "expect": [
+   "Universal NES Image Format",
+   "From NESdev Wiki"
+  ],
+  "minChars": 6011
+ },
+ {
+  "file": "files/email/mhtml-sillsdev/Build_Process.mht",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/sillsdev/FwDocumentation/develop/Build%20Process.mht",
+  "expect": [
+   "The FieldWorks Build Process",
+   "NAnt is a free .NET build tool"
+  ],
+  "minChars": 11289
+ },
+ {
+  "file": "files/email/mimekit/japanese.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/jstedfast/MimeKit/master/UnitTests/TestData/messages/japanese.txt",
+  "expect": [
+   "日本語メールテスト (testing Japanese emails)",
+   "正常に"
+  ],
+  "minChars": 175
+ },
+ {
+  "file": "files/email/mimekit/multipart-related-mhtml.mht",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/jstedfast/MimeKit/master/UnitTests/TestData/messages/multipart-related-mhtml.txt",
+  "expect": [
+   "def"
+  ],
+  "minChars": 3
+ },
+ {
+  "file": "files/email/mimekit/rich-text-tnef.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/jstedfast/MimeKit/master/UnitTests/TestData/tnef/rich-text.eml",
+  "expect": [
+   "Rich Text",
+   "What a Christmas to remember"
+  ],
+  "minChars": 1579,
+  "allowWarnings": [
+   "unknown-type"
+  ]
+ },
+ {
+  "file": "files/email/mimekit/ukr-tnef.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/jstedfast/MimeKit/master/UnitTests/TestData/tnef/ukr.eml",
+  "expect": [
+   "rr test 7",
+   "шостий"
+  ],
+  "minChars": 165,
+  "allowWarnings": [
+   "unknown-type"
+  ]
+ },
+ {
+  "file": "files/email/msg-extractor/multi-to.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/TeamMsgExtractor/msg-extractor/master/example-msg-files/multi-to.msg",
+  "expect": [
+   "Test: multiple To recipients",
+   "Test email body."
+  ],
+  "minChars": 195
+ },
+ {
+  "file": "files/email/msg-extractor/signed.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/TeamMsgExtractor/msg-extractor/master/example-msg-files/signed.msg",
+  "expect": [
+   "incorrectly signed with attachment",
+   "Is the pdf found from msg_extract?"
+  ],
+  "minChars": 228
+ },
+ {
+  "file": "files/email/msg-extractor/strangeDate.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/TeamMsgExtractor/msg-extractor/master/example-msg-files/strangeDate.msg",
+  "expect": [
+   "MSG Test File",
+   "Purpose: Provide example of this file type"
+  ],
+  "minChars": 2224
+ },
+ {
+  "file": "files/email/msg-extractor/unicode.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/TeamMsgExtractor/msg-extractor/master/example-msg-files/unicode.msg",
+  "expect": [
+   "Test for TIF files",
+   "import OleFileIO.tif",
+   "This is a test email to experiment with the MS Outlook MSG Extractor"
+  ],
+  "minChars": 3313
+ },
+ {
+  "file": "files/email/msgreader/A_schedule.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/HiraokaHyperTools/msgreader/master/test/A%20schedule.msg",
+  "expect": [
+   "A schedule",
+   "A message body."
+  ],
+  "minChars": 217
+ },
+ {
+  "file": "files/email/msgreader/Attach_sample_eml_received.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/HiraokaHyperTools/msgreader/master/test/Attach%20sample%20eml%20received.msg",
+  "expect": [
+   "Attach sample.eml",
+   "Sent from my Windows 10"
+  ],
+  "minChars": 254
+ },
+ {
+  "file": "files/email/msgreader/Friday_Lunch.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/HiraokaHyperTools/msgreader/master/test/Friday%20Lunch.msg",
+  "expect": [
+   "Friday Lunch"
+  ],
+  "minChars": 364
+ },
+ {
+  "file": "files/email/msgreader/Hello__CJK.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/HiraokaHyperTools/msgreader/master/test/Hello%20%2BCJK.msg",
+  "expect": [
+   "Hello +CJK",
+   "你好",
+   "안녕하세요"
+  ],
+  "minChars": 69
+ },
+ {
+  "file": "files/email/msgreader/Simple.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/HiraokaHyperTools/msgreader/master/test/Simple.msg",
+  "expect": [
+   "Simple"
+  ],
+  "minChars": 48
+ },
+ {
+  "file": "files/email/msgreader/attachAndInline.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/HiraokaHyperTools/msgreader/master/test/attachAndInline.msg",
+  "expect": [
+   "Attach and inline",
+   "attach.png"
+  ],
+  "minChars": 132
+ },
+ {
+  "file": "files/email/msgreader/attachmentFiles.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/HiraokaHyperTools/msgreader/master/test/attachmentFiles.msg",
+  "expect": [
+   "attachmentFiles",
+   "jpg.jpg",
+   "tif.tif"
+  ],
+  "minChars": 178
+ },
+ {
+  "file": "files/email/msgreader/htmlLink.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/HiraokaHyperTools/msgreader/master/test/htmlLink.msg",
+  "expect": [
+   "htmlLink",
+   "https://google.com/"
+  ],
+  "minChars": 120
+ },
+ {
+  "file": "files/email/msgreader/msgInMsg.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/HiraokaHyperTools/msgreader/master/test/msgInMsg.msg",
+  "expect": [
+   "I have attachments!",
+   "Microsoft Outlook テスト メッセージ",
+   "green.png"
+  ],
+  "minChars": 320
+ },
+ {
+  "file": "files/email/msgreader/msgInMsgInMsg.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/HiraokaHyperTools/msgreader/master/test/msgInMsgInMsg.msg",
+  "expect": [
+   "I have sub attachments!",
+   "I have attachments!",
+   "blue.png"
+  ],
+  "minChars": 443
+ },
+ {
+  "file": "files/email/msgreader/newOutlook_Microsoft_Outlook_test.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/HiraokaHyperTools/msgreader/master/test/newOutlook%20Microsoft%20Outlook%20test.msg",
+  "expect": [
+   "Microsoft Outlook テスト メッセージ",
+   "Microsoft Outlook から自動送信されたものです。"
+  ],
+  "minChars": 178
+ },
+ {
+  "file": "files/email/msgreader/nonUnicodeCP932.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/HiraokaHyperTools/msgreader/master/test/nonUnicodeCP932.msg",
+  "expect": [
+   "日本語 Non Unicode タイトル",
+   "日本語 Non Unicode 本文"
+  ],
+  "minChars": 99
+ },
+ {
+  "file": "files/email/msgreader/nonUnicodeMail.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/HiraokaHyperTools/msgreader/master/test/nonUnicodeMail.msg",
+  "expect": [
+   "Non Unicode mail subject",
+   "Non Unicode mail body!"
+  ],
+  "minChars": 105
+ },
+ {
+  "file": "files/email/msgreader/unicode1.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/HiraokaHyperTools/msgreader/master/test/unicode1.msg",
+  "expect": [
+   "畑㵲応ｲ瑤㵨㠱",
+   "The subject having"
+  ],
+  "minChars": 71
+ },
+ {
+  "file": "files/email/msgreader/voteItems.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/HiraokaHyperTools/msgreader/master/test/voteItems.msg",
+  "expect": [
+   "3 vote items: はい;いいえ;たぶん"
+  ],
+  "minChars": 126
+ },
+ {
+  "file": "files/email/officeimo/ReportReview.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/EvotecIT/OfficeIMO/master/Website/static/downloads/integrations/mail/ReportReview.eml",
+  "expect": [
+   "Equipment quotes: review price and delivery before ordering",
+   "SupplierOffers.xlsx",
+   "Please review the attached supplier comparison"
+  ],
+  "minChars": 1324
+ },
+ {
+  "file": "files/email/php-mime-mail-parser/issue163.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/php-mime-mail-parser/php-mime-mail-parser/main/tests/mails/issue163",
+  "expect": [
+   "Multiple text blocks",
+   "First we have a text block, then we insert an image:",
+   "Then we have more text"
+  ],
+  "minChars": 216
+ },
+ {
+  "file": "files/email/php-mime-mail-parser/issue274.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/php-mime-mail-parser/php-mime-mail-parser/main/tests/mails/issue274.eml",
+  "expect": [
+   "Hello from SwiftMailer.docx",
+   "Cours-Tutoriels-Serge-Tahé-1568x268.png",
+   "test-localhost"
+  ],
+  "minChars": 708
+ },
+ {
+  "file": "files/email/php-mime-mail-parser/m0024.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/php-mime-mail-parser/php-mime-mail-parser/main/tests/mails/m0024",
+  "expect": [
+   "Persil, abeilles ...",
+   "Biodiversité de semaine en semaine.doc"
+  ],
+  "minChars": 1412
+ },
+ {
+  "file": "files/email/pingintel/demo_email.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/pingintel/pingintel-api/main/examples/data/demo_email.eml",
+  "expect": [
+   "parse_sov_testfile.xlsx"
+  ],
+  "minChars": 455
+ },
+ {
+  "file": "files/email/poi/58214_with_attachment.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/poi/trunk/test-data/hsmf/58214_with_attachment.msg",
+  "expect": [
+   "Master mail",
+   "Vestibulum orci purus, malesuada vitae interdum eu"
+  ],
+  "minChars": 1831
+ },
+ {
+  "file": "files/email/poi/HTMLBodyBinary_CP1251.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/poi/trunk/test-data/hsmf/HTMLBodyBinary_CP1251.msg",
+  "minChars": 33
+ },
+ {
+  "file": "files/email/poi/attachment_msg_inlineImg.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/poi/trunk/test-data/hsmf/attachment_msg_inlineImg.msg",
+  "expect": [
+   "How to use and check database files from device",
+   "Download and install SQLite Manager"
+  ],
+  "minChars": 2131
+ },
+ {
+  "file": "files/email/poi/cyrillic_message.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/poi/trunk/test-data/hsmf/cyrillic_message.msg",
+  "expect": [
+   "Автоматический ответ подсистемы обмена данными",
+   "Ваше сообщение с темой"
+  ],
+  "minChars": 468
+ },
+ {
+  "file": "files/email/poi/example_received_unicode.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/poi/trunk/test-data/hsmf/example_received_unicode.msg",
+  "expect": [
+   "This is a test message please ignore",
+   "The quick brown fox jumps over the lazy dog"
+  ],
+  "minChars": 626
+ },
+ {
+  "file": "files/email/poi/logsat.com_signatures_valid.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/poi/trunk/test-data/hsmf/logsat.com_signatures_valid.msg",
+  "expect": [
+   "This is a valid digitally signed email."
+  ],
+  "minChars": 200
+ },
+ {
+  "file": "files/email/poi/outlook_30_msg.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/poi/trunk/test-data/hsmf/outlook_30_msg.msg",
+  "expect": [
+   "IN-SPIRE servers going down for a bit, back up around 8am",
+   "I am shutting down the IN-SPIRE servers now for 30ish minutes."
+  ],
+  "minChars": 930
+ },
+ {
+  "file": "files/email/postal-mime/arf.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/postalsys/postal-mime/master/test/fixtures/arf.eml",
+  "expect": [
+   "FW: Earn money",
+   "This is an email abuse report for an email message received from IP"
+  ],
+  "minChars": 916
+ },
+ {
+  "file": "files/email/postal-mime/bounce.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/postalsys/postal-mime/master/test/fixtures/bounce.eml",
+  "expect": [
+   "Undelivered Mail Returned to Sender",
+   "This is an automated message from the mail system at Fastmail."
+  ],
+  "minChars": 1183
+ },
+ {
+  "file": "files/email/postal-mime/calendar-event.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/postalsys/postal-mime/master/test/fixtures/calendar-event.eml",
+  "expect": [
+   "Invitation: Test event ⏰ @ Thu Apr 11, 2024 11am - 12pm (GMT+3) (andris@ethereal.email)",
+   "invite.ics",
+   "Join with Google Meet"
+  ],
+  "minChars": 4462
+ },
+ {
+  "file": "files/email/postal-mime/mimetorture.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/postalsys/postal-mime/master/test/fixtures/mimetorture.eml",
+  "expect": [
+   "Ryan Finnie's MIME Torture Test v1.0",
+   "Welcome to Ryan Finnie's MIME torture test."
+  ],
+  "minChars": 5916,
+  "allowWarnings": [
+   "unknown-type"
+  ]
+ },
+ {
+  "file": "files/email/sicos-msgreader/EmailWith2Attachments.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/Sicos1977/MSGReader/master/MsgReaderTests/SampleFiles/EmailWith2Attachments.msg",
+  "expect": [
+   "E-mail with 2 attachments",
+   "Installatie handleiding.docx",
+   "Installatiehandleiding S&I Agro.xlsx"
+  ],
+  "minChars": 9473
+ },
+ {
+  "file": "files/email/sicos-msgreader/EmailWithAttachments.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/Sicos1977/MSGReader/master/MsgReaderTests/SampleFiles/EmailWithAttachments.msg",
+  "expect": [
+   "This is the subject",
+   "peterpan.jpg",
+   "Hello Neverland"
+  ],
+  "minChars": 206
+ },
+ {
+  "file": "files/email/sicos-msgreader/EmailWithInnerMailAndAttachments.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/Sicos1977/MSGReader/master/MsgReaderTests/SampleFiles/EmailWithInnerMailAndAttachments.msg",
+  "expect": [
+   "Outer mail",
+   "OUTER 1.pdf",
+   "Inner mail"
+  ],
+  "minChars": 244
+ },
+ {
+  "file": "files/email/sicos-msgreader/EmailWithSpecialCharsInSubject.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/Sicos1977/MSGReader/master/MsgReaderTests/SampleFiles/EmailWithSpecialCharsInSubject.msg",
+  "expect": [
+   "Un sujet bien défini Àéroport mañana être ouïe électricité così próxima à Ô",
+   "Testing .msg subject encoding"
+  ],
+  "minChars": 269
+ },
+ {
+  "file": "files/email/sicos-msgreader/HtmlSampleEmailWithAttachment.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/Sicos1977/MSGReader/master/MsgReaderTests/SampleFiles/HtmlSampleEmailWithAttachment.msg",
+  "expect": [
+   "HtmlSampleEmailWithAttachment",
+   "SampleAttachment.pdf",
+   "This is a sample HTML email with an attachment"
+  ],
+  "minChars": 9926
+ },
+ {
+  "file": "files/email/sicos-msgreader/RtfSampleEmailWithAttachment.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/Sicos1977/MSGReader/master/MsgReaderTests/SampleFiles/RtfSampleEmailWithAttachment.msg",
+  "expect": [
+   "RtfSampleEmailWithAttachment",
+   "SampleAttachment.pdf",
+   "This is a sample RTF email with an attachment"
+  ],
+  "minChars": 9894
+ },
+ {
+  "file": "files/email/sicos-msgreader/RtfWithShortRussianString.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/Sicos1977/MSGReader/master/MsgReaderTests/SampleFiles/RtfWithShortRussianString.msg",
+  "expect": [
+   "«Имя пользователя»"
+  ],
+  "minChars": 80
+ },
+ {
+  "file": "files/email/sicos-msgreader/TestWithAttachmentsAndInlines.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/Sicos1977/MSGReader/master/MsgReaderTests/SampleFiles/TestWithAttachmentsAndInlines.eml",
+  "expect": [
+   "Object - subject",
+   "attachment1f.txt",
+   "Test email"
+  ],
+  "minChars": 828
+ },
+ {
+  "file": "files/email/sicos-msgreader/TxtSampleEmail.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/Sicos1977/MSGReader/master/MsgReaderTests/SampleFiles/TxtSampleEmail.msg",
+  "expect": [
+   "TxtSampleEmail",
+   "BOOK ONE: 1805",
+   "so Genoa and Lucca are now just family estates"
+  ],
+  "minChars": 9768
+ },
+ {
+  "file": "files/email/sicos-msgreader/UTF-8_Test.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/Sicos1977/MSGReader/master/MsgReaderTests/SampleFiles/UTF-8_Test.eml",
+  "expect": [
+   "【要確認】●普通自転車",
+   "通常通りパースされることを確認済みです。"
+  ],
+  "minChars": 158
+ },
+ {
+  "file": "files/email/spamscope-mail-parser/mail_outlook_1.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/SpamScope/mail-parser/develop/tests/mails/mail_outlook_1",
+  "expect": [
+   "Newsletter Prüfung Personalwesen / Prüfung Eröffnungsbilanz",
+   "Wenn Sie diesen Newsletter nicht lesen können"
+  ],
+  "minChars": 2116
+ },
+ {
+  "file": "files/email/spamscope-mail-parser/mail_test_10.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/SpamScope/mail-parser/develop/tests/mails/mail_test_10",
+  "expect": [
+   "Modelli POWER7+ inclusi nella campagna Move To Eight",
+   "Move To Eight ZWEP6227F.pdf",
+   "Gentili Business Partner"
+  ],
+  "minChars": 16267
+ },
+ {
+  "file": "files/email/spamscope-mail-parser/mail_test_13.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/SpamScope/mail-parser/develop/tests/mails/mail_test_13",
+  "expect": [
+   "New Webinar: So, You Have A Disaster... Now What?",
+   "Register Today for This FREE Essential Webinar!"
+  ],
+  "minChars": 1867
+ },
+ {
+  "file": "files/email/spamscope-mail-parser/mail_test_5.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/SpamScope/mail-parser/develop/tests/mails/mail_test_5",
+  "expect": [
+   "Je prépare mon été zéro complexe !",
+   "Si ce message ne s'affiche pas correctement"
+  ],
+  "minChars": 1573
+ },
+ {
+  "file": "files/email/stormmail/163.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/startupstorm/stormmail/master/demo/mailparser/demo1/163.eml",
+  "expect": [
+   "titletitletitletitle",
+   "contentcontentcontent"
+  ],
+  "minChars": 146
+ },
+ {
+  "file": "files/email/sympa/signed.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/sympa-community/sympa/main/t/samples/signed.eml",
+  "expect": [
+   "signed test message",
+   "This is a signed test message."
+  ],
+  "minChars": 156
+ },
+ {
+  "file": "files/email/tika/test-outlook.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/src/test/resources/test-documents/test-outlook.msg",
+  "expect": [
+   "Microsoft Outlook Express 6",
+   "La réponse à vos attentes en matière de messagerie"
+  ],
+  "minChars": 2019
+ },
+ {
+  "file": "files/email/tika/test-outlook2003.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/src/test/resources/test-documents/test-outlook2003.msg",
+  "expect": [
+   "Welcome to Microsoft Office Outlook 2003",
+   "1.jpg",
+   "Thank you for using Microsoft"
+  ],
+  "minChars": 6981
+ },
+ {
+  "file": "files/email/tika/testEML_embedded_xhtml_and_img.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/src/test/resources/test-documents/testEML_embedded_xhtml_and_img.eml",
+  "expect": [
+   "This is the subject",
+   "testimage.jpeg"
+  ],
+  "minChars": 236
+ },
+ {
+  "file": "files/email/tika/testEmailWithPNGAtt.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-mail-module/src/test/resources/test-documents/testEmailWithPNGAtt.eml",
+  "expect": [
+   "Test Attachment Email",
+   "testPNG.png",
+   "This email has a PNG attachment included in it"
+  ],
+  "minChars": 176
+ },
+ {
+  "file": "files/email/tika/testGroupWiseEml.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-mail-module/src/test/resources/test-documents/testGroupWiseEml.eml",
+  "expect": [
+   "test333",
+   "Neues Textdokument.txt",
+   "test2"
+  ],
+  "minChars": 220
+ },
+ {
+  "file": "files/email/tika/testMSG.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/src/test/resources/test-documents/testMSG.msg",
+  "expect": [
+   "MIME registry use cases",
+   "making the type detection code more"
+  ],
+  "minChars": 583
+ },
+ {
+  "file": "files/email/tika/testMSG_Appointment.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/src/test/resources/test-documents/testMSG_Appointment.msg",
+  "expect": [
+   "Quick brown fox",
+   "This is a meeting to discuss jumping"
+  ],
+  "minChars": 250
+ },
+ {
+  "file": "files/email/tika/testMSG_Post.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/src/test/resources/test-documents/testMSG_Post.msg",
+  "expect": [
+   "QuickBrownFox",
+   "Is going to jump over the lazy brown dog!!!"
+  ],
+  "minChars": 213
+ },
+ {
+  "file": "files/email/tika/testMSG_att_doc.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/src/test/resources/test-documents/testMSG_att_doc.msg",
+  "expect": [
+   "test pièce jointe 1",
+   "test-unicode.doc",
+   "pj1.txt"
+  ],
+  "minChars": 305
+ },
+ {
+  "file": "files/email/tika/testMSG_att_msg.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/src/test/resources/test-documents/testMSG_att_msg.msg",
+  "expect": [
+   "Test email with 1 msg attachment, 1 pdf",
+   "smbprn.00009008.KdcPjl.pdf"
+  ],
+  "minChars": 608
+ },
+ {
+  "file": "files/email/tika/testMSG_chinese.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/src/test/resources/test-documents/testMSG_chinese.msg",
+  "expect": [
+   "Alfresco MSG format testing ( MSG 格式測試 )",
+   "中文測試"
+  ],
+  "minChars": 907
+ },
+ {
+  "file": "files/email/tika/testMSG_forwarded.msg",
+  "format": "msg",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/src/test/resources/test-documents/testMSG_forwarded.msg",
+  "expect": [
+   "FW: Testing",
+   "Forwarded Body",
+   "Original Body"
+  ],
+  "minChars": 304
+ },
+ {
+  "file": "files/email/tika/testRFC822-ARC.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-mail-module/src/test/resources/test-documents/testRFC822-ARC",
+  "expect": [
+   "Facture à regler pour le cabinet ABC Avocats"
+  ],
+  "minChars": 184
+ },
+ {
+  "file": "files/email/tika/testRFC822-CC-BCC.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-mail-module/src/test/resources/test-documents/testRFC822-CC-BCC",
+  "expect": [
+   "Confidential Folder to safely pass information to",
+   "We have become increasingly concerned about confidential information"
+  ],
+  "minChars": 1728
+ },
+ {
+  "file": "files/email/tika/testRFC822-mixed-simple.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-mail-module/src/test/resources/test-documents/testRFC822-mixed-simple",
+  "expect": [
+   "Test BCCing email (rev 2)",
+   "mary-coffee.jpg",
+   "This is an email that will have some rich text and an attachment."
+  ],
+  "minChars": 280,
+  "allowWarnings": [
+   "ocr-failed"
+  ]
+ },
+ {
+  "file": "files/email/tika/testRFC822-mixed-with-pdf-inline.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-mail-module/src/test/resources/test-documents/testRFC822-mixed-with-pdf-inline",
+  "expect": [
+   "Jane Doe Has Invited You to Team",
+   "tzora-titan-4-hummer-xl-manual.pdf",
+   "Attachment in middle"
+  ],
+  "minChars": 2660,
+  "allowWarnings": [
+   "malformed"
+  ]
+ },
+ {
+  "file": "files/email/tika/testRFC822-multipart.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-mail-module/src/test/resources/test-documents/testRFC822-multipart",
+  "expect": [
+   "Test Multi Part Message",
+   "logo.gif",
+   "This is a test for parsing multi-part mails."
+  ],
+  "minChars": 416
+ },
+ {
+  "file": "files/email/tika/testRFC822_base64.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-mail-module/src/test/resources/test-documents/testRFC822_base64",
+  "expect": [
+   "This tests a base64 encoded body",
+   "voilà!"
+  ],
+  "minChars": 140
+ },
+ {
+  "file": "files/email/tika/testRFC822_eml.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-mail-module/src/test/resources/test-documents/testRFC822_eml",
+  "expect": [
+   "Testemail"
+  ],
+  "minChars": 148
+ },
+ {
+  "file": "files/email/tika/testRFC822_i18nheaders.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-mail-module/src/test/resources/test-documents/testRFC822_i18nheaders",
+  "expect": [
+   "If you can read this you understand the example.",
+   "Keld Jørn Simonsen",
+   "Examples taken from RFC 2047."
+  ],
+  "minChars": 147
+ },
+ {
+  "file": "files/email/tika/testRFC822_multipart_attachments.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-mail-module/src/test/resources/test-documents/testRFC822_multipart_attachments.eml",
+  "expect": [
+   "EML 1",
+   "Test TxtA.txt",
+   "Test TxtB.txt"
+  ],
+  "minChars": 208
+ },
+ {
+  "file": "files/email/tika/testRFC822_normal_zip.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-mail-module/src/test/resources/test-documents/testRFC822_normal_zip",
+  "expect": [
+   "Test mail for Tika",
+   "test.zip",
+   "unencrypted zip file as attachment"
+  ],
+  "minChars": 211,
+  "allowWarnings": [
+   "unknown-type"
+  ]
+ },
+ {
+  "file": "files/email/tika/testRFC822_oddfrom.mht",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-mail-module/src/test/resources/test-documents/testRFC822_oddfrom",
+  "expect": [
+   "Air Permit Programs",
+   "acid rain permits"
+  ],
+  "minChars": 3001
+ },
+ {
+  "file": "files/email/tika/testRFC822_quoted.eml",
+  "format": "eml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-mail-module/src/test/resources/test-documents/testRFC822_quoted",
+  "expect": [
+   "Sample with Quoted Printable Text",
+   "Düsseldorf has non-ascii."
+  ],
+  "minChars": 227
+ },
+ {
+  "file": "files/email/tika/testUserDefinedCharset.mhtml",
+  "format": "mhtml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-html-module/src/test/resources/test-documents/testUserDefinedCharset.mhtml",
+  "minChars": 0
+ },
+ {
+  "file": "files/images/avif-av1avif/Chimera_10bit_cropped_to_1920x1008_with_HDR_metadata.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/AOMediaCodec/av1-avif/main/testFiles/Microsoft/Chimera_10bit_cropped_to_1920x1008_with_HDR_metadata.avif",
+  "minChars": 0
+ },
+ {
+  "file": "files/images/avif-av1avif/Summer_in_Tomsk_720p_5x4_grid.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/AOMediaCodec/av1-avif/main/testFiles/Microsoft/Summer_in_Tomsk_720p_5x4_grid.avif",
+  "minChars": 0,
+  "allowWarnings": [
+   "transcode-failed"
+  ]
+ },
+ {
+  "file": "files/images/avif-av1avif/alpha_video.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/AOMediaCodec/av1-avif/main/testFiles/Netflix/avis/alpha_video.avif",
+  "minChars": 0,
+  "allowWarnings": [
+   "transcode-failed"
+  ]
+ },
+ {
+  "file": "files/images/avif-av1avif/bbb_alpha_inverted.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/AOMediaCodec/av1-avif/main/testFiles/Microsoft/bbb_alpha_inverted.avif",
+  "minChars": 4
+ },
+ {
+  "file": "files/images/avif-av1avif/fox.profile0.10bpc.yuv420.monochrome.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/AOMediaCodec/av1-avif/main/testFiles/Link-U/fox.profile0.10bpc.yuv420.monochrome.avif",
+  "minChars": 0
+ },
+ {
+  "file": "files/images/avif-av1avif/fox.profile2.12bpc.yuv444.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/AOMediaCodec/av1-avif/main/testFiles/Link-U/fox.profile2.12bpc.yuv444.avif",
+  "minChars": 0
+ },
+ {
+  "file": "files/images/avif-av1avif/kimono.mirror-vertical.rotate270.crop.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/AOMediaCodec/av1-avif/main/testFiles/Link-U/kimono.mirror-vertical.rotate270.crop.avif",
+  "minChars": 0,
+  "allowWarnings": [
+   "transcode-failed"
+  ]
+ },
+ {
+  "file": "files/images/avif-av1avif/quebec_3layer_op2.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/AOMediaCodec/av1-avif/main/testFiles/Xiph/quebec_3layer_op2.avif",
+  "minChars": 0,
+  "allowWarnings": [
+   "transcode-failed"
+  ]
+ },
+ {
+  "file": "files/images/avif-klippa/receipt.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/klippa-app/go-libheif/main/testdata/receipt.avif",
+  "expect": [
+   "CASH RECEIPT",
+   "THANK YOU"
+  ],
+  "minChars": 393
+ },
+ {
+  "file": "files/images/avif-mininterface/complex_example.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/CZ-NIC/mininterface/main/asset/complex_example.avif",
+  "expect": [
+   "My program",
+   "A dummy string"
+  ],
+  "minChars": 298
+ },
+ {
+  "file": "files/images/avif-mininterface/datetimetag_date_calendar.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/CZ-NIC/mininterface/main/asset/datetimetag_date_calendar.avif",
+  "expect": [
+   "November",
+   "program.py"
+  ],
+  "minChars": 166
+ },
+ {
+  "file": "files/images/avif-mininterface/hello-gui.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/CZ-NIC/mininterface/main/asset/hello-gui.avif",
+  "expect": [
+   "My application",
+   "This number is very important"
+  ],
+  "minChars": 81
+ },
+ {
+  "file": "files/images/avif-nx/ci-report.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/nrwl/nx/master/astro-docs/src/assets/guides/adopting-nx/ci-report.avif",
+  "expect": [
+   "Baseline to nx optimized",
+   "Turbo 4 machine binning"
+  ],
+  "minChars": 638
+ },
+ {
+  "file": "files/images/avif-nx/nx-cloud-flaky-tasks-table.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/nrwl/nx/master/astro-docs/src/assets/features/ci-features/nx-cloud-flaky-tasks-table.avif",
+  "expect": [
+   "Flake rate",
+   "Total reruns"
+  ],
+  "minChars": 740
+ },
+ {
+  "file": "files/images/avif-nx/self-healing-fix-gh-comment.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/nrwl/nx/master/astro-docs/src/assets/features/self-healing-fix-gh-comment.avif",
+  "expect": [
+   "Nx Cloud is proposing a fix",
+   "Apply fix"
+  ],
+  "minChars": 844
+ },
+ {
+  "file": "files/images/docling/2206.01062.tif",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/docling-project/docling/main/tests/data/tiff/sources/2206.01062.tif",
+  "expect": [
+   "DocLayNet",
+   "Document-Layout Analysis"
+  ],
+  "minChars": 7420
+ },
+ {
+  "file": "files/images/docling/webp-test.webp",
+  "format": "webp",
+  "source": "https://raw.githubusercontent.com/docling-project/docling/main/tests/data/webp/sources/webp-test.webp",
+  "expect": [
+   "Docling bundles PDF document conversion",
+   "Markdown"
+  ],
+  "minChars": 76
+ },
+ {
+  "file": "files/images/ente/IMG_8606_rotate_90_cw_contains_text.HEIC",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/ente/test-fixtures/main/media/heic/v1/files/IMG_8606_rotate_90_cw_contains_text.HEIC",
+  "expect": [
+   "HDFC BANK",
+   "SCAN & PAY",
+   "pine labs"
+  ],
+  "minChars": 156
+ },
+ {
+  "file": "files/images/ente/ui_app.webp",
+  "format": "webp",
+  "source": "https://raw.githubusercontent.com/ente/test-fixtures/main/ml/indexing/v1/files/ui_app.webp",
+  "expect": [
+   "Today",
+   "All memories preserved"
+  ],
+  "minChars": 88
+ },
+ {
+  "file": "files/images/gif-commons/pendergrass-letter-typed-p1.gif",
+  "format": "gif",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/5/55/Bobbie_Lou_Pendergrass_Letter_%28typed_version%29_to_President_Kennedy_February_18%2C_1963_-_DPLA_-_fa972bffe6a3b5657583bb67920f17a2_%28page_1%29.gif",
+  "expect": [
+   "Dear President Kennedy",
+   "February 18, 1963"
+  ],
+  "minChars": 1566
+ },
+ {
+  "file": "files/images/gini/invoice-burst.heic",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/gini/gini-mobile-android/main/capture-sdk/sdk/src/androidTest/assets/invoice-burst.heic",
+  "expect": [
+   "Rechnung Nr. 12345"
+  ],
+  "minChars": 578
+ },
+ {
+  "file": "files/images/gini/invoice-rotated.heic",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/gini/gini-mobile-android/main/capture-sdk/sdk/src/androidTest/assets/invoice-rotated.heic",
+  "expect": [
+   "Rechnung Nr. 12345"
+  ],
+  "minChars": 645
+ },
+ {
+  "file": "files/images/gini/invoice.heic",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/gini/gini-mobile-android/main/bank-sdk/example-app/src/androidTest/assets/invoice.heic",
+  "expect": [
+   "Rechnung Nr. 12345",
+   "Uno Flüchtlingshilfe"
+  ],
+  "minChars": 720
+ },
+ {
+  "file": "files/images/heic-nokia/3A_HEIC_HDR.heic",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/nokiatech/heif/gh-pages/content/cc0/3A_HEIC_HDR.heic",
+  "minChars": 0
+ },
+ {
+  "file": "files/images/heic-nokia/bird_burst.heic",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/nokiatech/heif/gh-pages/content/nokia/bird_burst.heic",
+  "minChars": 0
+ },
+ {
+  "file": "files/images/heic-nokia/grid_960x640.heic",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/nokiatech/heif/gh-pages/content/nokia/grid_960x640.heic",
+  "minChars": 0
+ },
+ {
+  "file": "files/images/heic-nokia/overlay_1000x680.heic",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/nokiatech/heif/gh-pages/content/nokia/overlay_1000x680.heic",
+  "minChars": 0
+ },
+ {
+  "file": "files/images/heic-nokia/random_collection_1440x960.heic",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/nokiatech/heif/gh-pages/content/nokia/random_collection_1440x960.heic",
+  "minChars": 5
+ },
+ {
+  "file": "files/images/heic-photoprism/iphone_15_pro.heic",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/photoprism/photoprism/develop/assets/samples/iphone_15_pro.heic",
+  "minChars": 1
+ },
+ {
+  "file": "files/images/mindee/receipt.heic",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/mindee/client-lib-test-data/main/file_types/receipt.heic",
+  "expect": [
+   "Payment Receipt",
+   "Thank you for visiting"
+  ],
+  "minChars": 303
+ },
+ {
+  "file": "files/images/mindee/receipt.jpg.heif",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/mindee/client-lib-test-data/main/file_types/receipt.jpg.heif",
+  "minChars": 0,
+  "allowWarnings": [
+   "transcode-failed"
+  ]
+ },
+ {
+  "file": "files/images/mindee/receipt.tif",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/mindee/client-lib-test-data/main/file_types/receipt.tif",
+  "expect": [
+   "Payment Receipt",
+   "Clachan"
+  ],
+  "minChars": 303
+ },
+ {
+  "file": "files/images/mindee/receipt.webp",
+  "format": "webp",
+  "source": "https://raw.githubusercontent.com/mindee/client-lib-test-data/main/file_types/receipt.webp",
+  "expect": [
+   "Payment Receipt",
+   "Clachan"
+  ],
+  "minChars": 303
+ },
+ {
+  "file": "files/images/paperless/document.webp",
+  "format": "webp",
+  "source": "https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/dev/src/paperless/tests/samples/tesseract/document.webp",
+  "expect": [
+   "This is a WebP document",
+   "11/14/2022"
+  ],
+  "minChars": 36
+ },
+ {
+  "file": "files/images/paperless/multi-page-images-alpha-rgb.tiff",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/dev/src/paperless/tests/samples/tesseract/multi-page-images-alpha-rgb.tiff",
+  "expect": [
+   "Page 1",
+   "Page 3"
+  ],
+  "minChars": 121
+ },
+ {
+  "file": "files/images/paperless/multi-page-images.tiff",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/dev/src/paperless/tests/samples/tesseract/multi-page-images.tiff",
+  "expect": [
+   "Page 1",
+   "Page 2",
+   "Page 3"
+  ],
+  "minChars": 121
+ },
+ {
+  "file": "files/images/paperless/patch-code-t-middle.tiff",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/dev/src/documents/tests/samples/barcodes/patch-code-t-middle.tiff",
+  "expect": [
+   "This is a test document"
+  ],
+  "minChars": 921
+ },
+ {
+  "file": "files/images/paperless/simple.gif",
+  "format": "gif",
+  "source": "https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/dev/src/paperless/tests/samples/tesseract/simple.gif",
+  "expect": [
+   "This is a test document"
+  ],
+  "minChars": 20
+ },
+ {
+  "file": "files/images/paperless/simple.heic",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/dev/src/paperless/tests/samples/tesseract/simple.heic",
+  "expect": [
+   "PIZZA DOUGH",
+   "STORE-BOUGHT YEAST"
+  ],
+  "minChars": 132
+ },
+ {
+  "file": "files/images/svg-commons/LampFlowchart.svg",
+  "format": "svg",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/9/91/LampFlowchart.svg",
+  "expect": [
+   "Lamp doesn't work",
+   "Replace bulb"
+  ],
+  "minChars": 83
+ },
+ {
+  "file": "files/images/svg-commons/center-squeeze-bar-graph.svg",
+  "format": "svg",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Center_Squeeze_Example_Bar_Graph_RCV_AMZ_Percent.svg",
+  "expect": [
+   "RCV Round 1"
+  ],
+  "minChars": 65
+ },
+ {
+  "file": "files/images/svg-commons/fraction-decimal-flowchart-zh.svg",
+  "format": "svg",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/d/d4/%E5%88%86%E6%95%B0%E4%B8%8E%E5%B0%8F%E6%95%B0%E4%BA%92%E5%8C%96%E6%B5%81%E7%A8%8B%E5%9B%BE.svg",
+  "expect": [
+   "分数",
+   "有限小数",
+   "循环小数"
+  ],
+  "minChars": 654
+ },
+ {
+  "file": "files/images/svg-commons/global-bans-workflow-zh-cn.svg",
+  "format": "svg",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Global-bans-process-workflow-zh-cn.svg",
+  "expect": [
+   "元维基",
+   "全域禁制"
+  ],
+  "minChars": 134
+ },
+ {
+  "file": "files/images/svg-commons/japanese-sentence-structure-ja.svg",
+  "format": "svg",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/2/2a/%E6%97%A5%E6%9C%AC%E8%AA%9E%E6%96%87%E6%A7%8B%E9%80%A0.svg",
+  "expect": [
+   "文の成分",
+   "品詞"
+  ],
+  "minChars": 131
+ },
+ {
+  "file": "files/images/svg-commons/likert-stacked-bar-chart.svg",
+  "format": "svg",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Likert_scale_diverging_stacked_bar_chart_example.svg",
+  "expect": [
+   "Strongly disagree",
+   "Neither agree nor disagree"
+  ],
+  "minChars": 244
+ },
+ {
+  "file": "files/images/svg-commons/restaurant-uml-seq.svg",
+  "format": "svg",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/d/df/Restaurant_UML_SEQ.svg",
+  "expect": [
+   "Patron",
+   "Waiter",
+   "Cook"
+  ],
+  "minChars": 84
+ },
+ {
+  "file": "files/images/svg-commons/software-watchdog-flowchart.svg",
+  "format": "svg",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Software_watchdog_timer_flowchart.svg",
+  "expect": [
+   "WDT Kick"
+  ],
+  "minChars": 100
+ },
+ {
+  "file": "files/images/svg-drawio/DotnetToJS.drawio.svg",
+  "format": "svg",
+  "source": "https://raw.githubusercontent.com/microsoft/node-api-dotnet/HEAD/docs/DotnetToJS.drawio.svg",
+  "expect": [
+   ".NET Runtime",
+   "Node.js Runtime"
+  ],
+  "minChars": 92
+ },
+ {
+  "file": "files/images/svg-drawio/ixia-c.drawio.svg",
+  "format": "svg",
+  "source": "https://raw.githubusercontent.com/open-traffic-generator/ixia-c/HEAD/docs/res/ixia-c.drawio.svg",
+  "expect": [
+   "keng-controller",
+   "ixia-c-traffic-engine"
+  ],
+  "minChars": 196
+ },
+ {
+  "file": "files/images/svg-excalidraw/carpentries-Tree1.svg",
+  "format": "svg",
+  "source": "https://raw.githubusercontent.com/carpentries/instructor-training/HEAD/episodes/fig/Tree1.svg",
+  "expect": [
+   "Tree",
+   "Dirt"
+  ],
+  "minChars": 23
+ },
+ {
+  "file": "files/images/svg-excalidraw/go-coffeeshop.svg",
+  "format": "svg",
+  "source": "https://raw.githubusercontent.com/thangchung/go-coffeeshop/HEAD/docs/coffeeshop.svg",
+  "expect": [
+   "Counter Service",
+   "Barista Service"
+  ],
+  "minChars": 680
+ },
+ {
+  "file": "files/images/svg-mermaid/ai-novel-flowchart-zh.svg",
+  "format": "svg",
+  "source": "https://raw.githubusercontent.com/ExplosiveCoderflome/AI-Novel-Writing-Assistant/HEAD/images/%E6%B5%81%E7%A8%8B%E5%9B%BE.svg",
+  "expect": [
+   "灵感入口",
+   "支撑长篇稳定生成"
+  ],
+  "minChars": 290
+ },
+ {
+  "file": "files/images/svg-mermaid/greptime-gc-flow.svg",
+  "format": "svg",
+  "source": "https://raw.githubusercontent.com/GreptimeTeam/docs/HEAD/static/gc-flow.svg",
+  "expect": [
+   "Meta schedules GC",
+   "Pick regions"
+  ],
+  "minChars": 122
+ },
+ {
+  "file": "files/images/svg-plantuml/ar-io-gateway.svg",
+  "format": "svg",
+  "source": "https://raw.githubusercontent.com/ar-io/ar-io-node/HEAD/docs/diagrams/Gateway.svg",
+  "expect": [
+   "AR.IO Gateway",
+   "Envoy"
+  ],
+  "minChars": 1682
+ },
+ {
+  "file": "files/images/svg-plantuml/espresso-architecture.svg",
+  "format": "svg",
+  "source": "https://raw.githubusercontent.com/EspressoSystems/espresso-network/HEAD/doc/architecture.svg",
+  "expect": [
+   "Espresso Network",
+   "HotShot"
+  ],
+  "minChars": 870
+ },
+ {
+  "file": "files/images/svg-w3c/fonts-elem-01-t.svg",
+  "format": "svg",
+  "source": "https://www.w3.org/Graphics/SVG/Test/20110816/svg/fonts-elem-01-t.svg",
+  "expect": [
+   "Basic SVG font element"
+  ],
+  "minChars": 55
+ },
+ {
+  "file": "files/images/svg-w3c/struct-image-01-t.svg",
+  "format": "svg",
+  "source": "https://www.w3.org/Graphics/SVG/Test/20110816/svg/struct-image-01-t.svg",
+  "minChars": 13
+ },
+ {
+  "file": "files/images/svg-w3c/text-fonts-01-t.svg",
+  "format": "svg",
+  "source": "https://www.w3.org/Graphics/SVG/Test/20110816/svg/text-fonts-01-t.svg",
+  "expect": [
+   "A serifed face",
+   "This must be displayed"
+  ],
+  "minChars": 126
+ },
+ {
+  "file": "files/images/svg-w3c/text-intro-01-t.svg",
+  "format": "svg",
+  "source": "https://www.w3.org/Graphics/SVG/Test/20110816/svg/text-intro-01-t.svg",
+  "expect": [
+   "Test left-to-right text",
+   "我能吞下玻璃而不伤身体"
+  ],
+  "minChars": 196
+ },
+ {
+  "file": "files/images/svgz-kde/kanagram-main_overlay.svgz",
+  "format": "svg",
+  "source": "https://raw.githubusercontent.com/KDE/kanagram/master/doc/main_overlay.svgz",
+  "expect": [
+   "Clothing",
+   "Score"
+  ],
+  "minChars": 76
+ },
+ {
+  "file": "files/images/tiff-commons/bronx-science-alumni-list.tif",
+  "format": "tiff",
+  "source": "https://upload.wikimedia.org/wikipedia/commons/0/08/A_list_of_distinguished_alumni_of_Bronx_Science.tif",
+  "expect": [
+   "BRONX HIGH SCHOOL OF SCIENCE",
+   "DISTINGUISHED ALUMNI"
+  ],
+  "minChars": 18082
+ },
+ {
+  "file": "files/images/tiff-imagesharp/multipage_differentVariants.tiff",
+  "format": "tiff",
+  "source": "https://media.githubusercontent.com/media/SixLabors/ImageSharp/main/tests/Images/Input/Tiff/multipage_differentVariants.tiff",
+  "expect": [
+   "LEADTOOLS",
+   "Uncompressed RGB"
+  ],
+  "minChars": 272
+ },
+ {
+  "file": "files/images/tiff-pillow/g4-multi.tiff",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/python-pillow/Pillow/main/Tests/images/g4-multi.tiff",
+  "expect": [
+   "Page1"
+  ],
+  "minChars": 42
+ },
+ {
+  "file": "files/images/tiff-pillow/total-pages-zero.tif",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/python-pillow/Pillow/main/Tests/images/total-pages-zero.tif",
+  "expect": [
+   "Cannot save",
+   "Page Number"
+  ],
+  "minChars": 3201
+ },
+ {
+  "file": "files/images/tiff-tesseract/8087_054.3G.tif",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/tesseract-ocr/test/main/testing/8087_054.3G.tif",
+  "minChars": 3281
+ },
+ {
+  "file": "files/images/tiff-tesseract/eurotext.tif",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/tesseract-ocr/test/main/testing/eurotext.tif",
+  "expect": [
+   "The (quick) [brown] {fox} jumps!",
+   "braune Fuchs"
+  ],
+  "minChars": 329
+ },
+ {
+  "file": "files/images/tiff-tesseract/phototest.tif",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/tesseract-ocr/test/main/testing/phototest.tif",
+  "expect": [
+   "This is a lot of 12 point text",
+   "quick brown dog"
+  ],
+  "minChars": 228
+ },
+ {
+  "file": "files/images/tiff-twelvemonkeys/40-8bit-gray-zip.tif",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/haraldk/TwelveMonkeys/master/imageio/imageio-tiff/src/test/resources/tiff/pixtiff/40-8bit-gray-zip.tif",
+  "minChars": 0
+ },
+ {
+  "file": "files/images/tiff-twelvemonkeys/fivepages-scan-causingerrors.tif",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/haraldk/TwelveMonkeys/master/imageio/imageio-tiff/src/test/resources/tiff/fivepages-scan-causingerrors.tif",
+  "minChars": 43
+ },
+ {
+  "file": "files/images/tiff-twelvemonkeys/packbits-fillorder-2.tif",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/haraldk/TwelveMonkeys/master/imageio/imageio-tiff/src/test/resources/tiff/packbits-fillorder-2.tif",
+  "expect": [
+   "AP Manager"
+  ],
+  "minChars": 730
+ },
+ {
+  "file": "files/images/tiff-twelvemonkeys/scan-mono-iccgray.tif",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/haraldk/TwelveMonkeys/master/imageio/imageio-tiff/src/test/resources/tiff/scan-mono-iccgray.tif",
+  "expect": [
+   "Sehr geehrter Kunde"
+  ],
+  "minChars": 1027
+ },
+ {
+  "file": "files/images/tika/IMG_1034.heic",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-image-module/src/test/resources/test-documents/IMG_1034.heic",
+  "minChars": 0
+ },
+ {
+  "file": "files/images/tika/testAVIF_XMP.avif",
+  "format": "avif",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-image-module/src/test/resources/test-documents/testAVIF_XMP.avif",
+  "minChars": 0
+ },
+ {
+  "file": "files/images/tika/testBigTIFF.tif",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-image-module/src/test/resources/test-documents/testBigTIFF.tif",
+  "minChars": 0
+ },
+ {
+  "file": "files/images/tika/testSVG.svgz",
+  "format": "svg",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-pkg-module/src/test/resources/test-documents/testSVG.svgz",
+  "minChars": 0
+ },
+ {
+  "file": "files/images/tika/testTIFF_multipage.tif",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-ocr-module/src/test/resources/test-documents/testTIFF_multipage.tif",
+  "expect": [
+   "Multipage",
+   "Page 2"
+  ],
+  "minChars": 66
+ },
+ {
+  "file": "files/images/unstructured/DA-1p.heic",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/Unstructured-IO/unstructured/main/example-docs/img/DA-1p.heic",
+  "expect": [
+   "MAIN GAME",
+   "CREATURES",
+   "Abomination"
+  ],
+  "minChars": 2151
+ },
+ {
+  "file": "files/images/unstructured/DA-1p.webp",
+  "format": "webp",
+  "source": "https://raw.githubusercontent.com/Unstructured-IO/unstructured/main/example-docs/img/DA-1p.webp",
+  "expect": [
+   "MAIN GAME",
+   "CREATURES"
+  ],
+  "minChars": 2151
+ },
+ {
+  "file": "files/images/unstructured/layout-parser-paper-combined.tiff",
+  "format": "tiff",
+  "source": "https://raw.githubusercontent.com/Unstructured-IO/unstructured/main/example-docs/img/layout-parser-paper-combined.tiff",
+  "expect": [
+   "LayoutParser",
+   "Unified Toolkit"
+  ],
+  "minChars": 4303
+ },
+ {
+  "file": "files/images/unstructured/multi-image-64x48-640x480.heic",
+  "format": "heic",
+  "source": "https://raw.githubusercontent.com/Unstructured-IO/unstructured/main/example-docs/img/multi-image-64x48-640x480.heic",
+  "minChars": 0
+ },
+ {
+  "file": "files/images/unstructured/sample.gif",
+  "format": "gif",
+  "source": "https://raw.githubusercontent.com/Unstructured-IO/unstructured/main/test_unstructured_ingest/failed-partition-docs/sample.gif",
+  "minChars": 1
+ },
+ {
+  "file": "files/ofd-nb/dltech21-ofdjs/2.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/DLTech21/ofd.js/js/public/2.ofd",
+  "expect": [
+   "航天福昕版权所有",
+   "版式办公套件概述"
+  ],
+  "minChars": 33882
+ },
+ {
+  "file": "files/ofd-nb/file-viewer/ofd-resource-paths.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/flyfish-dev/file-viewer/main/apps/viewer-demo/public/example/ofd-resource-paths.ofd",
+  "expect": [
+   "Invoice resource reference"
+  ],
+  "minChars": 21
+ },
+ {
+  "file": "files/ofd-nb/gongdaowen-ofdparser/百望云增值税发票.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/gongdaowen/ofdparser/master/src/test/resources/%E7%99%BE%E6%9C%9B%E4%BA%91%E5%A2%9E%E5%80%BC%E7%A8%8E%E5%8F%91%E7%A5%A8.ofd",
+  "expect": [
+   "北京增值税电子普通发票",
+   "百望股份有限公司",
+   "*谷物*稻谷"
+  ],
+  "minChars": 3677
+ },
+ {
+  "file": "files/ofd-nb/hbh-ofd/test3.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/hbh112233abc/ofd/main/tests/files/test3.ofd",
+  "expect": [
+   "现场验收检查原始记录"
+  ],
+  "minChars": 376
+ },
+ {
+  "file": "files/ofd-nb/hbh-ofd/test4.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/hbh112233abc/ofd/main/tests/files/test4.ofd",
+  "expect": [
+   "福建省人民政府办公厅",
+   "进一步强化农村建房安全管理的通知"
+  ],
+  "minChars": 4909
+ },
+ {
+  "file": "files/ofd-nb/libofd/sample0.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/uukuguy/libofd/master/data/sample0.ofd",
+  "minChars": 0,
+  "allowWarnings": [
+   "malformed"
+  ]
+ },
+ {
+  "file": "files/ofd-nb/libofd/sample1.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/uukuguy/libofd/master/data/sample1.ofd",
+  "expect": [
+   "国网福建省电力有限公司",
+   "安全生产月"
+  ],
+  "minChars": 3214
+ },
+ {
+  "file": "files/ofd-nb/libofd/sample2.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/uukuguy/libofd/master/data/sample2.ofd",
+  "expect": [
+   "社会责任报告",
+   "一、公司概况"
+  ],
+  "minChars": 24468
+ },
+ {
+  "file": "files/ofd-nb/nb/dive-into-dl-pytorch/2.2_tensor.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/ShusenTang/Dive-into-DL-PyTorch/master/code/chapter02_prerequisite/2.2_tensor.ipynb",
+  "expect": [
+   "2.2 数据操作",
+   "x = torch.rand(5, 3)"
+  ],
+  "minChars": 5098
+ },
+ {
+  "file": "files/ofd-nb/nb/dive-into-dl-pytorch/3.2_linear-regression-scratch.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/ShusenTang/Dive-into-DL-PyTorch/master/code/chapter03_DL-basics/3.2_linear-regression-scratch.ipynb",
+  "expect": [
+   "3.2 线性回归的从零开始实现",
+   "epoch 3, loss 0.000054"
+  ],
+  "minChars": 2950
+ },
+ {
+  "file": "files/ofd-nb/nb/fastbook/02_production.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/fastai/fastbook/master/02_production.ipynb",
+  "expect": [
+   "From Model to Production",
+   "The Practice of Deep Learning"
+  ],
+  "minChars": 64706
+ },
+ {
+  "file": "files/ofd-nb/nb/irkernel/Demo.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/IRkernel/IRkernel/master/example-notebooks/Demo.ipynb",
+  "expect": [
+   "Hello world! Love, R in Jupyter.",
+   "deep error"
+  ],
+  "minChars": 948
+ },
+ {
+  "file": "files/ofd-nb/nb/irkernel/Display.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/IRkernel/IRkernel/master/example-notebooks/Display.ipynb",
+  "expect": [
+   "library(IRdisplay)"
+  ],
+  "minChars": 2924
+ },
+ {
+  "file": "files/ofd-nb/nb/julia-tutorials/01_constructors.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/JuliaAcademy/JuliaTutorials/main/introductory-tutorials/broader-topics-and-ecosystem/intro-to-julia-DataFrames/01_constructors.ipynb",
+  "expect": [
+   "Introduction to DataFrames",
+   "using DataFrames",
+   "UndefRefError"
+  ],
+  "minChars": 10000
+ },
+ {
+  "file": "files/ofd-nb/nb/jupyter-notebook/Running Code.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/jupyter/notebook/main/docs/source/examples/Notebook/Running%20Code.ipynb",
+  "expect": [
+   "Running Code",
+   "hi, stdout",
+   "hi, stderr"
+  ],
+  "minChars": 33139
+ },
+ {
+  "file": "files/ofd-nb/nb/jupyter-notebook/Typesetting Equations.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/jupyter/notebook/main/docs/source/examples/Notebook/Typesetting%20Equations.ipynb",
+  "expect": [
+   "The Lorenz Equations",
+   "The Cauchy-Schwarz Inequality"
+  ],
+  "minChars": 4083
+ },
+ {
+  "file": "files/ofd-nb/nb/jupyter-notebook/Working With Markdown Cells.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/jupyter/notebook/main/docs/source/examples/Notebook/Working%20With%20Markdown%20Cells.ipynb",
+  "expect": [
+   "Markdown Cells",
+   "Markdown attachments",
+   "e^{i\\pi} + 1 = 0"
+  ],
+  "minChars": 4466
+ },
+ {
+  "file": "files/ofd-nb/nb/nbformat/many_tracebacks.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/jupyter/nbformat/main/tests/many_tracebacks.ipynb",
+  "expect": [
+   "NameError",
+   "name 'iAmNotDefined' is not defined"
+  ],
+  "minChars": 304
+ },
+ {
+  "file": "files/ofd-nb/nb/nbformat/test2.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/jupyter/nbformat/main/tests/test2.ipynb",
+  "expect": [
+   "An introduction to the Jupyter notebook",
+   "f(3) =  4"
+  ],
+  "minChars": 10615
+ },
+ {
+  "file": "files/ofd-nb/nb/nbformat/test3.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/jupyter/nbformat/main/tests/test3.ipynb",
+  "expect": [
+   "nbconvert latex test",
+   "print(\"hello\")"
+  ],
+  "minChars": 809
+ },
+ {
+  "file": "files/ofd-nb/nb/nbformat/test4.5.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/jupyter/nbformat/main/tests/test4.5.ipynb",
+  "expect": [
+   "nbconvert latex test",
+   "from __future__ import annotations"
+  ],
+  "minChars": 864
+ },
+ {
+  "file": "files/ofd-nb/nb/pdsh/01.06-Errors-and-Debugging.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/jakevdp/PythonDataScienceHandbook/master/notebooks/01.06-Errors-and-Debugging.ipynb",
+  "expect": [
+   "Errors and Debugging",
+   "ZeroDivisionError",
+   "Exception reporting mode: Plain"
+  ],
+  "minChars": 6152
+ },
+ {
+  "file": "files/ofd-nb/nb/pdsh/03.08-Aggregation-and-Grouping.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/jakevdp/PythonDataScienceHandbook/master/notebooks/03.08-Aggregation-and-Grouping.ipynb",
+  "expect": [
+   "Aggregation and Grouping",
+   "planets.head()",
+   "orbital_period"
+  ],
+  "minChars": 17176
+ },
+ {
+  "file": "files/ofd-nb/nb/pdsh/04.01-Simple-Line-Plots.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/jakevdp/PythonDataScienceHandbook/master/notebooks/04.01-Simple-Line-Plots.ipynb",
+  "expect": [
+   "Simple Line Plots",
+   "plt.plot(x, np.sin(x));"
+  ],
+  "minChars": 7324
+ },
+ {
+  "file": "files/ofd-nb/nb/pdsh/05.11-K-Means.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/jakevdp/PythonDataScienceHandbook/master/notebooks/05.11-K-Means.ipynb",
+  "expect": [
+   "In Depth: k-Means Clustering",
+   "from sklearn.cluster import KMeans",
+   "0.7935447968836951"
+  ],
+  "minChars": 15960
+ },
+ {
+  "file": "files/ofd-nb/nb/pythonfords/Sets.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/pik1989/PythonforDS/main/Sets.ipynb",
+  "expect": [
+   "Set Operations",
+   "set_1 = set(list1)"
+  ],
+  "minChars": 2736
+ },
+ {
+  "file": "files/ofd-nb/nb/tsp-vrp/DFJ_model.ipynb",
+  "format": "ipynb",
+  "source": "https://raw.githubusercontent.com/AustinLBuchanan/TSP_VRP/main/DFJ_model.ipynb",
+  "expect": [
+   "import gurobipy as gp",
+   "Gurobi Optimizer version 9.5.0"
+  ],
+  "minChars": 5777
+ },
+ {
+  "file": "files/ofd-nb/ofdbox/字体测试-数科.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/jiayao-zhang/ofdbox/master/converter/src/test/resources/font/%E5%AD%97%E4%BD%93%E6%B5%8B%E8%AF%95-%E6%95%B0%E7%A7%91.ofd",
+  "expect": [
+   "微软雅黑",
+   "楷体"
+  ],
+  "minChars": 11
+ },
+ {
+  "file": "files/ofd-nb/ofdbox/字体测试-福昕.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/jiayao-zhang/ofdbox/master/converter/src/test/resources/font/%E5%AD%97%E4%BD%93%E6%B5%8B%E8%AF%95-%E7%A6%8F%E6%98%95.ofd",
+  "minChars": 11
+ },
+ {
+  "file": "files/ofd-nb/ofdbox/旋转测试.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/jiayao-zhang/ofdbox/master/converter/src/test/resources/%E6%97%8B%E8%BD%AC%E6%B5%8B%E8%AF%95.ofd",
+  "expect": [
+   "一、文字对象",
+   "三、图像"
+  ],
+  "minChars": 17
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/archive__test-ofda.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-archive/src/test/resources/test-ofda.ofd",
+  "expect": [
+   "Hello OFD-A"
+  ],
+  "minChars": 9
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__1.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/1.ofd",
+  "expect": [
+   "浙江增值税电子普通发票",
+   "兰溪市悦济舫餐厅"
+  ],
+  "minChars": 427
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__999.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/999.ofd",
+  "expect": [
+   "财天下科技有限公司",
+   "销售货物或者提供应税劳务、服务清单",
+   "壹万零陆佰圆整"
+  ],
+  "minChars": 3096
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__ano.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/ano.ofd",
+  "expect": [
+   "可信安全浏览器"
+  ],
+  "minChars": 5223
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__containsJPEG.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/containsJPEG.ofd",
+  "minChars": 63
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__h.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/h.ofd",
+  "minChars": 0
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__intro-数科.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/intro-%E6%95%B0%E7%A7%91.ofd",
+  "expect": [
+   "关于澎思",
+   "行业解决方案落地城市"
+  ],
+  "minChars": 4370
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__n.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/n.ofd",
+  "expect": [
+   "关于同意张阿三同志辞职的批复",
+   "路卫发〔2011〕76号"
+  ],
+  "minChars": 275
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__pattern类型.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/pattern%E7%B1%BB%E5%9E%8B.ofd",
+  "expect": [
+   "中国密码学会密评联委会"
+  ],
+  "minChars": 27
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__signout.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/signout.ofd",
+  "expect": [
+   "市政府文件处理",
+   "府办专督〔2020〕"
+  ],
+  "minChars": 221
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__testImageOverridePage.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/testImageOverridePage.ofd",
+  "expect": [
+   "临沧市临翔区自然资源局"
+  ],
+  "minChars": 244
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__testPathClip.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/testPathClip.ofd",
+  "expect": [
+   "采矿许可证",
+   "云南省昆明市南亚第壹城星河苑5幢2单元2802室"
+  ],
+  "minChars": 265
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__y.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/y.ofd",
+  "expect": [
+   "海关总署"
+  ],
+  "minChars": 4076
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__z.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/z.ofd",
+  "expect": [
+   "11.4字型变换",
+   "TextCode中字符编码的起始位置，从0开始"
+  ],
+  "minChars": 658
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__zsbk.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/zsbk.ofd",
+  "expect": [
+   "中华监测有限公司保障园区项目"
+  ],
+  "minChars": 776
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__发票监制章-数科.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/%E5%8F%91%E7%A5%A8%E7%9B%91%E5%88%B6%E7%AB%A0-%E6%95%B0%E7%A7%91.ofd",
+  "expect": [
+   "For Evaluation Only."
+  ],
+  "minChars": 103
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__发票示例.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/%E5%8F%91%E7%A5%A8%E7%A4%BA%E4%BE%8B.ofd",
+  "expect": [
+   "重庆增值税电子普通发票",
+   "杭州融易算企业管理咨询有限公司"
+  ],
+  "minChars": 495
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__文字横向-数科.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/%E6%96%87%E5%AD%97%E6%A8%AA%E5%90%91-%E6%95%B0%E7%A7%91.ofd",
+  "minChars": 26
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/converter__透明度文字.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-converter/src/test/resources/%E9%80%8F%E6%98%8E%E5%BA%A6%E6%96%87%E5%AD%97.ofd",
+  "expect": [
+   "你好呀，OFD Reader&Writer！"
+  ],
+  "minChars": 18
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/layout__AddAttachment.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-layout/src/test/resources/AddAttachment.ofd",
+  "expect": [
+   "这是一个带有附件的OFD文件"
+  ],
+  "minChars": 12
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/layout__AddWatermarkAnnot.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-layout/src/test/resources/AddWatermarkAnnot.ofd",
+  "expect": [
+   "北京女子师范大学为十八日在段祺瑞执政"
+  ],
+  "minChars": 2000
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/layout__keyword.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-layout/src/test/resources/keyword.ofd",
+  "expect": [
+   "中国建设银行股份有限公司泰安分行"
+  ],
+  "minChars": 226
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/layout__no_page_container.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-layout/src/test/resources/no_page_container.ofd",
+  "expect": [
+   "上海浪潮云计算服务有限公司",
+   "上海增值税电子普通发票"
+  ],
+  "minChars": 446
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/layout__拿来主义_page6.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-layout/src/test/resources/%E6%8B%BF%E6%9D%A5%E4%B8%BB%E4%B9%89_page6.ofd",
+  "expect": [
+   "拿来主义",
+   "中国一向是所谓“闭关主义”，自己不去，别人也不许来。自"
+  ],
+  "minChars": 1068
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/reader__SESV4SignDoc.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-reader/src/test/resources/SESV4SignDoc.ofd",
+  "expect": [
+   "你好呀，OFD Reader&Writer！"
+  ],
+  "minChars": 18
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/reader__chineseDir.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-reader/src/test/resources/chineseDir.ofd",
+  "expect": [
+   "你好呀，OFD Reader&Writer！"
+  ],
+  "minChars": 18
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/reader__sfx_prefix_manual.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-reader/src/test/resources/sfx_prefix_manual.ofd",
+  "minChars": 44
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/reader__template_case_mismatch.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-reader/src/test/resources/template_case_mismatch.ofd",
+  "expect": [
+   "科游迈利有限公司",
+   "重庆增值税电子普通发票"
+  ],
+  "minChars": 495
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/reader__发票示例.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-reader/src/test/resources/%E5%8F%91%E7%A5%A8%E7%A4%BA%E4%BE%8B.ofd",
+  "expect": [
+   "电子发票（增值税专用发票）",
+   "海南麒麟云服科技有限公司",
+   "*信息技术服务*技术服务"
+  ],
+  "minChars": 283
+ },
+ {
+  "file": "files/ofd-nb/ofdrw/sign__doc1File.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/ofdrw/ofdrw/master/ofdrw-sign/src/test/resources/doc1File.ofd",
+  "expect": [
+   "一日不见兮，思之如狂。――《凤求凰·琴歌》"
+  ],
+  "minChars": 5028
+ },
+ {
+  "file": "files/ofd-nb/rofd/6.1.005 OFD和Document在ZIP流后部.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/linuxdeepin/rofd/main/tests/ofd_files/6.1.005%20OFD%E5%92%8CDocument%E5%9C%A8ZIP%E6%B5%81%E5%90%8E%E9%83%A8.ofd",
+  "expect": [
+   "本样例测试阅读器对"
+  ],
+  "minChars": 210
+ },
+ {
+  "file": "files/ofd-nb/rofd/6.2.001 正常文件结构.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/linuxdeepin/rofd/main/tests/ofd_files/6.2.001%20%E6%AD%A3%E5%B8%B8%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84.ofd",
+  "expect": [
+   "本样例测试阅读器对",
+   "结构的支持情况"
+  ],
+  "minChars": 210
+ },
+ {
+  "file": "files/ofd-nb/rofd/6.2.004_2 路径中含有空格.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/linuxdeepin/rofd/main/tests/ofd_files/6.2.004_2%20%E8%B7%AF%E5%BE%84%E4%B8%AD%E5%90%AB%E6%9C%89%E7%A9%BA%E6%A0%BC.ofd",
+  "expect": [
+   "本样例测试阅读器对"
+  ],
+  "minChars": 210
+ },
+ {
+  "file": "files/ofd-nb/rofd/gbk-entry-name.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/linuxdeepin/rofd/main/crates/rofd-core/tests/fixtures/gbk-entry-name.ofd",
+  "minChars": 8,
+  "allowWarnings": [
+   "missing-part"
+  ]
+ },
+ {
+  "file": "files/ofd-nb/rofd/test.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/linuxdeepin/rofd/main/learning/test.ofd",
+  "expect": [
+   "电子发票（普通发票）",
+   "统一社会信用代码/纳税人识别号："
+  ],
+  "minChars": 126
+ },
+ {
+  "file": "files/ofd-nb/sofd/features.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/emfox/sOFD/main/compliance/fixtures/features.ofd",
+  "expect": [
+   "sOFD"
+  ],
+  "minChars": 4
+ },
+ {
+  "file": "files/ofd-nb/sofd/minimal.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/emfox/sOFD/main/compliance/fixtures/minimal.ofd",
+  "expect": [
+   "sOFD"
+  ],
+  "minChars": 4
+ },
+ {
+  "file": "files/ofd-nb/sofd/suwell.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/emfox/sOFD/main/compliance/fixtures/suwell.ofd",
+  "expect": [
+   "关于加快南货场铁路涵洞下穿建设的函",
+   "蚌山区政府："
+  ],
+  "minChars": 184
+ },
+ {
+  "file": "files/ofd-nb/sofd/vertical.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/emfox/sOFD/main/compliance/fixtures/vertical.ofd",
+  "expect": [
+   "ABCDE"
+  ],
+  "minChars": 14
+ },
+ {
+  "file": "files/ofd-nb/sofd/wps.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/emfox/sOFD/main/compliance/fixtures/wps.ofd",
+  "expect": [
+   "教育部关于做好",
+   "一、全力保障高校考试招生安全稳定"
+  ],
+  "minChars": 1328
+ },
+ {
+  "file": "files/ofd-nb/wangyi160-ofdparser/ReaderManual.ofd",
+  "format": "ofd",
+  "source": "https://raw.githubusercontent.com/wangyi160/ofdparser/master/OFDParser/ofdfiles/ReaderManual.ofd",
+  "expect": [
+   "提供了文档页面的微型预览",
+   "安装和卸载"
+  ],
+  "minChars": 6993
+ },
+ {
+  "file": "files/office/altium-bom-template/Altium_BOM_Template_v1.0.xlt",
+  "format": "xlt",
+  "source": "https://raw.githubusercontent.com/gbmhunter/Altium-Bom-Template/master/Altium%20BOM%20Template%20v1.0.xlt",
+  "expect": [
+   "Bill of Materials",
+   "Production Quantity:"
+  ],
+  "minChars": 1620
+ },
+ {
+  "file": "files/office/altium-bom-template/Altium_BOM_Template_v2.0_Vault.xlt",
+  "format": "xlt",
+  "source": "https://raw.githubusercontent.com/gbmhunter/Altium-Bom-Template/master/Altium%20BOM%20Template%20v2.0%20-%20Vault%20Compatible.xlt",
+  "expect": [
+   "Bill of Materials",
+   "Production Quantity:"
+  ],
+  "minChars": 1822
+ },
+ {
+  "file": "files/office/aspose-words-foss/TestJira11759.dotm",
+  "format": "dotm",
+  "source": "https://media.githubusercontent.com/media/aspose-words-foss/Aspose.Words-FOSS-for-.NET/master/TestData/Model/Markup/TestJira11759.dotm",
+  "expect": [
+   "Click here to enter the TITLE.",
+   "Resource History:"
+  ],
+  "minChars": 290
+ },
+ {
+  "file": "files/office/aspose-words-foss/TestTemplate_Template_Gold.dotm",
+  "format": "dotm",
+  "source": "https://media.githubusercontent.com/media/aspose-words-foss/Aspose.Words-FOSS-for-.NET/master/TestGold/Model/Document/TestTemplate%20Template%20Gold.dotm",
+  "minChars": 0
+ },
+ {
+  "file": "files/office/blogger-editor/image-template-source-20220305.dps",
+  "format": "dps",
+  "source": "https://raw.githubusercontent.com/pulipulichen/Blogger-Editor/master/static/ImageTemplate/image-template-source-20220305.dps",
+  "minChars": 718
+ },
+ {
+  "file": "files/office/cmu/Lecture-Slide-Template.potx",
+  "format": "potx",
+  "source": "https://media.githubusercontent.com/media/CMU-17-356/cmu-17-356.github.io/main/resources/slides/2026/Lecture-Slide-Template.potx",
+  "expect": [
+   "Software Engineering for Startups"
+  ],
+  "minChars": 141
+ },
+ {
+  "file": "files/office/file-type/fixture.dotm",
+  "format": "dotm",
+  "source": "https://raw.githubusercontent.com/sindresorhus/file-type/main/fixture/fixture.dotm",
+  "expect": [
+   "Test ERDIL"
+  ],
+  "minChars": 8
+ },
+ {
+  "file": "files/office/file-type/fixture.otp",
+  "format": "otp",
+  "source": "https://raw.githubusercontent.com/sindresorhus/file-type/main/fixture/fixture.otp",
+  "minChars": 0
+ },
+ {
+  "file": "files/office/file-type/fixture.potm",
+  "format": "potm",
+  "source": "https://raw.githubusercontent.com/sindresorhus/file-type/main/fixture/fixture.potm",
+  "expect": [
+   "TEST ERDIL"
+  ],
+  "minChars": 11
+ },
+ {
+  "file": "files/office/fnnas-doc-converter/test_sample.wps",
+  "format": "wps",
+  "source": "https://raw.githubusercontent.com/captaintoy233/fnnas-doc-converter/main/test_samples/test_sample.wps",
+  "expect": [
+   "中国农业银行广西区分行一级支行普惠零售贷款高质量发展评价管理办法",
+   "第六条 分组评价。"
+  ],
+  "minChars": 1425
+ },
+ {
+  "file": "files/office/groupdocs-conversion/sample.dot",
+  "format": "dot",
+  "source": "https://raw.githubusercontent.com/groupdocs-conversion/GroupDocs.Conversion-for-.NET/master/Examples/GroupDocs.Conversion.Examples.CSharp/Resources/SampleFiles/sample.dot",
+  "expect": [
+   "Sample test text - Page 1!",
+   "Page 2 heading!"
+  ],
+  "minChars": 232
+ },
+ {
+  "file": "files/office/groupdocs-conversion/sample.otp",
+  "format": "otp",
+  "source": "https://raw.githubusercontent.com/groupdocs-conversion/GroupDocs.Conversion-for-.NET/master/Examples/GroupDocs.Conversion.Examples.CSharp/Resources/SampleFiles/sample.otp",
+  "expect": [
+   "Groupdocs Sample Text - Slide 1"
+  ],
+  "minChars": 341
+ },
+ {
+  "file": "files/office/groupdocs-conversion/sample.ots",
+  "format": "ots",
+  "source": "https://raw.githubusercontent.com/groupdocs-conversion/GroupDocs.Conversion-for-.NET/master/Examples/GroupDocs.Conversion.Examples.CSharp/Resources/SampleFiles/sample.ots",
+  "expect": [
+   "Maxilaku",
+   "Continent"
+  ],
+  "minChars": 2501
+ },
+ {
+  "file": "files/office/groupdocs-conversion/sample.pot",
+  "format": "pot",
+  "source": "https://raw.githubusercontent.com/groupdocs-conversion/GroupDocs.Conversion-for-.NET/master/Examples/GroupDocs.Conversion.Examples.CSharp/Resources/SampleFiles/sample.pot",
+  "minChars": 0,
+  "allowWarnings": [
+   "malformed"
+  ]
+ },
+ {
+  "file": "files/office/groupdocs-conversion/sample.xlt",
+  "format": "xlt",
+  "source": "https://raw.githubusercontent.com/groupdocs-conversion/GroupDocs.Conversion-for-.NET/master/Examples/GroupDocs.Conversion.Examples.CSharp/Resources/SampleFiles/sample.xlt",
+  "expect": [
+   "Employee",
+   "Maxilaku"
+  ],
+  "minChars": 2501
+ },
+ {
+  "file": "files/office/intunescripts/Example.potx",
+  "format": "potx",
+  "source": "https://raw.githubusercontent.com/Billabong1985/IntuneScripts/main/MSDocTemplates/Templates/Current/Example.potx",
+  "expect": [
+   "Example MS PowerPoint Template File"
+  ],
+  "minChars": 28
+ },
+ {
+  "file": "files/office/iw5/IW5_template.potx",
+  "format": "potx",
+  "source": "https://media.githubusercontent.com/media/nesfit/IW5/main/src/tools/PowerPoint/IW5_template.potx",
+  "expect": [
+   "Lecture Name",
+   "Contact information"
+  ],
+  "minChars": 52
+ },
+ {
+  "file": "files/office/kkfileview/CV.ott",
+  "format": "ott",
+  "source": "https://raw.githubusercontent.com/kekingcn/kkFileView/master/server/LibreOfficePortable/App/libreoffice/share/template/common/personal/CV.ott",
+  "expect": [
+   "Curriculum Vitae",
+   "Joe Bloggs"
+  ],
+  "minChars": 818
+ },
+ {
+  "file": "files/office/kkfileview/Inspiration.otp",
+  "format": "otp",
+  "source": "https://raw.githubusercontent.com/kekingcn/kkFileView/master/server/LibreOfficePortable/App/libreoffice/share/template/common/presnt/Inspiration.otp",
+  "minChars": 0
+ },
+ {
+  "file": "files/office/kkfileview/Modern_business_letter_serif.ott",
+  "format": "ott",
+  "source": "https://raw.githubusercontent.com/kekingcn/kkFileView/master/server/LibreOfficePortable/App/libreoffice/share/template/common/officorr/Modern_business_letter_serif.ott",
+  "expect": [
+   "We are looking forward to hearing from you soon."
+  ],
+  "minChars": 820
+ },
+ {
+  "file": "files/office/ksp-doc2ebook/Normal.dotm",
+  "format": "dotm",
+  "source": "https://raw.githubusercontent.com/amjibaly/ksp-doc2ebook/master/Normal.dotm",
+  "expect": [
+   "Sub ArabicToImages()"
+  ],
+  "minChars": 2533
+ },
+ {
+  "file": "files/office/libreoffice/Works_4.5.wps",
+  "format": "wps",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/writerperfect/qa/unit/data/writer/libwps/pass/Works_4.5.wps",
+  "minChars": 0,
+  "allowWarnings": [
+   "missing-part"
+  ]
+ },
+ {
+  "file": "files/office/libreoffice/Works_6.0.wps",
+  "format": "wps",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/writerperfect/qa/unit/data/writer/libwps/pass/Works_6.0.wps",
+  "minChars": 0,
+  "allowWarnings": [
+   "missing-part"
+  ]
+ },
+ {
+  "file": "files/office/libreoffice/autotext-dotm.dotm",
+  "format": "dotm",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/sw/qa/extras/uiwriter/data/autotext-dotm.dotm",
+  "expect": [
+   "This file contains AutoText entries which"
+  ],
+  "minChars": 73
+ },
+ {
+  "file": "files/office/libreoffice/autotext-gallery.dotx",
+  "format": "dotx",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/sw/qa/extras/uiwriter/data/autotext-gallery.dotx",
+  "expect": [
+   "Document contains multiple AutoText entries"
+  ],
+  "minChars": 35
+ },
+ {
+  "file": "files/office/libreoffice/autotext-multiple.dotx",
+  "format": "dotx",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/sw/qa/extras/uiwriter/data/autotext-multiple.dotx",
+  "expect": [
+   "Document contains multiple AutoText entries"
+  ],
+  "minChars": 35
+ },
+ {
+  "file": "files/office/libreoffice/calc.ots",
+  "format": "ots",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/filter/qa/unit/data/calc.ots",
+  "expect": [
+   "Calc template’s first cell"
+  ],
+  "minChars": 35
+ },
+ {
+  "file": "files/office/libreoffice/fdo39694.ott",
+  "format": "ott",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/sw/qa/python/testdocuments/fdo39694.ott",
+  "expect": [
+   "Sender Name, Sample Street 1, 12345 Sample City",
+   "Sample Subject"
+  ],
+  "minChars": 224
+ },
+ {
+  "file": "files/office/libreoffice/impress.otp",
+  "format": "otp",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/filter/qa/unit/data/impress.otp",
+  "expect": [
+   "Title of Impress template"
+  ],
+  "minChars": 23
+ },
+ {
+  "file": "files/office/libreoffice/pagecounttest.ott",
+  "format": "ott",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/sw/qa/extras/mailmerge/data/pagecounttest.ott",
+  "expect": [
+   "Begin of section 2",
+   "End of section 2"
+  ],
+  "minChars": 96
+ },
+ {
+  "file": "files/office/libreoffice/sample.dotx",
+  "format": "dotx",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/sw/qa/extras/ooxmlexport/data/sample.dotx",
+  "expect": [
+   "Sample file which will be a template"
+  ],
+  "minChars": 29
+ },
+ {
+  "file": "files/office/libreoffice/tdf120761_zOrder.dot",
+  "format": "dot",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/sw/qa/extras/ww8import/data/tdf120761_zOrder.dot",
+  "minChars": 0
+ },
+ {
+  "file": "files/office/libreoffice/tdf131621.ott",
+  "format": "ott",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/sw/qa/extras/odfexport/data/tdf131621.ott",
+  "minChars": 269
+ },
+ {
+  "file": "files/office/libreoffice/tdf134298.ott",
+  "format": "ott",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/sw/qa/extras/layout/data/tdf134298.ott",
+  "expect": [
+   "Druck der Vorderseite des EDV-Formulars"
+  ],
+  "minChars": 72
+ },
+ {
+  "file": "files/office/libreoffice/tdf165180_standardConnectorsECMA.potx",
+  "format": "potx",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/oox/qa/unit/data/tdf165180_standardConnectorsECMA.potx",
+  "minChars": 0
+ },
+ {
+  "file": "files/office/libreoffice/tdf96389_deftabstopECMA.potx",
+  "format": "potx",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/sd/qa/unit/data/potx/tdf96389_deftabstopECMA.potx",
+  "expect": [
+   "XXX",
+   "YYY"
+  ],
+  "minChars": 15
+ },
+ {
+  "file": "files/office/libreoffice/template.ott",
+  "format": "ott",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/sw/qa/filter/md/data/template.ott",
+  "minChars": 0
+ },
+ {
+  "file": "files/office/libreoffice/writer.ott",
+  "format": "ott",
+  "source": "https://raw.githubusercontent.com/LibreOffice/core/master/filter/qa/unit/data/writer.ott",
+  "expect": [
+   "Writer template’s first line"
+  ],
+  "minChars": 23
+ },
+ {
+  "file": "files/office/odftoolkit/presentationTestTemplate.otp",
+  "format": "otp",
+  "source": "https://raw.githubusercontent.com/tdf/odftoolkit/master/odfdom/src/test/resources/test-input/presentationTestTemplate.otp",
+  "expect": [
+   "Test"
+  ],
+  "minChars": 4
+ },
+ {
+  "file": "files/office/odftoolkit/template.ots",
+  "format": "ots",
+  "source": "https://raw.githubusercontent.com/tdf/odftoolkit/master/odfdom/src/test/resources/test-input/template.ots",
+  "expect": [
+   "Document title",
+   "Comment1"
+  ],
+  "minChars": 220
+ },
+ {
+  "file": "files/office/officetemplates/Bryans_Monthly_TimeSheet.xltm",
+  "format": "xltm",
+  "source": "https://raw.githubusercontent.com/lundeen-bryan/OfficeTemplates/master/Bryans%20Monthly%20TimeSheet.xltm",
+  "expect": [
+   "LUNCH",
+   "WEEK"
+  ],
+  "minChars": 3546
+ },
+ {
+  "file": "files/office/officetemplates/Coding.dot",
+  "format": "dot",
+  "source": "https://raw.githubusercontent.com/lundeen-bryan/OfficeTemplates/master/Coding.dot",
+  "minChars": 0
+ },
+ {
+  "file": "files/office/officetemplates/headerfooter.dot",
+  "format": "dot",
+  "source": "https://raw.githubusercontent.com/lundeen-bryan/OfficeTemplates/master/headerfooter.dot",
+  "minChars": 0
+ },
+ {
+  "file": "files/office/open-xml-sdk/BasicOrgChart_TP10085481.potx",
+  "format": "potx",
+  "source": "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/main/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/O12%20templates/BasicOrgChart_TP10085481.potx",
+  "expect": [
+   "Title of Organization Chart"
+  ],
+  "minChars": 107
+ },
+ {
+  "file": "files/office/open-xml-sdk/BusinessLetter_TP10067038.dotx",
+  "format": "dotx",
+  "source": "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/main/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/wordprocessing/O12%20templates/BusinessLetter_TP10067038.dotx",
+  "expect": [
+   "[Organization Name]"
+  ],
+  "minChars": 933
+ },
+ {
+  "file": "files/office/open-xml-sdk/Comment063.dotm",
+  "format": "dotm",
+  "source": "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/main/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/O15Conformance/WD/CommentExTest/Comments-Sample-15-12-01/Comment063.dotm",
+  "expect": [
+   "the galleries include items that are designed to coordinate with the overall look of your document"
+  ],
+  "minChars": 2196
+ },
+ {
+  "file": "files/office/open-xml-sdk/IntegratedMarketingCampaign_DataAnalysis_TP10186504.xltm",
+  "format": "xltm",
+  "source": "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/main/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/spreadsheet/O12%20templates/IntegratedMarketingCampaign%20DataAnalysis_TP10186504.xltm",
+  "expect": [
+   "Response rate",
+   "Cost per action"
+  ],
+  "minChars": 4878
+ },
+ {
+  "file": "files/office/open-xml-sdk/LoanAmortization_TP10073881.xltx",
+  "format": "xltx",
+  "source": "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/main/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/spreadsheet/O12%20templates/LoanAmortization_TP10073881.xltx",
+  "expect": [
+   "Loan Amortization Schedule",
+   "Payment Date"
+  ],
+  "minChars": 21578
+ },
+ {
+  "file": "files/office/open-xml-sdk/MeetingMinutes_TP10173185.dotx",
+  "format": "dotx",
+  "source": "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/main/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/wordprocessing/O12%20templates/MeetingMinutes_TP10173185.dotx",
+  "expect": [
+   "Meeting called by",
+   "Note taker"
+  ],
+  "minChars": 756
+ },
+ {
+  "file": "files/office/open-xml-sdk/Open_XML_API_testing_Macro_enabled.dotm",
+  "format": "dotm",
+  "source": "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/main/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/wordprocessing/macro-enabled/Open%20XML%20API%20testing%20Macro%20enabled.dotm",
+  "expect": [
+   "Open XML API testing Macro enabled"
+  ],
+  "minChars": 29
+ },
+ {
+  "file": "files/office/open-xml-sdk/QuizShow_TP10176929.potx",
+  "format": "potx",
+  "source": "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/main/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/O12%20templates/QuizShow_TP10176929.potx",
+  "expect": [
+   "Quiz Show",
+   "How to Use the Quiz Show Template"
+  ],
+  "minChars": 945
+ },
+ {
+  "file": "files/office/open-xml-sdk/SimpleInvoice_TP10188486.xltx",
+  "format": "xltx",
+  "source": "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/main/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/spreadsheet/O12%20templates/SimpleInvoice_TP10188486.xltx",
+  "expect": [
+   "Your Company Name",
+   "Bill To:"
+  ],
+  "minChars": 267
+ },
+ {
+  "file": "files/office/open-xml-sdk/macro.xltm",
+  "format": "xltm",
+  "source": "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/main/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/spreadsheet/macro.xltm",
+  "minChars": 38
+ },
+ {
+  "file": "files/office/open-xml-sdk/macro_enabled.potm",
+  "format": "potm",
+  "source": "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/main/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestDataStorage/v2FxTestFiles/presentation/macro%20enabled.potm",
+  "expect": [
+   "macro"
+  ],
+  "minChars": 4
+ },
+ {
+  "file": "files/office/open-xml-sdk/svg.docx",
+  "format": "docx",
+  "source": "https://raw.githubusercontent.com/dotnet/Open-XML-SDK/main/test/DocumentFormat.OpenXml.Tests.Assets/assets/TestFiles/svg.docx",
+  "minChars": 0
+ },
+ {
+  "file": "files/office/poi/60316.dotx",
+  "format": "dotx",
+  "source": "https://raw.githubusercontent.com/apache/poi/trunk/test-data/document/60316.dotx",
+  "expect": [
+   "[Your Name]",
+   "[Job Title]"
+  ],
+  "minChars": 762
+ },
+ {
+  "file": "files/office/poi/60316b.dotx",
+  "format": "dotx",
+  "source": "https://raw.githubusercontent.com/apache/poi/trunk/test-data/document/60316b.dotx",
+  "minChars": 1
+ },
+ {
+  "file": "files/office/poi/ShortLastBlock.wps",
+  "format": "wps",
+  "source": "https://raw.githubusercontent.com/apache/poi/trunk/test-data/poifs/ShortLastBlock.wps",
+  "minChars": 0,
+  "allowWarnings": [
+   "missing-part"
+  ]
+ },
+ {
+  "file": "files/office/poi/bug59273.potx",
+  "format": "potx",
+  "source": "https://raw.githubusercontent.com/apache/poi/trunk/test-data/slideshow/bug59273.potx",
+  "minChars": 0
+ },
+ {
+  "file": "files/office/poi/test.dotx",
+  "format": "dotx",
+  "source": "https://raw.githubusercontent.com/apache/poi/trunk/test-data/document/test.dotx",
+  "expect": [
+   "Test"
+  ],
+  "minChars": 4
+ },
+ {
+  "file": "files/office/poi/test.xltx",
+  "format": "xltx",
+  "source": "https://raw.githubusercontent.com/apache/poi/trunk/test-data/spreadsheet/test.xltx",
+  "expect": [
+   "test"
+  ],
+  "minChars": 25
+ },
+ {
+  "file": "files/office/seattle/C-24.xltx",
+  "format": "xltx",
+  "source": "https://media.githubusercontent.com/media/seattlepublicrecords/archived_websites/master/www.seattle.gov/transportation/docs/CMForms/C-24.xltx",
+  "expect": [
+   "WEEKLY STATEMENT OF WORKING DAYS"
+  ],
+  "minChars": 60819
+ },
+ {
+  "file": "files/office/shapecrawler/055_svg_with_text.pptx",
+  "format": "pptx",
+  "source": "https://raw.githubusercontent.com/ShapeCrawler/ShapeCrawler/master/ShapeCrawler.Tests/Assets/055_svg_with_text.pptx",
+  "minChars": 3
+ },
+ {
+  "file": "files/office/shapecrawler/pictures-case002.pptx",
+  "format": "pptx",
+  "source": "https://raw.githubusercontent.com/ShapeCrawler/ShapeCrawler/master/ShapeCrawler.Tests/Assets/pictures/pictures-case002.pptx",
+  "expect": [
+   "Text"
+  ],
+  "minChars": 8
+ },
+ {
+  "file": "files/office/sienge-dinamica/Margem.xlt",
+  "format": "xlt",
+  "source": "https://raw.githubusercontent.com/sagalived/Dinamica/main/data/sienge_raw/Margem.xlt",
+  "expect": [
+   "RECEITA_OPERACIONAL"
+  ],
+  "minChars": 5418
+ },
+ {
+  "file": "files/office/simrs-khanza/DataResepApolBPJS.wps",
+  "format": "wps",
+  "source": "https://raw.githubusercontent.com/mas-elkhanza/SIMRS-Khanza/master/DataResepApolBPJS.wps",
+  "expect": [
+   "DATA RESEP APOTEK ONLINE BPJS",
+   "RS SIMRS KHANZA"
+  ],
+  "minChars": 577
+ },
+ {
+  "file": "files/office/spire-doc-java/CheckSVGImage.docx",
+  "format": "docx",
+  "source": "https://raw.githubusercontent.com/eiceblue/Spire.Doc-for-Java/master/Examples/data/CheckSVGImage.docx",
+  "minChars": 0
+ },
+ {
+  "file": "files/office/spire-doc-java/Sample.wps",
+  "format": "wps",
+  "source": "https://raw.githubusercontent.com/eiceblue/Spire.Doc-for-Java/master/Examples/data/Sample.wps",
+  "expect": [
+   "Convert File Documents with High Quality",
+   "Richest Word Document Features Support"
+  ],
+  "minChars": 3904
+ },
+ {
+  "file": "files/office/spire-doc-java/Sample.wpt",
+  "format": "wpt",
+  "source": "https://raw.githubusercontent.com/eiceblue/Spire.Doc-for-Java/master/Examples/data/Sample.wpt",
+  "expect": [
+   "Convert File Documents with High Quality",
+   "Richest Word Document Features Support"
+  ],
+  "minChars": 3904
+ },
+ {
+  "file": "files/office/spire-presentation-java/Sample_dps.dps",
+  "format": "dps",
+  "source": "https://raw.githubusercontent.com/eiceblue/Spire.Presentation-for-Java/master/Examples/data/Sample_dps.dps",
+  "expect": [
+   "This is a Test file."
+  ],
+  "minChars": 16
+ },
+ {
+  "file": "files/office/spire-presentation-java/Sample_dpt.dpt",
+  "format": "dpt",
+  "source": "https://raw.githubusercontent.com/eiceblue/Spire.Presentation-for-Java/master/Examples/data/Sample_dpt.dpt",
+  "expect": [
+   "This is a Test file."
+  ],
+  "minChars": 16
+ },
+ {
+  "file": "files/office/stockholm/sample.dotm",
+  "format": "dotm",
+  "source": "https://raw.githubusercontent.com/IcQuackson/Stockholm/main/src/script/resources/test_files/sample.dotm",
+  "expect": [
+   "This is a sample file for testing."
+  ],
+  "minChars": 28
+ },
+ {
+  "file": "files/office/tika/testDOTM.dotm",
+  "format": "dotm",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/src/test/resources/test-documents/testDOTM.dotm",
+  "expect": [
+   "Грегор Мендель родился в Моравии в 1822 г."
+  ],
+  "minChars": 59687
+ },
+ {
+  "file": "files/office/tika/testEXCEL_macro_enabled_template.xltm",
+  "format": "xltm",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/src/test/resources/test-documents/testEXCEL_macro_enabled_template.xltm",
+  "expect": [
+   "this is a template"
+  ],
+  "minChars": 28
+ },
+ {
+  "file": "files/office/tika/testEXCEL_template.xlt",
+  "format": "xlt",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/src/test/resources/test-documents/testEXCEL_template.xlt",
+  "expect": [
+   "this is a template"
+  ],
+  "minChars": 28
+ },
+ {
+  "file": "files/office/tika/testEXCEL_template.xltx",
+  "format": "xltx",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/src/test/resources/test-documents/testEXCEL_template.xltx",
+  "expect": [
+   "this is a template"
+  ],
+  "minChars": 28
+ },
+ {
+  "file": "files/office/tika/testGRAPHVIZd.dot",
+  "format": "dot",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-integration-tests/src/test/resources/test-documents/testGRAPHVIZd.dot",
+  "expect": [
+   "digraph \"Tika-Relations\""
+  ],
+  "minChars": 102
+ },
+ {
+  "file": "files/office/tika/testPPT.potm",
+  "format": "potm",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-microsoft-module/src/test/resources/test-documents/testPPT.potm",
+  "expect": [
+   "Attachment Test",
+   "Different words to test against"
+  ],
+  "minChars": 236
+ },
+ {
+  "file": "files/office/tika/testWORKS.wps",
+  "format": "wps",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-integration-tests/src/test/resources/test-documents/testWORKS.wps",
+  "minChars": 0,
+  "allowWarnings": [
+   "missing-part"
+  ]
+ },
+ {
+  "file": "files/office/tika/testWORKS2000.wps",
+  "format": "wps",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-integration-tests/src/test/resources/test-documents/testWORKS2000.wps",
+  "minChars": 0,
+  "allowWarnings": [
+   "missing-part"
+  ]
+ },
+ {
+  "file": "files/office/wps-jsa-mode/insert_image.et",
+  "format": "et",
+  "source": "https://raw.githubusercontent.com/leno166/WPS-JSA-Mode/main/插入图片/插入图片.et",
+  "expect": [
+   "功能测试",
+   "单元测试阶段"
+  ],
+  "minChars": 672
+ },
+ {
+  "file": "files/office/wps-jsa-mode/template_testcase.et",
+  "format": "et",
+  "source": "https://raw.githubusercontent.com/leno166/WPS-JSA-Mode/main/[模板]测试用例.et",
+  "expect": [
+   "CRM_TS_SJGL_01",
+   "导出类型"
+  ],
+  "minChars": 2538
+ },
+ {
+  "file": "files/office/wps-jsa-mode/temple.et",
+  "format": "et",
+  "source": "https://raw.githubusercontent.com/leno166/WPS-JSA-Mode/main/temple.et",
+  "expect": [
+   "完整指令",
+   "指令代号"
+  ],
+  "minChars": 10307
+ },
+ {
+  "file": "files/office/wps2office/smoke.wps",
+  "format": "wps",
+  "source": "https://raw.githubusercontent.com/AndersonBY/wps2office/main/testdata/smoke.wps",
+  "expect": [
+   "WPS2Office offline bundle smoke test"
+  ],
+  "minChars": 84
+ },
+ {
+  "file": "files/office/wrf-wps/namelist.wps",
+  "format": "wps",
+  "source": "https://raw.githubusercontent.com/wrf-model/WPS/master/namelist.wps",
+  "expect": [
+   "&share"
+  ],
+  "minChars": 564
+ },
+ {
+  "file": "files/office/xls-amw-ai/RMV_UPLOAD.xls",
+  "format": "xls",
+  "source": "https://raw.githubusercontent.com/IntegratusGH/AMW-AI/master/SampleOutput/RMV%20UPLOAD.xls",
+  "expect": [
+   "Vehicle Registration",
+   "Transaction Code"
+  ],
+  "minChars": 943
+ },
+ {
+  "file": "files/office/xls-bankofisrael/LF.Q.xls",
+  "format": "xls",
+  "source": "https://raw.githubusercontent.com/mtnmts/BankOfIsraelData/master/data/LF.Q.xls",
+  "expect": [
+   "Civilian labour force - Total"
+  ],
+  "minChars": 6992
+ },
+ {
+  "file": "files/office/xls-gitlog/git_log.xls",
+  "format": "xls",
+  "source": "https://raw.githubusercontent.com/AbdullahMehmood00/Group_A111_Assignment_01/main/git_log.xls",
+  "expect": [
+   "Git logs commit"
+  ],
+  "minChars": 2912
+ },
+ {
+  "file": "files/office/xls-gmavenplus/gmavenplus.xls",
+  "format": "xls",
+  "source": "https://raw.githubusercontent.com/groovy/GMavenPlus/master/jira/gmavenplus.xls",
+  "expect": [
+   "jira.codehaus.org",
+   "Affects Version/s"
+  ],
+  "minChars": 28233
+ },
+ {
+  "file": "files/office/xls-pharmos/sales_report.xls",
+  "format": "xls",
+  "source": "https://raw.githubusercontent.com/Newtoxton/PharmOS/master/admin/sales_report.xls",
+  "expect": [
+   "Sales Report",
+   "Qty Available"
+  ],
+  "minChars": 222
+ },
+ {
+  "file": "files/office/xls-starcom/812_IN.XLS",
+  "format": "xls",
+  "source": "https://raw.githubusercontent.com/JustinM-Starcom/6.7LAN/master/HD_820%26812US/812_IN.XLS",
+  "expect": [
+   "RTV Chargeback Number"
+  ],
+  "minChars": 71575
+ },
+ {
+  "file": "files/office/xls-tsnsoft/Report1.xls",
+  "format": "xls",
+  "source": "https://raw.githubusercontent.com/tsnsoft/TSN_UTILS/master/Reports/Report1.xls",
+  "expect": [
+   "ОТЧЕТ",
+   "Петров"
+  ],
+  "minChars": 732
+ },
+ {
+  "file": "files/office/xls-wex5-oa/sendDocPaper.xls",
+  "format": "xls",
+  "source": "https://raw.githubusercontent.com/wex5/bex5-OA/master/UI2/OA/doc/process/sendDocPaper/sendDocPaper.xls",
+  "expect": [
+   "发文稿纸"
+  ],
+  "minChars": 23317
+ },
+ {
+  "file": "files/office/xls-yufree/PM2.5.xls",
+  "format": "xls",
+  "source": "https://raw.githubusercontent.com/yufree/democode/master/data/PM2.5.xls",
+  "expect": [
+   "监测值",
+   "2017-11-12 00:00:00"
+  ],
+  "minChars": 4746
+ },
+ {
+  "file": "files/office/yeshureader/sample.et",
+  "format": "et",
+  "source": "https://raw.githubusercontent.com/CidneyAurum/YeshuReader/main/app/src/test/resources/corpus/sample.et",
+  "expect": [
+   "负责人",
+   "进行中"
+  ],
+  "minChars": 102
+ },
+ {
+  "file": "files/text/2017MLSpring_Hung-yi-Lee/HW1-train.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/machineCYC/2017MLSpring_Hung-yi-Lee/HEAD/HW1/01-Data/train.csv",
+  "expect": [
+   "日期",
+   "測站",
+   "豐原"
+  ],
+  "minChars": 556824
+ },
+ {
+  "file": "files/text/UER-py/smp2020-ewect-virus-dev.tsv",
+  "format": "tsv",
+  "source": "https://raw.githubusercontent.com/dbiir/UER-py/master/datasets/smp2020-ewect/virus/dev.tsv",
+  "expect": [
+   "人类的悲剧就是你永远要被迫和",
+   "农村意识着实需要加强",
+   "疫情快点消失，人员伤亡最少就"
+  ],
+  "minChars": 106330
+ },
+ {
+  "file": "files/text/YuZhangWang-Python-Demo/hongloumeng.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/YuZhangWang/Python-Demo/HEAD/20python11.27/%E7%BA%A2%E6%A5%BC%E6%A2%A6.txt",
+  "expect": [
+   "且说他姑娘，原聘给的是贾家玉",
+   "池水任浮漂照耀临清晓，黛玉联",
+   "李纨正在那里给贾兰改诗，冒冒"
+  ],
+  "minChars": 677525
+ },
+ {
+  "file": "files/text/aozora/kokoro-773_14560.html",
+  "format": "xhtml",
+  "source": "https://www.aozora.gr.jp/cards/000148/files/773_14560.html",
+  "expect": [
+   "だからここでもただ先生と書くだけで本名は打ち明けない",
+   "暑中休暇を利用して海水浴に行った友達からぜひ来いという"
+  ],
+  "minChars": 149144
+ },
+ {
+  "file": "files/text/aozora/rashomon-127_15260.html",
+  "format": "xhtml",
+  "source": "https://www.aozora.gr.jp/cards/000879/files/127_15260.html",
+  "expect": [
+   "ある日の暮方の事である。",
+   "広い門の下には、この男のほかに誰もいない。"
+  ],
+  "minChars": 5585
+ },
+ {
+  "file": "files/text/chardet-Big5/_chromium_Big5_with_no_encoding_specified.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/Big5/_chromium_Big5_with_no_encoding_specified.html",
+  "expect": [
+   "台北看守所昨天抽查前總統陳水",
+   "北所副所長李大竹強調，為維護",
+   "律師鄭文龍則說，陳水扁抗議「"
+  ],
+  "minChars": 277
+ },
+ {
+  "file": "files/text/chardet-Big5/_ude_1.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/Big5/_ude_1.txt",
+  "expect": [
+   "維基大典（Wikipedia",
+   "凡維基之策，所據者，曰革奴自",
+   "聲象映響，具錄於維基共享︰維"
+  ],
+  "minChars": 311
+ },
+ {
+  "file": "files/text/chardet-EUC-JP/_mozilla_bug426271_text-euc-jp.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/EUC-JP/_mozilla_bug426271_text-euc-jp.html",
+  "expect": [
+   "これはEUC-JPです昔々、",
+   "成長した桃太郎は、鬼ヶ島の鬼"
+  ],
+  "minChars": 239
+ },
+ {
+  "file": "files/text/chardet-EUC-JP/_mozilla_bug620106_text.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/EUC-JP/_mozilla_bug620106_text.html",
+  "expect": [
+   "テストのエンコーディングを検"
+  ],
+  "minChars": 47
+ },
+ {
+  "file": "files/text/chardet-EUC-JP/_ude_1.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/EUC-JP/_ude_1.txt",
+  "expect": [
+   "プロジェクトの概要",
+   "情報が記述されています。"
+  ],
+  "minChars": 816
+ },
+ {
+  "file": "files/text/chardet-EUC-KR/_chromium_windows-949_with_no_encoding_specified.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/EUC-KR/_chromium_windows-949_with_no_encoding_specified.html",
+  "expect": [
+   "한나라당은 2월 임시국회에",
+   "민주당은 그러나 \"한나라당",
+   "임채진 검찰총장은 이날 \""
+  ],
+  "minChars": 309
+ },
+ {
+  "file": "files/text/chardet-EUC-KR/_ude_euc1.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/EUC-KR/_ude_euc1.txt",
+  "expect": [
+   "역사적 예수 연구자들은 복"
+  ],
+  "minChars": 180
+ },
+ {
+  "file": "files/text/chardet-EUC-KR/_ude_euc2.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/EUC-KR/_ude_euc2.txt",
+  "expect": [
+   "북조선 사람들은 흔히 자국",
+   "대한민국에서는 조선이나 북",
+   "공식적인 영어 명칭은 DPRK(Democratic People's"
+  ],
+  "minChars": 556
+ },
+ {
+  "file": "files/text/chardet-GB2312/_chromium_gb18030_with_no_encoding_specified.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/GB2312/_chromium_gb18030_with_no_encoding_specified.html.xml",
+  "expect": [
+   "中国制造的领军者3名；",
+   "何享健，美的集团董事局主席，",
+   "韩三平，中国电影集团公司董事"
+  ],
+  "minChars": 287
+ },
+ {
+  "file": "files/text/chardet-GB2312/_mozilla_bug171813_text.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/GB2312/_mozilla_bug171813_text.html",
+  "expect": [
+   "搜狐在线",
+   "搜狐在线国庆免费大酬宾",
+   "拨95933上网魔力宝贝免费"
+  ],
+  "minChars": 168
+ },
+ {
+  "file": "files/text/chardet-KOI8-R/_chromium_KOI8-R_with_no_encoding_specified.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/KOI8-R/_chromium_KOI8-R_with_no_encoding_specified.html",
+  "expect": [
+   "МОСКВА, 9 янв - РИА Новости. Надежды на"
+  ],
+  "minChars": 404
+ },
+ {
+  "file": "files/text/chardet-KOI8-R/_ude_1.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/KOI8-R/_ude_1.txt",
+  "expect": [
+   "В гимназии он не был в числе первых",
+   "После окончательного разорения отца",
+   "Осенью 1895 г. Альберт Эйнштейн прибыл в"
+  ],
+  "minChars": 968
+ },
+ {
+  "file": "files/text/chardet-SHIFT_JIS/_chromium_Shift-JIS_with_no_encoding_specified.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/SHIFT_JIS/_chromium_Shift-JIS_with_no_encoding_specified.html",
+  "expect": [
+   "衆院議院運営委員会は９日午後",
+   "衆院議運委に先立ち、衆院予算",
+   "これに対し、民主党は９日午後"
+  ],
+  "minChars": 383
+ },
+ {
+  "file": "files/text/chardet-SHIFT_JIS/_ude_1.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/SHIFT_JIS/_ude_1.txt",
+  "expect": [
+   "いせいか、一羽も見えない。唯",
+   "めていた屍骸の首に両手をかけ",
+   "して、又さっき、この門の上へ"
+  ],
+  "minChars": 14927
+ },
+ {
+  "file": "files/text/chardet-SHIFT_JIS/_ude_2.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/SHIFT_JIS/_ude_2.txt",
+  "expect": [
+   "プロジェクトの概要",
+   "情報が記述されています。"
+  ],
+  "minChars": 816
+ },
+ {
+  "file": "files/text/chardet-SHIFT_JIS/_ude_4.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/SHIFT_JIS/_ude_4.txt",
+  "expect": [
+   "隣人の家を欲しがってはなりま",
+   "〔私たちを誘惑にあわせないで",
+   "あなたの御手（みて）におゆだ"
+  ],
+  "minChars": 19372
+ },
+ {
+  "file": "files/text/chardet-UTF-16/bom-utf-16-be.srt.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/UTF-16/bom-utf-16-be.srt",
+  "expect": [
+   "the comment section of YouTube",
+   "this woman's tirades,",
+   "what actually money creates is an"
+  ],
+  "minChars": 684
+ },
+ {
+  "file": "files/text/chardet-UTF-16/bom-utf-16-le.srt.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/UTF-16/bom-utf-16-le.srt",
+  "expect": [
+   "the comment section of YouTube",
+   "this woman's tirades,",
+   "what actually money creates is an"
+  ],
+  "minChars": 684
+ },
+ {
+  "file": "files/text/chardet-UTF-16BE/nobom-utf16be.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/UTF-16BE/nobom-utf16be.txt",
+  "expect": [
+   "DateTime,Bid,Ask"
+  ],
+  "minChars": 619
+ },
+ {
+  "file": "files/text/chardet-UTF-16LE/nobom-utf16le.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/UTF-16LE/nobom-utf16le.txt",
+  "expect": [
+   "DateTime,Bid,Ask"
+  ],
+  "minChars": 619
+ },
+ {
+  "file": "files/text/chardet-UTF-16LE/plane1-utf-16le.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/UTF-16LE/plane1-utf-16le.html",
+  "expect": [
+   "𐌀𐌖𐌋𐌄𐌑𐌉·𐌌𐌄𐌕𐌄𐌋𐌉𐌑",
+   "𐌲𐌿𐍄𐌰𐌽𐌴",
+   "·𐑿𐑯𐑲𐑑𐑧𐑛 ·𐑒𐑦𐑙𐑛𐑳"
+  ],
+  "minChars": 1790
+ },
+ {
+  "file": "files/text/chardet-iso-2022-jp/_ude_1.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/iso-2022-jp/_ude_1.txt",
+  "expect": [
+   "プロジェクトの概要",
+   "情報が記述されています。"
+  ],
+  "minChars": 816
+ },
+ {
+  "file": "files/text/chardet-iso-8859-1/_ude_1.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/iso-8859-1/_ude_1.txt",
+  "expect": [
+   "contemporanea, que não podemos resistir",
+   "tanto quanto lhe é possivel, no mundo",
+   "conviva distraído que se affasta da sala"
+  ],
+  "minChars": 1318
+ },
+ {
+  "file": "files/text/chardet-iso-8859-1/_ude_2.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/iso-8859-1/_ude_2.txt",
+  "expect": [
+   "pour des séjours supérieurs à 90 jours,",
+   "Des frais de dossier sont encaissés dès",
+   "Ce type de visa est généralement délivré"
+  ],
+  "minChars": 1608
+ },
+ {
+  "file": "files/text/chardet-iso-8859-1/_ude_6.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/iso-8859-1/_ude_6.txt",
+  "expect": [
+   "Kolmella eurolla saat käyttöösi",
+   "Katuruoka levittäytyy Helsinkiin 16.-22.",
+   "Maistele erilaisia kahvilaatuja ympäri"
+  ],
+  "minChars": 1751
+ },
+ {
+  "file": "files/text/chardet-iso-8859-2-hungarian/_ude_1.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/iso-8859-2-hungarian/_ude_1.txt",
+  "expect": [
+   "Nemrég mutattunk be egy 25 éves fiút,",
+   "Hadipszichiátriai zajlik. Nincs idő. A",
+   "Hol van országos rehabilitációs intézet?"
+  ],
+  "minChars": 2157
+ },
+ {
+  "file": "files/text/chardet-iso-8859-2-polish/_ude_1.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/iso-8859-2-polish/_ude_1.txt",
+  "expect": [
+   "Badanie z udziałem ponad 800 ochotników",
+   "Naukowcy zmierzyli wzrost, wagę i obwód",
+   "Przyczyny tego wzrostu na razie są"
+  ],
+  "minChars": 2729
+ },
+ {
+  "file": "files/text/chardet-utf-8-sig/_ude_4.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/utf-8-sig/_ude_4.txt",
+  "expect": [
+   "プロジェクトの概要",
+   "情報が記述されています。"
+  ],
+  "minChars": 816
+ },
+ {
+  "file": "files/text/chardet-utf-8-sig/bom-utf-8.srt.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/utf-8-sig/bom-utf-8.srt",
+  "expect": [
+   "the comment section of YouTube",
+   "this woman's tirades,",
+   "what actually money creates is an"
+  ],
+  "minChars": 684
+ },
+ {
+  "file": "files/text/chardet-utf-8/_chromium_UTF-8_with_no_encoding_specified.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/utf-8/_chromium_UTF-8_with_no_encoding_specified.html",
+  "expect": [
+   "麦蒂的天赋极高，即使是著名的",
+   "“麦蒂一直认为，他的天赋可以"
+  ],
+  "minChars": 203
+ },
+ {
+  "file": "files/text/chardet-utf-8/_ude_2.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/utf-8/_ude_2.txt",
+  "expect": [
+   "북조선 사람들은 흔히 자국",
+   "대한민국에서는 조선이나 북",
+   "공식적인 영어 명칭은 DPRK(Democratic People's"
+  ],
+  "minChars": 556
+ },
+ {
+  "file": "files/text/chardet-utf-8/_ude_he1.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/utf-8/_ude_he1.txt",
+  "expect": [
+   "השם עבר מופיע בתנ\"ך כשמו של סבו של אברהם",
+   "הקובץ המפורסם ביותר שנכתב בשפה העברית"
+  ],
+  "minChars": 544
+ },
+ {
+  "file": "files/text/chardet-utf-8/_ude_russian.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/utf-8/_ude_russian.txt",
+  "expect": [
+   "В гимназии он не был в числе первых",
+   "После окончательного разорения отца",
+   "Осенью 1895 г. Альберт Эйнштейн прибыл в"
+  ],
+  "minChars": 968
+ },
+ {
+  "file": "files/text/chardet-windows-1250-czech/_ude_1.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/windows-1250-czech/_ude_1.txt",
+  "expect": [
+   "Už týdny cloumá českou veřejností",
+   "Chudí lidé úplně na okraji jsou v každé",
+   "Myslím si, že je to - podobně jako"
+  ],
+  "minChars": 1724
+ },
+ {
+  "file": "files/text/chardet-windows-1250-czech/_ude_2.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/windows-1250-czech/_ude_2.txt",
+  "expect": [
+   "„Tito mladíci nakupovali v centru Prahy",
+   "Byli jsme jen bílí koně, hájili se",
+   "Mladíci se k trestné činnosti přiznali."
+  ],
+  "minChars": 1316
+ },
+ {
+  "file": "files/text/chardet-windows-1250-polish/_ude_1.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/windows-1250-polish/_ude_1.txt",
+  "expect": [
+   "Badanie z udziałem ponad 800 ochotników",
+   "Naukowcy zmierzyli wzrost, wagę i obwód",
+   "Przyczyny tego wzrostu na razie są"
+  ],
+  "minChars": 2729
+ },
+ {
+  "file": "files/text/chardet-windows-1251-russian/_chromium_windows-1251_with_no_encoding_specified.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/windows-1251-russian/_chromium_windows-1251_with_no_encoding_specified.html",
+  "expect": [
+   "МОСКВА, 9 янв - РИА Новости. Надежды на"
+  ],
+  "minChars": 404
+ },
+ {
+  "file": "files/text/chardet-windows-1251-russian/_ude_1.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/windows-1251-russian/_ude_1.txt",
+  "expect": [
+   "В гимназии он не был в числе первых",
+   "После окончательного разорения отца",
+   "Осенью 1895 г. Альберт Эйнштейн прибыл в"
+  ],
+  "minChars": 968
+ },
+ {
+  "file": "files/text/chardet-windows-1252/_mozilla_bug421271_text.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/windows-1252/_mozilla_bug421271_text.html",
+  "expect": [
+   "i stand to lift £825",
+   "GET IN THERE."
+  ],
+  "minChars": 240
+ },
+ {
+  "file": "files/text/chardet-windows-1252/_ude_1.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/windows-1252/_ude_1.txt",
+  "expect": [
+   "Die Deutsche Schule gehört zum Netzwerk",
+   "Sie wird von Deutschland über die",
+   "Kurz gefasst 10€. Weltkarte Deutsche"
+  ],
+  "minChars": 692
+ },
+ {
+  "file": "files/text/chardet-windows-1252/_ude_2.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/windows-1252/_ude_2.txt",
+  "expect": [
+   "Stipan Arkadiewitsch was tegenover zich",
+   "Het kwam hem zelfs voor, dat zij, een",
+   "Op die vraag vond hij slechts het eene,"
+  ],
+  "minChars": 1805
+ },
+ {
+  "file": "files/text/chardet-windows-1252/github_bug_9.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/chardet/chardet/5.2.0/tests/windows-1252/github_bug_9.txt",
+  "expect": [
+   "Then he said, “The names Bod, James",
+   "Spam, beans, spam – served every day",
+   "beans, spam, beans, — served every other"
+  ],
+  "minChars": 108
+ },
+ {
+  "file": "files/text/cpython-cjkencodings/big5.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/test/cjkencodings/big5.txt",
+  "expect": [
+   "如何在 Python 中使用既有的 C library?",
+   "fast prototyping 的 programming language.",
+   "要討論的問題就是:"
+  ],
+  "minChars": 239
+ },
+ {
+  "file": "files/text/cpython-cjkencodings/big5hkscs.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/test/cjkencodings/big5hkscs.txt",
+  "minChars": 18
+ },
+ {
+  "file": "files/text/cpython-cjkencodings/cp949.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/test/cjkencodings/cp949.txt",
+  "minChars": 176
+ },
+ {
+  "file": "files/text/cpython-cjkencodings/euc_jp.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/test/cjkencodings/euc_jp.txt",
+  "expect": [
+   "Python の開発は、19",
+   "このため、Guido はより",
+   "言語自体の機能は最小限に押さ"
+  ],
+  "minChars": 340
+ },
+ {
+  "file": "files/text/cpython-cjkencodings/euc_kr.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/test/cjkencodings/euc_kr.txt",
+  "expect": [
+   "◎ 파이썬(Python)은",
+   "지원합니다. 파이썬의 우아",
+   "애플리케이션 개발을 할 수"
+  ],
+  "minChars": 210
+ },
+ {
+  "file": "files/text/cpython-cjkencodings/gb18030.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/test/cjkencodings/gb18030.txt",
+  "expect": [
+   "已经具有十多年的发展历史，成熟且稳定。",
+   "課題. 為加快開發及測試的速度",
+   "파이썬은 강력한 기능을 지닌 범용 컴퓨터 프로그래밍"
+  ],
+  "minChars": 400
+ },
+ {
+  "file": "files/text/cpython-cjkencodings/gb2312.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/test/cjkencodings/gb2312.txt",
+  "expect": [
+   "Python（派森）语言是一",
+   "的语法特点，适合完成各种高层",
+   "种语言的相关技术正在飞速的发"
+  ],
+  "minChars": 133
+ },
+ {
+  "file": "files/text/cpython-cjkencodings/gbk.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/test/cjkencodings/gbk.txt",
+  "expect": [
+   "Python（派森）语言是一种功能强大而完善的通用型计算机程序设计语言",
+   "在資訊科技快速發展的今天"
+  ],
+  "minChars": 372
+ },
+ {
+  "file": "files/text/cpython-cjkencodings/hz.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/test/cjkencodings/hz.txt",
+  "expect": [
+   "This sentence is in ASCII."
+  ],
+  "minChars": 66
+ },
+ {
+  "file": "files/text/cpython-cjkencodings/iso2022_jp.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/test/cjkencodings/iso2022_jp.txt",
+  "expect": [
+   "Python の開発は、19",
+   "このため、Guido はより",
+   "言語自体の機能は最小限に押さ"
+  ],
+  "minChars": 340
+ },
+ {
+  "file": "files/text/cpython-cjkencodings/shift_jis.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/python/cpython/main/Lib/test/cjkencodings/shift_jis.txt",
+  "expect": [
+   "Python の開発は、19",
+   "このため、Guido はより",
+   "言語自体の機能は最小限に押さ"
+  ],
+  "minChars": 340
+ },
+ {
+  "file": "files/text/csv-spectrum/comma_in_quotes.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/max-mapper/csv-spectrum/master/csvs/comma_in_quotes.csv",
+  "expect": [
+   "first",
+   "city",
+   "Anytown, WW"
+  ],
+  "minChars": 98
+ },
+ {
+  "file": "files/text/csv-spectrum/escaped_quotes.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/max-mapper/csv-spectrum/master/csvs/escaped_quotes.csv",
+  "expect": [
+   "ha \"ha\" ha"
+  ],
+  "minChars": 42
+ },
+ {
+  "file": "files/text/csv-spectrum/newlines_crlf.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/max-mapper/csv-spectrum/master/csvs/newlines_crlf.csv",
+  "expect": [
+   "Once upon"
+  ],
+  "minChars": 73
+ },
+ {
+  "file": "files/text/csv-spectrum/quotes_and_newlines.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/max-mapper/csv-spectrum/master/csvs/quotes_and_newlines.csv",
+  "minChars": 44
+ },
+ {
+  "file": "files/text/csv-spectrum/utf8.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/max-mapper/csv-spectrum/master/csvs/utf8.csv",
+  "expect": [
+   "ʤ"
+  ],
+  "minChars": 49
+ },
+ {
+  "file": "files/text/csvkit/ks_1033_data.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/wireservice/csvkit/HEAD/examples/realdata/ks_1033_data.csv",
+  "expect": [
+   "REFRIGERATOR-FREEZE",
+   "JOHNSON",
+   "FACE SHIELD"
+  ],
+  "minChars": 202558
+ },
+ {
+  "file": "files/text/csvkit/mac_newlines.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/wireservice/csvkit/HEAD/examples/mac_newlines.csv",
+  "expect": [
+   "Once upon"
+  ],
+  "minChars": 61
+ },
+ {
+  "file": "files/text/csvkit/test_header_newline.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/wireservice/csvkit/HEAD/examples/test_header_newline.csv",
+  "minChars": 48
+ },
+ {
+  "file": "files/text/csvkit/test_latin1.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/wireservice/csvkit/HEAD/examples/test_latin1.csv",
+  "expect": [
+   "©"
+  ],
+  "minChars": 49
+ },
+ {
+  "file": "files/text/csvkit/test_utf16_big.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/wireservice/csvkit/HEAD/examples/test_utf16_big.csv",
+  "expect": [
+   "ʤ"
+  ],
+  "minChars": 49
+ },
+ {
+  "file": "files/text/csvkit/test_utf16_little.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/wireservice/csvkit/HEAD/examples/test_utf16_little.csv",
+  "expect": [
+   "ʤ"
+  ],
+  "minChars": 49
+ },
+ {
+  "file": "files/text/csvkit/test_utf8_bom.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/wireservice/csvkit/HEAD/examples/test_utf8_bom.csv",
+  "expect": [
+   "foo",
+   "ʤ"
+  ],
+  "minChars": 54
+ },
+ {
+  "file": "files/text/datasets-country-codes/country-codes.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/datasets/country-codes/main/data/country-codes.csv",
+  "expect": [
+   "جمهورية البرازيل الاتحادية",
+   "利比里亚共和国",
+   "Таджикистан"
+  ],
+  "minChars": 111738
+ },
+ {
+  "file": "files/text/datauri-Allensmile/PCA.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/Allensmile/Machine-learning-implement/master/PCA.html",
+  "expect": [
+   "如上图所示，红色点表示原样本",
+   "这个结果意思是说，如果知道了",
+   "主成份分析算法PCA，非监督"
+  ],
+  "minChars": 8200
+ },
+ {
+  "file": "files/text/datauri-stancon18/main.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/luisdamiano/stancon18/master/main.html",
+  "expect": [
+   "Baum, Leonard E. 1972. “An Inequality",
+   "Jordan, Michael I. 2003. “An",
+   "Stan Modeling Language: User’s Guide and"
+  ],
+  "minChars": 58086
+ },
+ {
+  "file": "files/text/double-entry-generator/example-alipay-records.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/deb-sig/double-entry-generator/HEAD/example/alipay/example-alipay-records.csv",
+  "expect": [
+   "收入：1笔 28.50元",
+   "亲友代付",
+   "交易关闭"
+  ],
+  "minChars": 2399
+ },
+ {
+  "file": "files/text/double-entry-generator/example-icbc-debit-v2-records.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/deb-sig/double-entry-generator/HEAD/example/icbc/debit-v2/example-icbc-debit-v2-records.csv",
+  "expect": [
+   "子账户别名:",
+   "广东三元麦当劳食品有",
+   "合伙人返现"
+  ],
+  "minChars": 1537
+ },
+ {
+  "file": "files/text/double-entry-generator/example-jd-records.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/deb-sig/double-entry-generator/HEAD/example/jd/example-jd-records.csv",
+  "expect": [
+   "收入：0笔，0.00元",
+   "退款成功",
+   "李宁（LI-NING）羽毛球"
+  ],
+  "minChars": 4422
+ },
+ {
+  "file": "files/text/double-entry-generator/example-wechat-records.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/deb-sig/double-entry-generator/HEAD/example/wechat/example-wechat-records.csv",
+  "expect": [
+   "支付方式",
+   "¥10.10",
+   "美团平台商户"
+  ],
+  "minChars": 3589
+ },
+ {
+  "file": "files/text/email-leemunroe/email-inlined.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/leemunroe/responsive-html-email-template/HEAD/email-inlined.html",
+  "expect": [
+   "Sometimes you just want to send a simple",
+   "Company Inc, 7-11 Commercial Ct, Belfast",
+   "Powered by"
+  ],
+  "minChars": 381
+ },
+ {
+  "file": "files/text/email-mailchimp-blueprints/base_boxed_2column_query.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/mailchimp/email-blueprints/HEAD/responsive-templates/base_boxed_2column_query.html",
+  "expect": [
+   "View it in your browser",
+   "remove formatting",
+   "Our mailing address is:"
+  ],
+  "minChars": 1717
+ },
+ {
+  "file": "files/text/email-postmark-templates/invoice-content.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/ActiveCampaign/postmark-templates/HEAD/templates-inlined/basic-full/invoice/content.html",
+  "expect": [
+   "If you’re having trouble with the button"
+  ],
+  "minChars": 555
+ },
+ {
+  "file": "files/text/md-HelloGitHub/README.md",
+  "format": "md",
+  "source": "https://raw.githubusercontent.com/521xueweihan/HelloGitHub/master/README.md",
+  "expect": [
+   "HelloGitHub 分享 GitHub 上有趣、入门级的开源项目。",
+   "获得更好的阅读体验",
+   "第 127 期"
+  ],
+  "minChars": 4476
+ },
+ {
+  "file": "files/text/md-github-docs/organizing-information-with-tables.md",
+  "format": "md",
+  "source": "https://raw.githubusercontent.com/github/docs/main/content/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables.md",
+  "expect": [
+   "Cells can vary in width and do not need to be perfectly aligned within columns.",
+   "The pipes on either end of the table are optional."
+  ],
+  "minChars": 3216
+ },
+ {
+  "file": "files/text/md-hugoDocs/front-matter.md",
+  "format": "md",
+  "source": "https://raw.githubusercontent.com/gohugoio/hugoDocs/master/content/en/content-management/front-matter.md",
+  "expect": [
+   "Provide front matter using a",
+   "Add taxonomy terms as shown below:",
+   "When populating a date field, whether a"
+  ],
+  "minChars": 11298
+ },
+ {
+  "file": "files/text/md-markdown-test-file/TEST.md",
+  "format": "md",
+  "source": "https://raw.githubusercontent.com/mxstbr/markdown-test-file/master/TEST.md",
+  "expect": [
+   "The implication of the \"one or more",
+   "But if you want to be lazy, you don't",
+   "Regular Markdown syntax is not processed"
+  ],
+  "minChars": 7717
+ },
+ {
+  "file": "files/text/md-mdn-content/table-index.md",
+  "format": "md",
+  "source": "https://raw.githubusercontent.com/mdn/content/main/files/en-us/web/html/reference/elements/table/index.md",
+  "expect": [
+   "element represents tabular data—that is, information presented in a two-dimensional table",
+   "Table cells do have padding. Boxes that make up a table do not have margins."
+  ],
+  "minChars": 32768
+ },
+ {
+  "file": "files/text/md-ruby/README.ja.md",
+  "format": "md",
+  "source": "https://raw.githubusercontent.com/ruby/ruby/master/README.ja.md",
+  "expect": [
+   "例外処理やイテレータなどの機",
+   "以下の手順で行ってください．",
+   "る部分を参考にしてください．"
+  ],
+  "minChars": 4276
+ },
+ {
+  "file": "files/text/mudchina-jy/heimuya-dating2.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/mudchina/jy/HEAD/d/heimuya/dating2.txt",
+  "expect": [
+   "这是『日月神教』下第二大堂",
+   "白虎堂的大厅"
+  ],
+  "minChars": 418
+ },
+ {
+  "file": "files/text/mudchina-jy/quanzhou-news.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/mudchina/jy/HEAD/d/quanzhou/npc/news.txt",
+  "expect": [
+   "本行为注释，第二行为消息的行",
+   "大道新闻暂时没有，",
+   "小道消息不能乱传。"
+  ],
+  "minChars": 37
+ },
+ {
+  "file": "files/text/nolf2-modernizer/EULA.htm",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/haekb/nolf2-modernizer/HEAD/EULA.htm",
+  "expect": [
+   "publicly display one copy of the",
+   "is a feature which allows you to modify",
+   "prohibitions and restrictions in this"
+  ],
+  "minChars": 4806
+ },
+ {
+  "file": "files/text/novel-kg/yuanyangdao.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/liuyuzhangolvz/novel-kg/HEAD/data/books/%E9%B8%B3%E9%B8%AF%E5%88%80%E4%BF%AE%E8%AE%A2%E7%89%88/%E9%B8%B3%E9%B8%AF%E5%88%80.txt",
+  "expect": [
+   "盖一鸣道：“依我说……”话犹",
+   "“干么要我住口？你闭嘴，我来",
+   "便在此时，只听得外面齐声呐喊"
+  ],
+  "minChars": 28036
+ },
+ {
+  "file": "files/text/pandas/banklist.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/pandas-dev/pandas/main/pandas/tests/io/data/csv/banklist.csv",
+  "expect": [
+   "HarVest Bank of Maryland",
+   "Savannah",
+   "Silver Falls Bank"
+  ],
+  "minChars": 39471
+ },
+ {
+  "file": "files/text/pandas/sauron.SHIFT_JIS.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/pandas-dev/pandas/main/pandas/tests/io/parser/data/sauron.SHIFT_JIS.csv",
+  "expect": [
+   "『ホビットの冒険』に言及のあ",
+   "そのほか、第二紀にエルフに対",
+   "ただしヌーメノール没落の際に"
+  ],
+  "minChars": 844
+ },
+ {
+  "file": "files/text/pandas/unicode_series.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/pandas-dev/pandas/main/pandas/tests/io/parser/data/unicode_series.csv",
+  "expect": [
+   "Cérémonie, La (1995)",
+   "Á köldum klaka (Cold Fever) (1994)"
+  ],
+  "minChars": 556
+ },
+ {
+  "file": "files/text/pandas/utf16_ex.tsv",
+  "format": "tsv",
+  "source": "https://raw.githubusercontent.com/pandas-dev/pandas/main/pandas/tests/io/parser/data/utf16_ex.txt",
+  "filename": "utf16_ex.txt",
+  "expect": [
+   "Carolina Tohá Morales",
+   "Raúl Coraspe",
+   "Lucio Edwin Gutiérrez Borbúa"
+  ],
+  "minChars": 4460
+ },
+ {
+  "file": "files/text/programming_with_python/xifei-zhiliao.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/royqh1979/programming_with_python/HEAD/Chap10StatisticalAnalysis/%E7%9F%BD%E8%82%BA%E6%B2%BB%E7%96%97%E6%95%B0%E6%8D%AE.csv",
+  "expect": [
+   "患者编号",
+   "治疗前",
+   "治疗后"
+  ],
+  "minChars": 177
+ },
+ {
+  "file": "files/text/programming_with_python/xuesheng-chengji.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/royqh1979/programming_with_python/HEAD/Chap09pandas/%E5%AD%A6%E7%94%9F%E6%88%90%E7%BB%A9.csv",
+  "expect": [
+   "信管24",
+   "信管44",
+   "电商38"
+  ],
+  "minChars": 2737
+ },
+ {
+  "file": "files/text/shifterator/labMT_Chinese.tsv",
+  "format": "tsv",
+  "source": "https://raw.githubusercontent.com/ryanjgallagher/shifterator/master/shifterator/lexicons/labMT/labMT_Chinese.tsv",
+  "expect": [
+   "独立自主",
+   "民事权利",
+   "不可抗力"
+  ],
+  "minChars": 111492
+ },
+ {
+  "file": "files/text/suqixu-my-py-scripts/hongloumeng.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/suqixu/my-py-scripts/HEAD/jieba_count_text/%E7%BA%A2%E6%A5%BC%E6%A2%A6.txt",
+  "expect": [
+   "如今且说宝玉因见今日人众，恐",
+   "且说大观园中，因贾母、王夫人",
+   "贾赦没法，只得请道士到园作法"
+  ],
+  "minChars": 700456
+ },
+ {
+  "file": "files/text/tika/big-preamble.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-html-module/src/test/resources/test-documents/big-preamble.html",
+  "expect": [
+   "Аренда офисов и особняков",
+   "Предложения по продаже ПСН",
+   "Бесплатные доски объявлений по аренде"
+  ],
+  "minChars": 8318
+ },
+ {
+  "file": "files/text/tika/multi-language.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-text-module/src/test/resources/test-documents/multi-language.txt",
+  "expect": [
+   "Port ABC contratação de sucesso",
+   "español ABC hay que pasar",
+   "español ABC todos ganan con el anticipo"
+  ],
+  "minChars": 1258
+ },
+ {
+  "file": "files/text/tika/resume.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-text-module/src/test/resources/test-documents/resume.html",
+  "expect": [
+   "просмотревшие резюме № .",
+   "предварительного оформления или",
+   "напишите нам"
+  ],
+  "minChars": 1768
+ },
+ {
+  "file": "files/text/tika/test-columnar.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-integration-tests/src/test/resources/test-documents/test-columnar.csv",
+  "expect": [
+   "Square of the Record Number",
+   "Description of the Row"
+  ],
+  "minChars": 1109
+ },
+ {
+  "file": "files/text/tika/testArabicMisleadingCharset.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-integration-tests/src/test/resources/test-documents/testArabicMisleadingCharset.html",
+  "expect": [
+   "في قرية من القرى كان هناك رجل حكيم يعرف"
+  ],
+  "minChars": 464
+ },
+ {
+  "file": "files/text/tika/testCSV.csv",
+  "format": "csv",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-integration-tests/src/test/resources/test-documents/testCSV.csv",
+  "expect": [
+   "Sample CSV File - Numbers and their Squares",
+   "Written and saved in Apache OpenOffice."
+  ],
+  "minChars": 336
+ },
+ {
+  "file": "files/text/tika/testHTMLNoisyMetaEncoding_1.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-html-module/src/test/resources/test-documents/testHTMLNoisyMetaEncoding_1.html",
+  "expect": [
+   "الاتحاد الجزائري وقتها",
+   "والضرر الكبير الناجم عن ذلك"
+  ],
+  "minChars": 143
+ },
+ {
+  "file": "files/text/tika/testHTML_charset_utf16le.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-html-module/src/test/resources/test-documents/testHTML_charset_utf16le.html",
+  "expect": [
+   "This is a sample text"
+  ],
+  "minChars": 17
+ },
+ {
+  "file": "files/text/tika/testHTML_embedded_img.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-html-module/src/test/resources/test-documents/testHTML_embedded_img.html",
+  "expect": [
+   "some content",
+   "some other content"
+  ],
+  "minChars": 32
+ },
+ {
+  "file": "files/text/tika/testHTML_utf8.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-html-module/src/test/resources/test-documents/testHTML_utf8.html",
+  "expect": [
+   "Content with UTF-8 chars"
+  ],
+  "minChars": 25
+ },
+ {
+  "file": "files/text/tika/testMARKDOWN.md",
+  "format": "md",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-text-module/src/test/resources/test-documents/testMARKDOWN.md",
+  "expect": [
+   "Café naïve résumé"
+  ],
+  "minChars": 252
+ },
+ {
+  "file": "files/text/tika/testTXT_win-1252.txt",
+  "format": "txt",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-text-module/src/test/resources/test-documents/testTXT_win-1252.txt",
+  "expect": [
+   "These smart quotes are the trigger for"
+  ],
+  "minChars": 76
+ },
+ {
+  "file": "files/text/tika/testXHTML.html",
+  "format": "xhtml",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-html-module/src/test/resources/test-documents/testXHTML.html",
+  "expect": [
+   "This document tests the ability of",
+   "XHTML document"
+  ],
+  "minChars": 97
+ },
+ {
+  "file": "files/text/tika/tika434.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/apache/tika/main/tika-parsers/tika-parsers-standard/tika-parsers-standard-modules/tika-parser-html-module/src/test/resources/test-documents/tika434.html",
+  "expect": [
+   "The Easy Way to Find Vacation Rentals, Hotels and Bed and Breakfasts",
+   "New King Size Bed in the Sun Room"
+  ],
+  "minChars": 4852
+ },
+ {
+  "file": "files/text/uchardet/de-windows-1252.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/de/windows-1252.txt",
+  "expect": [
+   "aktualisierter Standard für die Informationstechnik",
+   "Zeichenkodierung mit acht Bit"
+  ],
+  "minChars": 612
+ },
+ {
+  "file": "files/text/uchardet/es-iso-8859-15.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/es/iso-8859-15.txt",
+  "expect": [
+   "de Tasación a 31 de diciembre de",
+   "provincia, encontrándose la de mayor",
+   "contraposición las de Extremadura y"
+  ],
+  "minChars": 296
+ },
+ {
+  "file": "files/text/uchardet/fr-iso-8859-1.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/fr/iso-8859-1.txt",
+  "expect": [
+   "Elle définit ce qu'elle appelle l'alphabet latin numéro 1",
+   "souvent appelée Latin-1 ou Europe occidentale"
+  ],
+  "minChars": 930
+ },
+ {
+  "file": "files/text/uchardet/fr-utf-16be.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/fr/utf-16.be",
+  "expect": [
+   "UTF-16 (16-bit Unicode Transformation",
+   "(also see Comparison of Unicode",
+   "encoding could not encode enough"
+  ],
+  "minChars": 431
+ },
+ {
+  "file": "files/text/uchardet/hu-iso-8859-2.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/hu/iso-8859-2.txt",
+  "expect": [
+   "minden magyar ékezetes betű megtalálható",
+   "karakterkódolási szabvány második része"
+  ],
+  "minChars": 614
+ },
+ {
+  "file": "files/text/uchardet/ja-euc-jp.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/ja/euc-jp.txt",
+  "expect": [
+   "日本語EUC",
+   "韓国語EUC (EUC-KR)",
+   "などがある。"
+  ],
+  "minChars": 165
+ },
+ {
+  "file": "files/text/uchardet/ja-iso-2022-jp.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/ja/iso-2022-jp.txt",
+  "expect": [
+   "ISO/IEC 2022（旧称 ISO 2022）は、",
+   "複数の文字集合を単一の文字符",
+   "ISO/IEC 2022 の"
+  ],
+  "minChars": 280
+ },
+ {
+  "file": "files/text/uchardet/ja-shift_jis.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/ja/shift_jis.txt",
+  "expect": [
+   "日本語日本語日本語日本語日本"
+  ],
+  "minChars": 46
+ },
+ {
+  "file": "files/text/uchardet/ja-utf-16be.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/ja/utf-16be.txt",
+  "expect": [
+   "Transformation Formatの略、ISO/IEC",
+   "Unicodeにおいては、厳",
+   "Scheme）の1つの名称で"
+  ],
+  "minChars": 566
+ },
+ {
+  "file": "files/text/uchardet/ja-utf-16le.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/ja/utf-16le.txt",
+  "expect": [
+   "Transformation Formatの略、ISO/IEC",
+   "Unicodeにおいては、厳",
+   "Scheme）の1つの名称で"
+  ],
+  "minChars": 566
+ },
+ {
+  "file": "files/text/uchardet/ko-uhc.smi.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/ko/uhc.smi",
+  "expect": [
+   "대표적인 한글 완성형 인코딩이기 때문에",
+   "EUC-KR 인코딩은 다음과 같이 구성된다."
+  ],
+  "minChars": 556
+ },
+ {
+  "file": "files/text/uchardet/ko-utf-16le.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/ko/utf-16.le",
+  "expect": [
+   "하나이다. 주로 사용되는 기본 다국어 평면 (BMP, Basic",
+   "속하는 문자들은 그대로 1",
+   "정해진 방식으로 32비트로"
+  ],
+  "minChars": 149
+ },
+ {
+  "file": "files/text/uchardet/pl-windows-1250.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/pl/windows-1250.txt",
+  "expect": [
+   "Zofia (Sonka) Holszańska herbu",
+   "księżniczka litewska, królowa Polski, od"
+  ],
+  "minChars": 154
+ },
+ {
+  "file": "files/text/uchardet/ru-koi8-r.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/ru/koi8-r.txt",
+  "expect": [
+   "КОИ-8 (код обмена информацией, 8 битов),"
+  ],
+  "minChars": 281
+ },
+ {
+  "file": "files/text/uchardet/ru-windows-1251.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/ru/windows-1251.txt",
+  "expect": [
+   "набор символов и кодировка, являющаяся",
+   "Windows-1251 выгодно отличается от"
+  ],
+  "minChars": 703
+ },
+ {
+  "file": "files/text/uchardet/sk-windows-1250.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/sk/windows-1250.txt",
+  "expect": [
+   "Jupiter je piata planéta v poradí od",
+   "našej slnečnej sústavy. Je pomenovaný po",
+   "planéty je štylizované znázornenie"
+  ],
+  "minChars": 175
+ },
+ {
+  "file": "files/text/uchardet/uk-windows-1251.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/uk/windows-1251.txt",
+  "expect": [
+   "рід гризунів родини вивіркових",
+   "Більшість бабаків дуже соціальні."
+  ],
+  "minChars": 396
+ },
+ {
+  "file": "files/text/uchardet/zh-big5.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/zh/big5.txt",
+  "expect": [
+   "繁體中文繁體中文繁體中文繁體"
+  ],
+  "minChars": 55
+ },
+ {
+  "file": "files/text/uchardet/zh-gb18030.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/zh/gb18030.txt",
+  "expect": [
+   "简体中文简体中文简体中文简体"
+  ],
+  "minChars": 36
+ },
+ {
+  "file": "files/text/uchardet/zh-utf-8.txt",
+  "format": "txt",
+  "source": "https://gitlab.freedesktop.org/uchardet/uchardet/-/raw/master/test/zh/utf-8.txt",
+  "expect": [
+   "汉字漢字統一編碼萬國碼"
+  ],
+  "minChars": 9
+ },
+ {
+  "file": "files/text/word-html-hustfyb/xm7.html",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/hustfyb/Freshman-Practical/HEAD/photoShop/xm7.html",
+  "expect": [
+   "本次实验的目的是了解图像的基本概念",
+   "软件创作设计艺术作品的能力。"
+  ],
+  "minChars": 2700
+ },
+ {
+  "file": "files/text/word-html-tencentyun/user_agreementV1.0.htm",
+  "format": "html",
+  "source": "https://raw.githubusercontent.com/tencentyun/iot-link-android/HEAD/app/src/main/assets/user_agreementV1.0.htm",
+  "expect": [
+   "协议关系及冲突条款",
+   "您在使用本服务的过程中可能需",
+   "在任何情况下，您不应轻信借款"
+  ],
+  "minChars": 7676
+ }
+]

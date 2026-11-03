@@ -42,12 +42,21 @@ export interface ConvertPart {
   ocrReason: OcrReason | null;
 }
 
-export type ImageFormat = "jpeg" | "png" | "gif" | "webp" | "tiff" | "heic";
+export type ImageFormat = "jpeg" | "png" | "gif" | "webp" | "tiff" | "heic" | "avif" | "svg" | "bmp";
+
+export type TextFormat = "plain" | "markdown";
+
+export type MessageFormat = "eml" | "mhtml" | "msg";
 
 export type DetectedKind =
   | { kind: "image"; format: ImageFormat }
   | { kind: "pdf" }
   | { kind: "office"; format: string }
+  | { kind: "text"; format: TextFormat }
+  | { kind: "html" }
+  | { kind: "message"; format: MessageFormat }
+  | { kind: "ofd" }
+  | { kind: "notebook" }
   | { kind: "unknown" };
 
 export interface OcrLine {
@@ -228,7 +237,12 @@ export interface PdfInspectorPort {
 }
 
 export interface ImageNormalizerPort {
-  toPng(bytes: Uint8Array): Promise<Uint8Array>;
+  /** Decodes `page` (0-based, default 0) of the image and encodes it as PNG. */
+  toPng(bytes: Uint8Array, page?: number): Promise<Uint8Array>;
+  /** Number of pages in a multi-page image (TIFF). Absent or 1 means a single image. */
+  pageCount?(bytes: Uint8Array): Promise<number>;
+  /** Shrinks an image to within the OCR engine's size limits, as PNG. */
+  fitForOcr?(bytes: Uint8Array): Promise<Uint8Array>;
 }
 
 export interface ConvertDeps {
@@ -241,3 +255,6 @@ export interface ConvertDeps {
 export interface ConvertEngine extends ConvertDeps {
   close(): Promise<void>;
 }
+
+/** Converts a file carried inside another one (an e-mail attachment) through the full routing. */
+export type NestedConvert = (bytes: Uint8Array, filename: string | undefined) => AsyncGenerator<ConvertPart>;

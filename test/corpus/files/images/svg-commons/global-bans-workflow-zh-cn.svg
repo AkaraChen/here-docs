@@ -1,0 +1,27 @@
+<svg width="600" height="500" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <defs>
+  <marker refY="50" refX="50" markerHeight="5" markerWidth="5" viewBox="0 0 100 100" orient="auto" markerUnits="strokeWidth" id="se_marker_end_svg_6">
+   <path stroke-width="10" stroke="#000000" fill="#000000" d="m100,50l-100,40l30,-40l-30,-40l100,40z" id="svg_11"/>
+  </marker>
+ </defs>
+ <g>
+  <line stroke-width="2" marker-end="url(#se_marker_end_svg_6)" id="svg_6" y2="112" x2="139" y1="79" x1="360" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="none"/>
+  <line id="svg_7" stroke-width="2" marker-end="url(#se_marker_end_svg_6)" y2="110.5" x2="397.5" y1="77.5" x1="357.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="none"/>
+  <line id="svg_8" stroke-width="2" marker-end="url(#se_marker_end_svg_6)" y2="265.5" x2="403.5" y1="205.5" x1="403.5" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="none"/>
+  <line id="svg_9" stroke-width="2" marker-end="url(#se_marker_end_svg_6)" y2="399" x2="404" y1="345" x1="404" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke="#000000" fill="none"/>
+  <title>Global Ban's Process Workflow</title>
+  <g id="svg_2">
+   <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="12" id="svg_3" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000" y="50" x="362">任何用户均可通过元维基
+    <tspan dy="12" x="362" id="svg_1">上的讨论请求申请全域禁制</tspan></text>
+  </g>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="134" y="144" id="svg_4" font-size="12" font-family="serif" text-anchor="middle" xml:space="preserve">如果发起人未进行基本的举证，
+   <tspan dy="12" x="134" id="svg_1">管理员或监管员可以直接关闭RFC。</tspan></text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="401" y="137" id="svg_5" font-size="12" font-family="serif" text-anchor="middle" xml:space="preserve">如果发起人已举证，讨论继续以取得共识。
+   <tspan dy="12" x="401" id="svg_1">向用户及他活跃过的社群发出通知。</tspan></text>
+  <text xml:space="preserve" text-anchor="middle" font-family="serif" font-size="12" id="svg_10" y="286" x="402" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#000000">元维基管理员或监管员将在讨论取
+   <tspan dy="12" x="402" id="svg_1">得结论后关闭讨论，并判断共识。</tspan></text>
+  <text fill="#000000" stroke="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="403" y="419" id="svg_15" font-size="12" font-family="serif" text-anchor="middle" xml:space="preserve">如果共识要求发出禁制，则向监管员请求
+   <tspan dy="12" x="402" id="svg_1">全域锁定用户账户，并向本地管理员提供指示。</tspan></text>
+ </g>
+</svg>

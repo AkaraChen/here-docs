@@ -162,3 +162,17 @@ test("unknown and unconvertible inputs are `none`", async () => {
   const parts = await collect(convertPages(Uint8Array.from(Buffer.from("PK\u0003\u0004")), { engine: encrypted }));
   assert.deepEqual(provenance(parts), [[null, "none", null]]);
 });
+
+test("plain text is `text`; HTML is `text`, or `mixed` once an embedded image's OCR text is inserted", async () => {
+  const text = await collect(convertPages(Uint8Array.from(Buffer.from("plain words\n")), { filename: "notes.txt", engine: fakeDeps() }));
+  assert.deepEqual(provenance(text), [[null, "text", null]]);
+
+  const png = Buffer.from(pngBytes).toString("base64");
+  for (const [html, source] of [
+    ["<html><body><p>Hello</p></body></html>", "text"],
+    [`<html><body><p>Hello</p><img src="data:image/png;base64,${png}"></body></html>`, "mixed"],
+  ] as const) {
+    const parts = await collect(convertPages(Uint8Array.from(Buffer.from(html)), { filename: "page.html", engine: fakeDeps() }));
+    assert.deepEqual(provenance(parts), [[null, source, null]]);
+  }
+});
