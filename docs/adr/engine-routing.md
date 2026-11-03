@@ -38,3 +38,4 @@ Formats outside the three engines (text, HTML, e-mail, OFD, notebooks, SVG) are 
 - pdf-inspector page indexes are 0-based; light-ocr `pageRange` is 1-based. Routing must convert explicitly.
 - A page whose text layer page extraction flags as unreliable (for example a font without a usable Unicode mapping) is OCR'd. The flag is per page; document-level classification does not report encoding issues.
 - Strategies are unit-tested with injected fakes; native engines stay behind a narrow port.
+- When pdf-inspector cannot parse a PDF at all, its classification throws. The PDF then goes to light-ocr's whole-document OCR, because PDFium rebuilds damaged cross-reference tables that pdf-inspector rejects. pdf-inspector 1.14.2 classified such a file as a scan with zero pages and so reached OCR by accident; 1.25.2 throws. Only when PDFium cannot open the file either does the input end as `malformed`.

@@ -196,6 +196,13 @@ test("text inside an image on a text page is OCR'd in place; a logo-sized image 
   assert.doesNotMatch(parts[1]!.markdown, /HELLO/);
 });
 
+test("a PDF with a damaged cross-reference table is still read, by OCR", async (t) => {
+  const parts = await pages("damaged-xref.pdf", t);
+  if (!parts) return;
+  assert.equal(parts[0]!.source, "ocr");
+  assert.match(parts.map((part) => part.markdown).join("\n"), /HELLO/);
+});
+
 test("a blank scanned page yields an empty part", async (t) => {
   const parts = await pages("scan-with-blank-page.pdf", t);
   if (!parts) return;

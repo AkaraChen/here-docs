@@ -37,19 +37,10 @@ export async function* pdfParts(
     classification = await deps.pdf.classify(bytes);
   } catch (error) {
     signal?.throwIfAborted();
-    yield {
-      page: null,
-      pageCount: null,
-      markdown: "",
-      warnings: [
-        {
-          code: WarningCode.malformed,
-          message: error instanceof Error ? error.message : "PDF classification failed",
-        },
-      ],
-      source: "none",
-      ocrReason: null,
-    };
+    // The text extractor cannot parse the file (a damaged cross-reference table, for one). The OCR engine renders
+    // with PDFium, which repairs such files, so its reading of the pages is the best this input can give.
+    const unreadable = { code: WarningCode.malformed, message: error instanceof Error ? error.message : "PDF classification failed" };
+    yield* ocrWholePdf(bytes, deps, signal, "extraction-failed", unreadable);
     return;
   }
   signal?.throwIfAborted();
@@ -275,37 +266,42 @@ async function ocrPage(
   }
 }
 
-/** A scanned PDF whose page count the classifier could not read: let the OCR engine walk the pages. */
+/**
+ * Lets the OCR engine walk the pages of a PDF whose page count is unknown: a scan the classifier could not count, or
+ * a file the text extractor could not parse at all (`unreadable`, reported with the first part). If the OCR engine
+ * cannot open it either, the call ends with the extractor's error when there is one.
+ */
 async function* ocrWholePdf(
   bytes: Uint8Array,
   deps: ConvertDeps,
   signal: AbortSignal | undefined,
+  ocrReason: OcrReason = "scanned-document",
+  unreadable?: Warning,
 ): AsyncGenerator<ConvertPart> {
+  let pending = unreadable ? [unreadable] : [];
   try {
     for await (const page of deps.ocr.recognizeDocument(bytes, { signal })) {
       yield {
         page: page.index + 1,
         pageCount: null,
         markdown: pageMarkdown(page.index + 1, page.lines).trimEnd(),
-        warnings: [],
+        warnings: pending,
         source: "ocr",
-        ocrReason: "scanned-document",
+        ocrReason,
       };
+      pending = [];
     }
   } catch (error) {
     signal?.throwIfAborted();
+    const failed = { code: WarningCode.ocrFailed, message: error instanceof Error ? error.message : "PDF OCR failed" };
     yield {
       page: null,
       pageCount: null,
       markdown: "",
-      warnings: [
-        {
-          code: WarningCode.ocrFailed,
-          message: error instanceof Error ? error.message : "PDF OCR failed",
-        },
-      ],
+      // A file neither engine can read is reported as the extractor saw it: malformed.
+      warnings: pending.length > 0 ? pending : [failed],
       source: "none",
-      ocrReason: "scanned-document",
+      ocrReason: pending.length > 0 ? null : ocrReason,
     };
   }
 }

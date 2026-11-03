@@ -117,6 +117,7 @@ Detection prefers content. Binary signatures come first, then the filename hint,
 | Text-based PDF | Structured Markdown. The whole file is not sent through OCR. Web and mail link annotations become Markdown links. Images large enough to hold text are OCR'd and their text inserted after the text above them. |
 | Scanned or image-only PDF | OCR Markdown, one page per OCR request, so long or large scans are not cut off by OCR limits. |
 | Mixed PDF | Extractable pages stay structured; pages that need OCR are recognized and merged in page order. |
+| Damaged PDF the text extractor cannot parse | Every page is OCR'd (the renderer repairs the file), with a `malformed` warning. |
 | OFD (e-invoices, official documents) | One part per page. Text, including template text, comes out in reading order; image-only pages are OCR'd. |
 | HTML, XHTML | Headings, lists, tables, quotes, code, and links. Layout tables render as content. `data:` images are OCR'd in place; remote images are never fetched. |
 | E-mail (`.eml`, Outlook `.msg`) | Subject, From/To/Cc/Date, the body (inline `cid:` images OCR'd in place), then every attachment converted under its own heading, nested messages included (up to three levels deep). |

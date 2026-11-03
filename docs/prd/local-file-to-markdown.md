@@ -57,6 +57,7 @@ Later additions (text, HTML, e-mail, MHTML, OFD, notebooks, templates, TIFF page
 - A raster image yields Markdown produced only by OCR.
 - A text-based PDF yields structured Markdown and is not sent through whole-document OCR.
 - A scanned or image-only PDF yields OCR Markdown.
+- A PDF with a damaged cross-reference table that a viewer can still open yields OCR Markdown and a `malformed` warning instead of empty Markdown.
 - A searchable scan (scanned pages with an invisible OCR text layer) yields the local OCR engine's reading of the pages, not the text of the invisible layer.
 - A mixed PDF includes OCR text for pages that need OCR and keeps structured text for extractable pages.
 - Text inside an image on an extractable PDF page appears next to the surrounding text, as on office documents.

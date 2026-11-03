@@ -87,6 +87,7 @@ Text is decoded by BOM (or the NUL pattern of BOM-less UTF-16), then ISO-2022-JP
 - Text-based PDF pages produce structured Markdown and are not sent through whole-document OCR.
 - On an extracted PDF page, OCR text of images large enough to hold text (at least 72 × 24 pt) is inserted as a block after the text above each image, and the part's source is `mixed`. Native text drawn over an image is not repeated. A failed image OCR keeps the page text and adds a `pdf-image-ocr-failed` warning.
 - Scanned or image-only PDFs produce OCR Markdown.
+- A PDF the text extractor cannot parse (for example one with a damaged cross-reference table) is read page by page by the OCR engine, whose renderer repairs such files. Its pages have `ocrReason: "extraction-failed"`, and the first carries a `malformed` warning. A PDF neither engine can open completes with empty Markdown and a `malformed` warning.
 - A scanned page whose only text is an invisible layer (a searchable scan) is OCR'd locally. The invisible layer is never returned as the page's text.
 - Mixed PDFs include structured text for extractable pages and OCR text for pages that need OCR. Needing-OCR pages must not be dropped solely because structured extraction succeeded.
 - A page needs OCR when either the document-level classification or the page-level extraction says so. When they disagree, OCR wins: a page with a little native text in a document classified as scanned or image-based is OCR'd, so its words survive without their structure rather than the scan being dropped.
