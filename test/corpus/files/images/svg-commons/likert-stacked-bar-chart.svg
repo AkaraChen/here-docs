@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="542" viewBox="0 0 1200 542" font-family="'DejaVu Sans', sans-serif">
+<rect width="1200" height="542" fill="#ffffff"/>
+<rect x="159.65" y="24" width="20" height="20" fill="#4f6d86"/>
+<text x="187.65" y="40" font-size="17" fill="#2f2a26">Strongly disagree</text>
+<rect x="364.99" y="24" width="20" height="20" fill="#a7bccd"/>
+<text x="392.99" y="40" font-size="17" fill="#2f2a26">Disagree</text>
+<rect x="496.41" y="24" width="20" height="20" fill="#d6d1cc"/>
+<text x="524.41" y="40" font-size="17" fill="#2f2a26">Neither agree nor disagree</text>
+<rect x="781.42" y="24" width="20" height="20" fill="#f6ab78"/>
+<text x="809.42" y="40" font-size="17" fill="#2f2a26">Agree</text>
+<rect x="887.38" y="24" width="20" height="20" fill="#e0581a"/>
+<text x="915.38" y="40" font-size="17" fill="#2f2a26">Strongly agree</text>
+<text x="405" y="96" font-size="16" font-weight="700" text-anchor="middle" fill="#4f6d86">Total</text>
+<text x="405" y="116" font-size="16" font-weight="700" text-anchor="middle" fill="#4f6d86">disagree</text>
+<text x="1110" y="96" font-size="16" font-weight="700" text-anchor="middle" fill="#bb511c">Total</text>
+<text x="1110" y="116" font-size="16" font-weight="700" text-anchor="middle" fill="#bb511c">agree</text>
+<path d="M 480 126 V 476" stroke="#c8beb4" stroke-width="1" fill="none"/>
+<text x="480" y="504" font-size="17" text-anchor="middle" fill="#7a726b">60%</text>
+<path d="M 556 126 V 476" stroke="#c8beb4" stroke-width="1" fill="none"/>
+<text x="556" y="504" font-size="17" text-anchor="middle" fill="#7a726b">40%</text>
+<path d="M 632 126 V 476" stroke="#c8beb4" stroke-width="1" fill="none"/>
+<text x="632" y="504" font-size="17" text-anchor="middle" fill="#7a726b">20%</text>
+<path d="M 708 126 V 476" stroke="#7a726b" stroke-width="2" fill="none"/>
+<text x="708" y="504" font-size="17" text-anchor="middle" fill="#7a726b">0%</text>
+<path d="M 784 126 V 476" stroke="#c8beb4" stroke-width="1" fill="none"/>
+<text x="784" y="504" font-size="17" text-anchor="middle" fill="#7a726b">20%</text>
+<path d="M 860 126 V 476" stroke="#c8beb4" stroke-width="1" fill="none"/>
+<text x="860" y="504" font-size="17" text-anchor="middle" fill="#7a726b">40%</text>
+<path d="M 936 126 V 476" stroke="#c8beb4" stroke-width="1" fill="none"/>
+<text x="936" y="504" font-size="17" text-anchor="middle" fill="#7a726b">60%</text>
+<path d="M 1012 126 V 476" stroke="#c8beb4" stroke-width="1" fill="none"/>
+<text x="1012" y="504" font-size="17" text-anchor="middle" fill="#7a726b">80%</text>
+<rect x="647.2" y="140" width="11.4" height="46" fill="#4f6d86" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="658.6" y="140" width="26.6" height="46" fill="#a7bccd" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="685.2" y="140" width="45.6" height="46" fill="#d6d1cc" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="730.8" y="140" width="174.8" height="46" fill="#f6ab78" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="905.6" y="140" width="121.6" height="46" fill="#e0581a" stroke="#ffffff" stroke-width="1.5"/>
+<text x="330" y="169" font-size="18" text-anchor="end" fill="#2f2a26">The course was well organized</text>
+<text x="405" y="170" font-size="18" text-anchor="middle" fill="#2f2a26">10%</text>
+<text x="1110" y="170" font-size="18" text-anchor="middle" fill="#2f2a26">78%</text>
+<rect x="633.9" y="210" width="15.2" height="46" fill="#4f6d86" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="649.1" y="210" width="30.4" height="46" fill="#a7bccd" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="679.5" y="210" width="57" height="46" fill="#d6d1cc" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="736.5" y="210" width="148.2" height="46" fill="#f6ab78" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="884.7" y="210" width="129.2" height="46" fill="#e0581a" stroke="#ffffff" stroke-width="1.5"/>
+<text x="330" y="239" font-size="18" text-anchor="end" fill="#2f2a26">I would recommend the course</text>
+<text x="405" y="240" font-size="18" text-anchor="middle" fill="#2f2a26">12%</text>
+<text x="1110" y="240" font-size="18" text-anchor="middle" fill="#2f2a26">73%</text>
+<rect x="609.2" y="280" width="19" height="46" fill="#4f6d86" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="628.2" y="280" width="45.6" height="46" fill="#a7bccd" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="673.8" y="280" width="68.4" height="46" fill="#d6d1cc" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="742.2" y="280" width="159.6" height="46" fill="#f6ab78" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="901.8" y="280" width="87.4" height="46" fill="#e0581a" stroke="#ffffff" stroke-width="1.5"/>
+<text x="330" y="309" font-size="18" text-anchor="end" fill="#2f2a26">The readings were useful</text>
+<text x="405" y="310" font-size="18" text-anchor="middle" fill="#2f2a26">17%</text>
+<text x="1110" y="310" font-size="18" text-anchor="middle" fill="#2f2a26">65%</text>
+<rect x="540.8" y="350" width="41.8" height="46" fill="#4f6d86" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="582.6" y="350" width="87.4" height="46" fill="#a7bccd" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="670" y="350" width="76" height="46" fill="#d6d1cc" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="746" y="350" width="125.4" height="46" fill="#f6ab78" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="871.4" y="350" width="49.4" height="46" fill="#e0581a" stroke="#ffffff" stroke-width="1.5"/>
+<text x="330" y="379" font-size="18" text-anchor="end" fill="#2f2a26">The workload was manageable</text>
+<text x="405" y="380" font-size="18" text-anchor="middle" fill="#2f2a26">34%</text>
+<text x="1110" y="380" font-size="18" text-anchor="middle" fill="#2f2a26">46%</text>
+<rect x="508.5" y="420" width="57" height="46" fill="#4f6d86" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="565.5" y="420" width="110.2" height="46" fill="#a7bccd" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="675.7" y="420" width="64.6" height="46" fill="#d6d1cc" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="740.3" y="420" width="98.8" height="46" fill="#f6ab78" stroke="#ffffff" stroke-width="1.5"/>
+<rect x="839.1" y="420" width="49.4" height="46" fill="#e0581a" stroke="#ffffff" stroke-width="1.5"/>
+<text x="330" y="449" font-size="18" text-anchor="end" fill="#2f2a26">Feedback was timely</text>
+<text x="405" y="450" font-size="18" text-anchor="middle" fill="#2f2a26">44%</text>
+<text x="1110" y="450" font-size="18" text-anchor="middle" fill="#2f2a26">39%</text>
+<path d="M 708 126 V 476" stroke="#7a726b" stroke-width="2" fill="none"/>
+</svg>

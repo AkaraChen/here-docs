@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 235">
+
+<defs><style type="text/css">
+<![CDATA[
+rect.bg {fill:#fff}
+rect.box {fill:#eee}
+rect.subbox {fill:#ddd}
+tspan {font-size:12.5px;text-anchor:middle;text-align:center;font-family:VL Gothic}
+tspan.large {font-size:20px;font-weight:bold}
+tspan.wide {letter-spacing:12.5px}
+tspan.broad {letter-spacing:50px}
+tspan.end {text-anchor:end;text-align:right}
+]]>
+</style></defs>
+
+<rect class="bg" height="235" width="440"/>
+
+<rect class="box" height="50" width="140" x="240" y="10" />
+<rect class="box" height="50" width="100" x="130" y="10" />
+<rect class="box" height="50" width="60" x="60" y="10" />
+
+<rect class="box" height="80" width="310" x="125" y="110" />
+<rect class="box" height="80" width="60" x="60" y="110" />
+
+<rect class="subbox" height="50" width="140" x="290" y="140" />
+<rect class="subbox" height="50"  width="80" x="200" y="140" />
+<rect class="subbox" height="50" width="60" x="130" y="140" />
+
+<text>
+<tspan x="30" y="35">文の成分</tspan>
+<tspan class="wide" x="30" y="75">品詞</tspan>
+</text>
+
+<text>
+<tspan class="wide" x="90" y="25">主語</tspan>
+<tspan class="wide" x="180" y="25">修飾語</tspan>
+<tspan class="broad" x="310" y="25">述語</tspan>
+</text>
+
+<text>
+<tspan class="large" x="75" y="55">鳥</tspan>
+<tspan class="large" x="105" y="55">が</tspan>
+<tspan class="large" x="165" y="55">たまご</tspan>
+<tspan class="large" x="215" y="55">を</tspan>
+<tspan class="large" x="265" y="55">生み</tspan>
+<tspan class="large" x="315" y="55">ます</tspan>
+<tspan class="large" x="360" y="55">よ｡</tspan>
+</text>
+
+<text>
+<tspan x="75" y="75">名詞</tspan>
+<tspan x="105" y="75">助詞</tspan>
+<tspan x="165" y="75">名詞</tspan>
+<tspan x="215" y="75">助詞</tspan>
+<tspan x="265" y="75">動詞</tspan>
+<tspan x="315" y="75">助動詞</tspan>
+<tspan x="355" y="75">助詞</tspan>
+</text>
+
+<text>
+<tspan class="end" x="440" y="95">（橋本進吉の説・用語による）</tspan>
+</text>
+
+<text>
+<tspan x="30" y="150">文の成分</tspan>
+<tspan class="wide" x="35" y="205">品詞</tspan>
+</text>
+
+<text>
+<tspan x="90" y="130">題目</tspan>
+<tspan class="broad" x="280" y="130">述部</tspan>
+</text>
+
+<text>
+<tspan x="160" y="155">主格補語</tspan>
+<tspan x="240" y="155">対格補語</tspan>
+<tspan class="broad" x="360" y="155">述語</tspan>
+</text>
+
+<text>
+<tspan class="large" x="75" y="185">象</tspan>
+<tspan class="large" x="105" y="185">は</tspan>
+<tspan class="large" x="145" y="185">私</tspan>
+<tspan class="large" x="175" y="185">が</tspan>
+<tspan class="large" x="225" y="185">えさ</tspan>
+<tspan class="large" x="265" y="185">を</tspan>
+<tspan class="large" x="315" y="185">やり</tspan>
+<tspan class="large" x="365" y="185">ます</tspan>
+<tspan class="large" x="410" y="185">よ｡</tspan>
+</text>
+
+<text>
+<tspan x="75" y="205">名詞</tspan>
+<tspan x="105" y="205">助詞</tspan>
+<tspan x="145" y="205">名詞</tspan>
+<tspan x="175" y="205">助詞</tspan>
+<tspan x="225" y="205">名詞</tspan>
+<tspan x="265" y="205">助詞</tspan>
+<tspan x="315" y="205">動詞</tspan>
+<tspan x="365" y="205">準語</tspan>
+<tspan x="405" y="205">助詞</tspan>
+</text>
+
+<text>
+<tspan class="end" x="440" y="225">（三上章の説・用語による）</tspan>
+</text>
+
+</svg>
