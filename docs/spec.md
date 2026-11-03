@@ -50,7 +50,7 @@ Out of scope: HTTP services, decrypting files, audio/video, directory batch conv
 - Every part has a `source`. `ocrReason` is set on PDF pages routed to OCR, including pages whose OCR failed (`source: "none"`), and is `null` on every other part.
 - Illegal calls throw synchronously, before iteration starts.
 - A paged input (PDF, OFD, or a TIFF with more than one page) yields one part per page in page order: `page` is 1-based and `pageCount` is the document's page count. Other inputs, including e-mail with its attachments, yield exactly one part with `page: null` and `pageCount: null`.
-- Work for a page happens only when that part is requested. Ending iteration early skips the remaining pages.
+- OCR and other per-page work happen only when that part is requested. Ending iteration early skips the remaining pages' OCR. Text extraction of a PDF runs in at most two native calls (the first pages, then the rest), so it may cover pages that are never requested.
 - `markdown` of a part has no trailing newline and may be empty. Line endings are `
 `, and control characters other than tab and newline never appear in it. An OCR'd page on which nothing is recognized, such as a blank page, has empty `markdown`. Warnings belong to the part that produced them.
 - `convert()` equals draining `convertPages()`: non-empty parts joined by a blank line plus a final newline, and all warnings in order.

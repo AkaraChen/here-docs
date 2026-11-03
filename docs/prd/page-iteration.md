@@ -44,7 +44,7 @@ Separately, whole-document OCR of a scanned PDF hit the OCR engine's per-request
 ## Minimum acceptance criteria
 
 - `convertPages()` on an N-page PDF yields N parts with `page` 1..N and `pageCount` N.
-- Breaking after k pages performs OCR for none of pages k+1..N and does not extract text pages far beyond k.
+- Breaking after k pages performs OCR for none of pages k+1..N. Breaking within the first eight pages does not extract text beyond them. After that, the rest of the text is extracted in one call, because the PDF extractor's cost is dominated by a whole-document parse per call.
 - `convert()` output equals the joined parts.
 - An already-aborted signal rejects without doing any work; aborting mid-OCR rejects with the reason, not a warning.
 - A 60-page scanned PDF converts every page.

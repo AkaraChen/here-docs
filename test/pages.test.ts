@@ -77,17 +77,56 @@ test("stopping early skips the remaining OCR and extraction", async () => {
   assert.deepEqual(text.requests, [[0, 1, 2, 3, 4, 5, 6, 7]]);
 });
 
-test("text pages are extracted in growing batches", async () => {
-  const pdf = textPdf(20);
+test("text pages are extracted in two calls: a first batch, then every remaining page", async () => {
+  const pdf = textPdf(200);
   const parts = await collect(convertPages(pdfBytes, { engine: fakeDeps({ pdf }) }));
-  assert.equal(parts.length, 20);
+  assert.equal(parts.length, 200);
   assert.deepEqual(
     pdf.requests.map((r) => [r[0], r.at(-1)]),
     [
       [0, 7],
-      [8, 19],
+      [8, 199],
     ],
   );
+});
+
+test("when the remaining pages fail to extract at once, they are retried in chunks", async () => {
+  const requests: number[][] = [];
+  const pdf: PdfInspectorPort = {
+    async classify() {
+      return { pdfType: "TextBased", pageCount: 150, pagesNeedingOcr: [] };
+    },
+    async process() {
+      return { pdfType: "TextBased", pageCount: 150, pagesNeedingOcr: [], markdown: null };
+    },
+    async extractPagesMarkdown(_bytes, pages) {
+      const wanted = pages ?? [];
+      requests.push(wanted);
+      // Page 100 breaks extraction of any call that includes it.
+      if (wanted.includes(100)) {
+        throw new Error("parse error");
+      }
+      return wanted.map((page) => ({ page, markdown: `text ${page + 1}` }));
+    },
+  };
+  const ocr = trackingOcr(Array.from({ length: 150 }, (_, index) => ({ index, lines: [{ text: `ocr ${index + 1}` }] })));
+  const parts = await collect(convertPages(pdfBytes, { engine: fakeDeps({ pdf, ocr }) }));
+  assert.deepEqual(
+    requests.map((r) => [r[0], r.at(-1)]),
+    [
+      [0, 7],
+      [8, 149],
+      [8, 71],
+      [72, 135],
+      [136, 149],
+    ],
+  );
+  // Only the chunk holding the bad page is OCR'd.
+  assert.deepEqual(
+    [...new Set(parts.filter((part) => part.source === "ocr").map((part) => Math.floor((part.page! - 9) / 64)))],
+    [1],
+  );
+  assert.equal(parts.filter((part) => part.source === "ocr").length, 64);
 });
 
 test("convert joins the parts into one manuscript", async () => {
