@@ -6,7 +6,7 @@ Accepted
 
 ## Context and forces
 
-Routing decides per page whether to extract or OCR (`engine-routing.md`, `lazy-page-conversion.md`), and pdf-inspector says why a page needs OCR through `PageMarkdownResult.ocrReason`. In 1.14.2 it names only `suspected_garbled_text` per page; later versions add `scanned`, `no_text`, `vector_text`, and `invisible_text_layer`. Document-level classification (`classifyPdf`) reports no reasons at all.
+Routing decides per page whether to extract or OCR (`engine-routing.md`, `lazy-page-conversion.md`), and pdf-inspector says why a page needs OCR through `PageMarkdownResult.ocrReason`. In 1.14.2 it named only `suspected_garbled_text` per page; 1.25.2, used since, adds `scanned`, `no_text`, `vector_text`, and `invisible_text_layer`, which map to `page-flagged`. Document-level classification (`classifyPdf`) reports no reasons at all.
 
 ## Decision
 

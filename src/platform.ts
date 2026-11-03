@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 export const ENGINE_VERSIONS = {
   lightOcr: "0.5.9",
   anydoc: "0.1.9",
-  pdfInspector: "1.14.2",
+  pdfInspector: "1.25.2",
   sharp: "0.35.3",
   sharpLibvips: "1.3.2",
 } as const;

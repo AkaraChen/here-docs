@@ -35,6 +35,7 @@ const fixtures = {
     documentWith([scanPage({ hiddenText: "Scanner layer words" }), scanPage({ hiddenText: "Scanner layer words" })]),
   "scan-with-blank-page.pdf": () => documentWith([scanPage(), blankPage()]),
   "large-scanned-page.pdf": () => documentWith([scanPage({ width: 4800, height: 1200 })]),
+  "damaged-xref.pdf": () => damageXref(documentWith([scanPage()])),
   "cjk-predefined-cmap.pdf": () => documentWith([cjkPage("中文测试")]),
   "links.pdf": () => documentWith([linksPage()]),
   "hidden-layer.pdf": buildHiddenLayer,
@@ -318,6 +319,18 @@ function serialize(objects) {
     ),
   );
   return Buffer.concat(chunks);
+}
+
+/**
+ * Shifts every cross-reference offset and `startxref` by a few bytes, as writers that edit a file in place without
+ * rewriting its table leave it. Readers have to rebuild the table by scanning for objects.
+ */
+function damageXref(pdf) {
+  const text = pdf.toString("latin1");
+  const damaged = text
+    .replace(/^(\d{10}) 00000 n $/gm, (_, offset) => `${String(Number(offset) + 7).padStart(10, "0")} 00000 n `)
+    .replace(/startxref\n(\d+)/, (_, offset) => `startxref\n${Number(offset) + 13}`);
+  return Buffer.from(damaged, "latin1");
 }
 
 function escapeText(text) {

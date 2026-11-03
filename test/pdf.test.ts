@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { convert } from "../src/convert.js";
+import { convert, convertPages } from "../src/convert.js";
 import { WarningCode } from "../src/errors.js";
 import { FALLBACK_DPI } from "../src/ocr.js";
 import type { OcrPort, PdfInspectorPort } from "../src/types.js";
@@ -172,4 +172,60 @@ test("a page over the pixel limit at every resolution becomes a page warning", a
   assert.equal(result.markdown, "");
   assert.equal(result.warnings[0]?.code, WarningCode.pdfPageOcrFailed);
   assert.deepEqual(resolutions, [undefined, ...FALLBACK_DPI]);
+});
+
+test("a PDF the extractor cannot parse is read by OCR, which repairs damaged files", async () => {
+  const ocr = trackingOcr([
+    { index: 0, lines: [{ text: "first" }] },
+    { index: 1, lines: [{ text: "second" }] },
+  ]);
+  const pdf: PdfInspectorPort = {
+    async classify() {
+      throw new Error("PDF parsing error: document has no readable pages");
+    },
+    async process() {
+      throw new Error("not used");
+    },
+    async extractPagesMarkdown() {
+      throw new Error("not used");
+    },
+  };
+  const parts = [];
+  for await (const part of convertPages(pdfBytes, { engine: fakeDeps({ ocr, pdf }) })) {
+    parts.push(part);
+  }
+  assert.deepEqual(
+    parts.map((part) => [part.page, part.source, part.ocrReason, part.warnings.map((w) => w.code)]),
+    [
+      [1, "ocr", "extraction-failed", [WarningCode.malformed]],
+      [2, "ocr", "extraction-failed", []],
+    ],
+  );
+  assert.match(parts[0]!.markdown, /first/);
+});
+
+test("a PDF neither engine can open stays malformed", async () => {
+  const ocr: OcrPort = {
+    async recognizeEncoded() {
+      return { lines: [] };
+    },
+    async *recognizeDocument() {
+      throw new Error("PDFium could not open the file");
+    },
+    async close() {},
+  };
+  const pdf: PdfInspectorPort = {
+    async classify() {
+      throw new Error("PDF parsing error: invalid file trailer");
+    },
+    async process() {
+      throw new Error("not used");
+    },
+    async extractPagesMarkdown() {
+      throw new Error("not used");
+    },
+  };
+  const result = await convert(pdfBytes, { engine: fakeDeps({ ocr, pdf }) });
+  assert.equal(result.markdown, "");
+  assert.deepEqual(result.warnings, [{ code: WarningCode.malformed, message: "PDF parsing error: invalid file trailer" }]);
 });
