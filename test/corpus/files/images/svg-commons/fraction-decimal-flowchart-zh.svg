@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="720" viewBox="0 0 1080 720" role="img" aria-labelledby="title desc">
+  <title id="title">分数与小数的互化流程图</title>
+  <desc id="desc">展示分数化小数与小数化分数的判定与步骤：最简分数的分母素因数仅含2与5时得到有限小数，其他为循环小数；循环小数用等式法构造10^k与10^m倍以消去循环段。</desc>
+
+  <defs>
+    <!-- 背景渐变，偏像素格子的淡纹理 -->
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fff4"/>
+      <stop offset="100%" stop-color="#edf9e9"/>
+    </linearGradient>
+
+    <!-- 网格 -->
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="20" height="20" fill="none" stroke="#e9f5e6" stroke-width="1"/>
+    </pattern>
+
+    <!-- 阴影 -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.2" stdDeviation="1.6" flood-color="#000" flood-opacity="0.24"/>
+    </filter>
+
+    <!-- 统一箭头 -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2b8a3e"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1c7ed6"/>
+    </marker>
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#495057"/>
+    </marker>
+
+    <!-- 节点风格 -->
+    <style>
+      .box { rx: 12; ry: 12; filter: url(#shadow); }
+      .title { font-family: Arial, Helvetica, sans-serif; font-weight: 700; }
+      .txt { font-family: Arial, Helvetica, sans-serif; }
+    </style>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="1080" height="720" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1080" height="720" fill="url(#grid)" opacity="0.35"/>
+
+  <!-- 顶部标题 -->
+  <text x="540" y="44" text-anchor="middle" class="title" font-size="24" fill="#2f9e44">
+    分数 ↔ 小数 互化流程（有限 or 循环？一眼判断，一步到位）
+  </text>
+
+  <!-- 左：分数 → 小数 路线 -->
+  <g transform="translate(80,90)">
+    <!-- 起点 -->
+    <rect x="0" y="0" width="420" height="86" class="box" fill="#e6fcf5" stroke="#96f2d7"/>
+    <text x="16" y="30" class="title" font-size="16" fill="#0b7285">分数 → 小数</text>
+    <text x="16" y="56" class="txt" font-size="14" fill="#0b7285">先约至最简 p/q，然后看 q 的素因数分解</text>
+
+    <!-- 判定框 -->
+    <line x1="210" y1="86" x2="210" y2="120" stroke="#2f9e44" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="70" y="120" width="280" height="70" class="box" fill="#fff" stroke="#c3fae8"/>
+    <text x="210" y="150" text-anchor="middle" class="txt" font-size="14" fill="#2b8a3e">
+      判定：q 的素因数是否只含 2 与 5？
+    </text>
+
+    <!-- 分支：是（有限小数） -->
+    <line x1="210" y1="190" x2="100" y2="250" stroke="#1c7ed6" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <rect x="20" y="250" width="220" height="170" class="box" fill="#e7f5ff" stroke="#a5d8ff"/>
+    <text x="130" y="278" text-anchor="middle" class="title" font-size="15" fill="#1864ab">是 → 有限小数</text>
+    <text x="36" y="304" class="txt" font-size="13" fill="#1864ab">方法：分子 ÷ 分母 或 补齐2与5的指数</text>
+    <text x="36" y="330" class="txt" font-size="13" fill="#1864ab">例：1/8 = 125/1000 = 0.125</text>
+    <text x="36" y="356" class="txt" font-size="13" fill="#1864ab">例：7/40 = 0.175</text>
+    <text x="36" y="382" class="txt" font-size="13" fill="#1864ab">技巧：令 q=2^a5^b，则乘以 2^{max-b} 或 5^{max-a}</text>
+
+    <!-- 分支：否（循环小数） -->
+    <line x1="210" y1="190" x2="320" y2="250" stroke="#e8590c" stroke-width="2" marker-end="url(#arrowGray)"/>
+    <rect x="290" y="250" width="220" height="170" class="box" fill="#fff4e6" stroke="#ffd8a8"/>
+    <text x="400" y="278" text-anchor="middle" class="title" font-size="15" fill="#d9480f">否 → 循环小数</text>
+    <text x="306" y="304" class="txt" font-size="13" fill="#d9480f">方法：长除法，找到周期循环段</text>
+    <text x="306" y="330" class="txt" font-size="13" fill="#d9480f">例：7/12 = 0.58̅3</text>
+    <text x="306" y="356" class="txt" font-size="13" fill="#d9480f">例：2/9 = 0.̅2</text>
+    <text x="306" y="382" class="txt" font-size="13" fill="#d9480f">提示：余数重复 ⇒ 开始循环</text>
+  </g>
+
+  <!-- 右：小数 → 分数 路线 -->
+  <g transform="translate(570,90)">
+    <!-- 起点 -->
+    <rect x="0" y="0" width="430" height="86" class="box" fill="#f1f3ff" stroke="#d0ebff"/>
+    <text x="16" y="30" class="title" font-size="16" fill="#364fc7">小数 → 分数</text>
+    <text x="16" y="56" class="txt" font-size="14" fill="#364fc7">分为“有限小数”与“循环小数”两类处理</text>
+
+    <!-- 分支1：有限小数 -->
+    <line x1="110" y1="86" x2="110" y2="120" stroke="#1c7ed6" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <rect x="20" y="120" width="180" height="160" class="box" fill="#e7f5ff" stroke="#a5d8ff"/>
+    <text x="110" y="146" text-anchor="middle" class="title" font-size="15" fill="#1864ab">有限小数</text>
+    <text x="36" y="172" class="txt" font-size="13" fill="#1864ab">把小数位视为十分位、百分位…</text>
+    <text x="36" y="198" class="txt" font-size="13" fill="#1864ab">直接写成分数并约分</text>
+    <text x="36" y="224" class="txt" font-size="13" fill="#1864ab">例：0.125 = 125/1000 = 1/8</text>
+
+    <!-- 分支2：循环小数（等式法） -->
+    <line x1="320" y1="86" x2="320" y2="120" stroke="#2f9e44" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="240" y="120" width="190" height="220" class="box" fill="#e6fcf5" stroke="#96f2d7"/>
+    <text x="335" y="146" text-anchor="middle" class="title" font-size="15" fill="#0b7285">循环小数</text>
+    <text x="252" y="172" class="txt" font-size="13" fill="#0b7285">设 x = 非循环 + 循环部分</text>
+    <text x="252" y="198" class="txt" font-size="13" fill="#0b7285">乘 10^k 使小数点越过循环起点</text>
+    <text x="252" y="224" class="txt" font-size="13" fill="#0b7285">再乘 10^m 使循环段对齐</text>
+    <text x="252" y="250" class="txt" font-size="13" fill="#0b7285">相减消去循环段，解出 x</text>
+    <text x="252" y="276" class="txt" font-size="13" fill="#0b7285">最终约分并使分母为正</text>
+  </g>
+
+  <!-- 典型例题走线：左下到右下 -->
+  <g transform="translate(80,500)">
+    <!-- 例1：分数→有限小数 -->
+    <rect x="0" y="0" width="300" height="100" class="box" fill="#fff" stroke="#ced4da"/>
+    <text x="12" y="24" class="title" font-size="14" fill="#212529">例1：1/8 → 0.125</text>
+    <text x="12" y="48" class="txt" font-size="13" fill="#495057">最简 1/8，分母=2^3，有限小数</text>
+    <text x="12" y="72" class="txt" font-size="13" fill="#495057">补齐1000：1×125 / 8×125 = 125/1000</text>
+
+    <!-- 箭头到例2 -->
+    <line x1="300" y1="50" x2="340" y2="50" stroke="#495057" stroke-width="2" marker-end="url(#arrowGray)"/>
+
+    <!-- 例2：分数→循环小数 -->
+    <rect x="340" y="0" width="320" height="100" class="box" fill="#fff" stroke="#ced4da"/>
+    <text x="352" y="24" class="title" font-size="14" fill="#212529">例2：7/12 → 0.58̅3</text>
+    <text x="352" y="48" class="txt" font-size="13" fill="#495057">最简 7/12，分母=2^2·3，出现循环（因含3）</text>
+    <text x="352" y="72" class="txt" font-size="13" fill="#495057">长除法：余数开始重复时循环段出现</text>
+
+    <!-- 箭头到例3 -->
+    <line x1="660" y1="50" x2="700" y2="50" stroke="#495057" stroke-width="2" marker-end="url(#arrowGray)"/>
+
+    <!-- 例3：循环小数→分数（纯循环） -->
+    <rect x="700" y="0" width="340" height="100" class="box" fill="#fff" stroke="#ced4da"/>
+    <text x="712" y="24" class="title" font-size="14" fill="#212529">例3：0.1̅8 → 2/11</text>
+    <text x="712" y="48" class="txt" font-size="13" fill="#495057">设 x=0.1̅8，则 10x=1.̅8，100x=18.̅8</text>
+    <text x="712" y="72" class="txt" font-size="13" fill="#495057">100x-10x=90x=17 ⇒ x=17/90=0.1̅8（可再约）</text>
+  </g>
+
+  <!-- 额外例题：混合循环 -->
+  <g transform="translate(80,620)">
+    <rect x="0" y="-90" width="960" height="80" class="box" fill="#fff" stroke="#ced4da"/>
+    <text x="12" y="-66" class="title" font-size="14" fill="#212529">例4：1.2̅34 → 分数</text>
+    <text x="12" y="-42" class="txt" font-size="13" fill="#495057">设 x=1.2̅34。先乘10：10x=12.̅34；再乘1000：1000x=1234.̅34</text>
+    <text x="12" y="-18" class="txt" font-size="13" fill="#495057">两式相减：1000x-10x=990x=1222 ⇒ x=1222/990=611/495</text>
+  </g>
+
+  <!-- 边栏要点与注意 -->
+  <g transform="translate(80,420)">
+    <rect x="0" y="0" width="960" height="64" class="box" fill="#fff" stroke="#adb5bd"/>
+    <text x="16" y="26" class="txt" font-size="14" fill="#212529">要点1：最简分数 q 只含 2、5 ⇒ 有限小数；否则为循环小数。</text>
+    <text x="16" y="50" class="txt" font-size="14" fill="#212529">要点2：循环小数转分数时，务必对齐循环段再相减；最后约分并令分母为正。</text>
+  </g>
+</svg>

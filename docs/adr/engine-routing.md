@@ -18,11 +18,13 @@ Catching anydoc errors alone cannot preserve mixed-PDF pages. The product contra
 
 Use a strategy object per detected kind:
 
-- Raster images (JPEG, PNG, and transcoded WebP/TIFF/HEIC/GIF) go to light-ocr only.
+- Raster images (JPEG, PNG, and transcoded WebP/TIFF/HEIC/AVIF/BMP/GIF) go to light-ocr only.
 - Office, CSV, RTF, and EPUB go to anydoc `toDocument`, then light-ocr on embedded assets.
 - PDFs go to pdf-inspector classification first. Text pages use inspector Markdown; pages in `pagesNeedingOcr` use light-ocr. Mixed documents are merged in page order.
 
 anydoc `ConvertError.code` selects a recovery strategy; it does not by itself decide PDF routing.
+
+Formats outside the three engines (text, HTML, e-mail, OFD, notebooks, SVG) are parsed in JavaScript and feed the same OCR and serializer paths; see `docs/adr/pure-js-format-parsers.md`.
 
 ## Considered alternatives
 

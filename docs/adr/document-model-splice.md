@@ -23,3 +23,4 @@ Walk the anydoc `Document` model, OCR each raster asset, replace `image` inlines
 - This package owns a serializer for the published anydoc block/inline model. It must cover headings, paragraphs, lists, tables, quotes, code, rules, links, notes, and image inlines.
 - Serializer tests compare structure and insertion position, not pixel-perfect parity with anydoc’s own Markdown for every edge case.
 - Non-raster or untranscodable assets stay as alt text (or nothing) and record a warning.
+- Only assets that an image inline references are OCR'd. Parsers also return unplaced assets (masters, unused media), and OCR'ing them cost time for text that had nowhere to go. A document with no text and no placed image is the exception: legacy decks made only of pictures come back that way, and their images' OCR text becomes the manuscript.

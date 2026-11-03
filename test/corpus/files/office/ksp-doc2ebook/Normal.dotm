@@ -1,0 +1,120 @@
+Sub ArabicToImages()
+'
+' ArabicToImages Macro
+'
+'
+    On Error Resume Next
+    Dim more As Boolean
+    Dim charNum As Integer
+    Dim i As Long
+    i = 1
+    
+    ReplaceAllCalligraphy 61511, "SWT"
+    
+    more = False
+    Do While more
+        Selection.Find.ClearFormatting
+        Selection.Find.Replacement.ClearFormatting
+        
+        With Selection.Find
+            .Text = "[" & ChrW(1569) & "-" & ChrW(1610) & "]"
+            .Replacement.Text = ""
+            .Forward = True
+            .Wrap = wdFindContinue
+            .Format = False
+            .MatchCase = False
+            .MatchWholeWord = False
+            .MatchWildcards = True
+            .MatchSoundsLike = False
+            .MatchAllWordForms = False
+        End With
+        more = Selection.Find.Execute
+        Selection.GoTo What:=wdGoToBookmark, Name:="\para"
+        
+        For charNum = 0 To 9
+            ArabicToHindi charNum
+        Next
+        
+        ' ReplaceInSelection ">", "«"
+        ' ReplaceInSelection "<", "»"
+        
+        i = i + 1
+        'If i > 3 Then more = False
+        
+        Selection.Copy
+        Selection.PasteAndFormat Type:=wdChartPicture
+    Loop
+    
+End Sub
+
+Private Sub ArabicToHindi(charToFind As Integer)
+    With Selection.Find
+        .Text = CStr(charToFind)
+        .Replacement.Text = ChrW(1632 + charToFind)
+        .Forward = True
+        .Wrap = wdFindStop
+        .Format = False
+        .MatchCase = False
+        .MatchWholeWord = False
+        .MatchWildcards = False
+        .MatchSoundsLike = False
+        .MatchAllWordForms = False
+    End With
+    Selection.Find.Execute Replace:=wdReplaceAll
+End Sub
+
+Private Sub ReplaceInSelection(charToFind As String, charToReplace As String)
+    With Selection.Find
+        .Text = charToFind
+        .Replacement.Text = charToReplace
+        .Forward = True
+        .Wrap = wdFindStop
+        .Format = False
+        .MatchCase = False
+        .MatchWholeWord = False
+        .MatchWildcards = False
+        .MatchSoundsLike = False
+        .MatchAllWordForms = False
+    End With
+    Selection.Find.Execute Replace:=wdReplaceAll
+End Sub
+
+Private Sub ReplaceAllCalligraphy(charToFind As Long, charToReplace As String)
+    With Selection.Find
+        .Text = "(" & ChrW(charToFind) & ")"
+        .Replacement.Text = "(" & charToReplace & ")"
+        .Forward = True
+        .Wrap = wdFindContinue
+        .Format = False
+        .MatchCase = False
+        .MatchWholeWord = False
+        .MatchWildcards = False
+        .MatchSoundsLike = False
+        .MatchAllWordForms = False
+    End With
+    Selection.Find.Execute Replace:=wdReplaceAll
+    'Selection.Find.Execute
+End Sub
+
+Sub Macro3()
+'
+' Macro3 Macro
+'
+'
+    Dim str As Long
+    str = 61511
+    With Selection.Find
+        .Text = "(" & ChrW(str) & ")"
+        .Replacement.Text = "(SWT)"
+        .Forward = True
+        .Wrap = wdFindContinue
+        .Format = False
+        .MatchCase = False
+        .MatchWholeWord = False
+        .MatchWildcards = False
+        .MatchSoundsLike = False
+        .MatchAllWordForms = False
+    End With
+    Selection.Find.Execute
+    Selection.Collapse Direction:=wdCollapseEnd
+End Sub
