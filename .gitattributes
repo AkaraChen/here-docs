@@ -1,2 +1,4 @@
 # Real-world sample files are kept byte for byte: no line-ending conversion, no textual diffs.
 test/corpus/files/** -text -diff linguist-vendored
+# Fixture PDFs are byte-exact: line-ending conversion would break their cross-reference offsets.
+*.pdf binary

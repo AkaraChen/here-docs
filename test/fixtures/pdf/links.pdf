@@ -1,0 +1,52 @@
+%PDF-1.7
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 460 220] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R /Annots [6 0 R 7 0 R 8 0 R 9 0 R] >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<<  /Length 283 >>
+stream
+BT /F1 12 Tf 30 180 Td (Read the here-docs repository for the details.) Tj ET
+BT /F1 12 Tf 30 160 Td (Write to the maintainers with questions.) Tj ET
+BT /F1 12 Tf 30 140 Td (This script action stays plain text.) Tj ET
+BT /F1 12 Tf 30 120 Td (Jump back to the top of this page.) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Annot /Subtype /Link /Rect [82.03 177 191.40 191] /Border [0 0 0] /A << /S /URI /URI (https://github.com/AkaraChen/here-docs) >> >>
+endobj
+7 0 obj
+<< /Type /Annot /Subtype /Link /Rect [74.68 157 156.71 171] /Border [0 0 0] /A << /S /URI /URI (mailto:maintainers@example.com) >> >>
+endobj
+8 0 obj
+<< /Type /Annot /Subtype /Link /Rect [56.00 137 120.02 151] /Border [0 0 0] /A << /S /URI /URI (javascript:alert\(1\)) >> >>
+endobj
+9 0 obj
+<< /Type /Annot /Subtype /Link /Rect [62.68 117 141.40 131] /Border [0 0 0] /Dest [3 0 R /XYZ 0 220 0] >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000281 00000 n 
+0000000351 00000 n 
+0000000686 00000 n 
+0000000843 00000 n 
+0000000992 00000 n 
+0000001132 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+1253
+%%EOF
