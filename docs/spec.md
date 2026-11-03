@@ -4,7 +4,7 @@
 
 `here-docs` converts supported local file bytes into one Markdown manuscript. The programmable API accepts only bytes. The CLI is the only surface that reads a filesystem path or stdin.
 
-Out of scope: HTTP services, decrypting files, audio/video, directory batch conversion, and the programmable API reading paths.
+Out of scope: HTTP services, decrypting files, audio/video, directory batch conversion, archives and mailboxes, and the programmable API reading paths. `docs/prd/format-coverage.md` lists the formats deliberately left unsupported.
 
 ## Terminology
 
@@ -14,7 +14,9 @@ Out of scope: HTTP services, decrypting files, audio/video, directory batch conv
 - **Spec**: this file — the single source of truth for shared terminology, observable contracts, and system-wide invariants.
 - **Manuscript**: the Markdown string returned as `markdown`. It is the only top-level text product.
 - **Warning**: a structured `{ code, message }` describing a skipped or degraded part. Warnings do not fail a completed conversion.
-- **Strategy**: the routing choice for a detected input kind (image, office, PDF, or unknown).
+- **Strategy**: the routing choice for a detected input kind (image, office, PDF, text, HTML, message, OFD, notebook, or unknown).
+- **Attachment**: a file carried inside an e-mail. It is converted by the same routing as a top-level input and rendered inside the message's manuscript.
+- **Paged input**: an input that `convertPages()` yields page by page: PDF, OFD, and multi-page TIFF.
 - **Filename hint**: an optional name or extension used only to detect signature-less formats. It is never a path to read.
 - **Engine**: the caller-owned handle from `createEngine()`. It must be passed to `convert()` and closed by the caller.
 
@@ -44,9 +46,10 @@ Out of scope: HTTP services, decrypting files, audio/video, directory batch conv
 
 - `convertPages(input, options)` takes the same arguments as `convert()` and returns an async iterator of parts `{ page, pageCount, markdown, warnings }`.
 - Illegal calls throw synchronously, before iteration starts.
-- A PDF yields one part per page in page order: `page` is 1-based and `pageCount` is the document's page count. Other inputs yield exactly one part with `page: null` and `pageCount: null`.
+- A paged input (PDF, OFD, or a TIFF with more than one page) yields one part per page in page order: `page` is 1-based and `pageCount` is the document's page count. Other inputs, including e-mail with its attachments, yield exactly one part with `page: null` and `pageCount: null`.
 - Work for a page happens only when that part is requested. Ending iteration early skips the remaining pages.
-- `markdown` of a part has no trailing newline and may be empty. An OCR'd page on which nothing is recognized, such as a blank page, has empty `markdown`. Warnings belong to the part that produced them.
+- `markdown` of a part has no trailing newline and may be empty. Line endings are `
+`, and control characters other than tab and newline never appear in it. An OCR'd page on which nothing is recognized, such as a blank page, has empty `markdown`. Warnings belong to the part that produced them.
 - `convert()` equals draining `convertPages()`: non-empty parts joined by a blank line plus a final newline, and all warnings in order.
 
 ### CLI
@@ -61,23 +64,39 @@ Out of scope: HTTP services, decrypting files, audio/video, directory batch conv
 
 Supported bytes:
 
-- Office and related documents: Word, PowerPoint, Excel, OpenDocument, RTF, EPUB, CSV.
-- PDF.
+- Office and related documents: Word, PowerPoint, Excel, OpenDocument (including their templates), Kingsoft WPS binaries, RTF, EPUB, CSV, and TSV.
+- PDF and OFD.
+- Plain text and Markdown, in any encoding that can be detected.
+- HTML and XHTML.
+- E-mail (EML, Outlook MSG) and web archives (MHTML).
+- Jupyter notebooks.
 - JPEG and PNG.
-- WebP, TIFF, HEIC, and GIF when they can be transcoded locally to PNG.
+- WebP, TIFF (every page), HEIC/HEIF, AVIF, BMP, GIF, and SVG when they can be decoded or rendered locally.
 
-Detection prefers content signatures. CSV and other signature-less formats require a filename hint.
+Detection order: binary signatures first, then the filename hint, then text markers (HTML, SVG, MIME headers, notebook JSON), then plain text. CSV and TSV need a filename hint to become a table. Without one, they are converted as plain text. A hint naming a format with a binary signature does not apply to text bytes: they are detected by content, and plain text with a spreadsheet name is read as delimited data. Bytes that are not text and match no signature are `unknown-type`.
+
+Text is decoded by BOM (or the NUL pattern of BOM-less UTF-16), then ISO-2022-JP escape sequences, then strict UTF-8, then a declared charset, then statistical detection. Legacy labels decode with the superset producers write (GB18030, Windows-31J, UHC, Big5-HKSCS).
 
 ### Routing invariants
 
 - Raster images produce OCR Markdown only.
-- Office documents produce structured Markdown. OCR text from embedded raster assets is inserted at the image’s original position.
+- Office documents produce structured Markdown. OCR text from embedded raster assets is inserted at the image’s original position. Images the document does not place are not OCR'd, unless the document has no text and places no image (an image-only slide deck): then the OCR text of its images is the manuscript.
 - Text-based PDF pages produce structured Markdown and are not sent through whole-document OCR.
 - Scanned or image-only PDFs produce OCR Markdown.
 - Mixed PDFs include structured text for extractable pages and OCR text for pages that need OCR. Needing-OCR pages must not be dropped solely because structured extraction succeeded.
 - A page needs OCR when either the document-level classification or the page-level extraction says so. When they disagree, OCR wins: a page with a little native text in a document classified as scanned or image-based is OCR'd, so its words survive without their structure rather than the scan being dropped.
 - PDF page indexes from classification are 0-based. OCR page ranges are 1-based. Routing converts between them.
 - PDF OCR runs one page per OCR request, so a scanned PDF is not limited by the OCR engine's per-request page or pixel limits.
+- Plain text and Markdown are emitted as decoded, with line endings normalized. They are not escaped.
+- HTML, e-mail bodies, MHTML, and notebook HTML outputs produce structured Markdown through the same document model as Office documents. Embedded images (`data:` URIs, `cid:` references, archived resources) are OCR'd at their position. External images are never fetched.
+- Layout tables in HTML (`role="presentation"`, nested tables, a single row or column) render as their content, not as Markdown tables.
+- When an HTML page marks its main content (`<main>`, `role="main"`), only that content is converted. Navigation (`<nav>`, `role="navigation"`) and hidden elements are never converted.
+- An e-mail renders as a subject heading, the address and date fields, the body, and an `Attachments` section with one heading per attachment followed by that attachment's manuscript. Inline images the body references are not repeated as attachments.
+- Attachments nested more than three levels deep are listed without conversion and add a `resource-limit` warning. Attachment warnings name the attachment. Signature parts (S/MIME, PGP) are not attachments.
+- OFD text pages produce their text in reading order, including text from template pages. Image-only OFD pages are OCR'd. Images on OFD text pages are not OCR'd.
+- Each page of a multi-page TIFF is OCR'd separately. A page that fails adds a warning and keeps the other pages.
+- SVG images, embedded or standalone, contribute the text they draw (`<text>` and `foreignObject` labels, read as an English-language renderer shows them), with embedded raster images OCR'd in place. An SVG without text is rendered locally and OCR'd. EMF/WMF assets are skipped with a warning.
+- Before OCR, transparent images are flattened onto a background that contrasts with their visible content, and images above the OCR engine's size limits are shrunk. Image decoding is best-effort: a truncated scan yields its readable part.
 
 ## System-wide constraints
 
@@ -94,4 +113,5 @@ Detection prefers content signatures. CSV and other signature-less formats requi
 
 - Local file-to-Markdown is specified in `docs/prd/local-file-to-markdown.md` and `docs/adr/`.
 - Page iteration and cancellation are specified in `docs/prd/page-iteration.md` and `docs/adr/lazy-page-conversion.md`.
+- Format coverage (text, HTML, e-mail, MHTML, OFD, notebooks, templates, WPS, TIFF pages, HEIC/AVIF/SVG) is specified in `docs/prd/format-coverage.md`, with decisions in `docs/adr/text-detection-and-encoding.md`, `docs/adr/pure-js-format-parsers.md`, `docs/adr/email-attachments.md`, and `docs/adr/paged-inputs.md`.
 - The programmable API and CLI implement the contracts in this file.

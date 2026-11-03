@@ -1,6 +1,6 @@
 # here-docs
 
-Local any-file-to-Markdown for Node.js. Drop office documents, PDFs, or images in; get a Markdown manuscript back. Nothing leaves the machine.
+Local any-file-to-Markdown for Node.js. Drop in office documents, PDFs, OFD, e-mail, web pages, notebooks, text, or images, and get a Markdown manuscript back. Nothing leaves the machine.
 
 ## Install
 
@@ -40,7 +40,7 @@ try {
 }
 ```
 
-`filename` is a format hint (needed for signature-less inputs like CSV). It is never used to read a path.
+`filename` is a format hint (needed for CSV and TSV to become tables). It is never used to read a path.
 
 A completed call always returns:
 
@@ -55,7 +55,7 @@ Encrypted, unknown, or unconvertible inputs resolve with empty `markdown` and at
 
 ### Page by page
 
-`convertPages()` takes the same arguments and yields the manuscript one part at a time. A PDF yields one part per page, in order, and each page is extracted or OCR'd only when you ask for it, so breaking out of the loop skips the rest. Other inputs yield a single part with `page: null`.
+`convertPages()` takes the same arguments and yields the manuscript one part at a time. A PDF, an OFD, or a multi-page TIFF yields one part per page, in order, and each page is extracted or OCR'd only when you ask for it, so breaking out of the loop skips the rest. Other inputs yield a single part with `page: null`.
 
 ```ts
 import { convertPages } from "here-docs";
@@ -99,24 +99,34 @@ Path and stdin are mutually exclusive. Markdown goes to stdout; warnings go to s
 
 ## What gets routed where
 
-Detection prefers content signatures over the filename.
+Detection prefers content. Binary signatures come first, then the filename hint, then text markers (HTML, SVG, e-mail headers, notebook JSON). Anything else that decodes as text is converted as plain text.
 
 | Input | What happens |
 | --- | --- |
-| Word, PowerPoint, Excel, OpenDocument, RTF, EPUB, CSV | Structured Markdown via anydoc. Embedded raster images are OCR'd and inserted at the original image position. |
+| Word, PowerPoint, Excel, OpenDocument (and their templates), Kingsoft WPS binaries, RTF, EPUB | Structured Markdown via anydoc. Embedded raster and SVG images are OCR'd and inserted at the original image position. |
+| CSV, TSV | A table. Legacy encodings (GBK, Big5, Shift_JIS, ...) are decoded first. Without a filename hint they are converted as plain text. |
 | Text-based PDF | Structured Markdown. The whole file is not sent through OCR. |
 | Scanned or image-only PDF | OCR Markdown, one page per OCR request, so long scans are not cut off by OCR limits. |
 | Mixed PDF | Extractable pages stay structured; pages that need OCR are recognized and merged in page order. |
+| OFD (e-invoices, official documents) | One part per page. Text, including template text, comes out in reading order; image-only pages are OCR'd. |
+| HTML, XHTML | Headings, lists, tables, quotes, code, and links. Layout tables render as content. `data:` images are OCR'd in place; remote images are never fetched. |
+| E-mail (`.eml`, Outlook `.msg`) | Subject, From/To/Cc/Date, the body (inline `cid:` images OCR'd in place), then every attachment converted under its own heading, nested messages included (up to three levels deep). |
+| Web archive (`.mht`, `.mhtml`) | The archived page as HTML; archived images are OCR'd in place. |
+| Jupyter notebook | Markdown cells as written, code cells fenced, outputs as text, tables, or OCR text. |
+| Plain text, Markdown | Decoded (any detectable encoding) and passed through unescaped. |
 | JPEG, PNG | OCR only. |
-| WebP, TIFF, HEIC, GIF | Transcoded to PNG, then OCR. Transcode failure is a warning, not a throw. |
+| WebP, TIFF, HEIC/HEIF, AVIF, BMP, GIF | Decoded to PNG, then OCR. Each TIFF page is its own part. iPhone HEIC photos use a WebAssembly decoder. Failure is a warning, not a throw. |
+| SVG | The text the drawing contains, including Mermaid and draw.io labels; drawings without text are rendered and OCR'd. |
 
-CSV and other signature-less formats need `--filename` / `--format` or `options.filename`.
+HTML or tab-separated text saved under an Office name (`export.xls`, `report.wps`), as business systems often produce, converts by its content.
+
+Deliberately unsupported: Apple iWork, InDesign, LaTeX and other pandoc markups, HWP, XPS, Visio/OneNote/Publisher, MOBI/DjVu, and archives. See [`docs/prd/format-coverage.md`](docs/prd/format-coverage.md).
 
 ## Requirements
 
 - Node.js 22 or 24
 - A supported native host: **macOS arm64**, **Linux x64/arm64** (glibc or musl/Alpine), or **Windows x64**. Optional platform packages must be installed (do not use `--omit=optional`).
-- Local native engines installed with the package: `@firecrawl/anydoc`, `@firecrawl/pdf-inspector`, `@arcships/light-ocr`, and `sharp`
+- Local native engines installed with the package: `@firecrawl/anydoc`, `@firecrawl/pdf-inspector`, `@arcships/light-ocr`, and `sharp`. HTML, e-mail, OFD, notebooks, encodings, and HEIC are handled by pure-JavaScript dependencies, so they add no native packages.
 - No network service after install
 
 Intel macOS and Windows ARM are not supported: at least one upstream engine does not publish that binary. `createEngine()` throws instead of returning a half-working engine.
@@ -130,6 +140,8 @@ npm run smoke
 npm run build
 node dist/cli.js --help
 ```
+
+`npm run corpus` converts several hundred public real-world files (e-mail from a dozen mail clients, OFD invoices, legacy-encoded text and CSV, saved web pages, notebooks, TIFF scans, HEIC/AVIF photos, SVG diagrams, Office templates, and Kingsoft WPS files) with the real engines and checks the expected text. The files live in `test/corpus/files/`, so the check runs offline; [`test/corpus/manifest.json`](test/corpus/manifest.json) lists each file's source and expected text. They are third-party test files kept under their original projects' licenses and are not part of the npm package.
 
 CI runs unit tests and a real `createEngine()` / `convert()` / CLI smoke on every supported host (Linux x64 and arm64 on glibc and in Alpine/musl, macOS arm64, Windows x64) for Node 22 and 24. Intel macOS is checked only to confirm startup fails closed.
 

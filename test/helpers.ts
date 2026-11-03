@@ -106,3 +106,28 @@ export function trackingOcr(pages: OcrPage[], encoded: OcrLine[] = [{ text: "OCR
     async close() {},
   };
 }
+
+const PNG_SIGNATURE = [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a];
+
+/** PNG-signed bytes that carry `label`; `labelOcr()` "recognizes" the label, so tests can see which image went where. */
+export function labelledPng(label: string): Uint8Array {
+  return Uint8Array.from([...PNG_SIGNATURE, ...Buffer.from(label)]);
+}
+
+export function labelOcr(): OcrPort & { encoded: string[] } {
+  const encoded: string[] = [];
+  return {
+    encoded,
+    async recognizeEncoded(bytes) {
+      const label = Buffer.from(bytes.subarray(PNG_SIGNATURE.length)).toString();
+      encoded.push(label);
+      return { lines: [{ text: label }] };
+    },
+    async *recognizeDocument() {},
+    async close() {},
+  };
+}
+
+export function bytesOf(text: string): Uint8Array {
+  return Uint8Array.from(Buffer.from(text));
+}
