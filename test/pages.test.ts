@@ -227,3 +227,48 @@ test("a multi-page TIFF yields one OCR'd part per page; a failed page keeps the 
   assert.equal(first.length, 1);
   assert.deepEqual(decoded, [0, 1, 2, 0]);
 });
+
+test("convert() reads every page, so it extracts all PDF text in one call", async () => {
+  const pdf = textPdf(200);
+  const result = await convert(pdfBytes, { engine: fakeDeps({ pdf }) });
+  assert.deepEqual(
+    pdf.requests.map((r) => [r[0], r.at(-1)]),
+    [[0, 199]],
+  );
+  assert.match(result.markdown, /text 1\n\n[\s\S]*text 200\n$/);
+
+  // convertPages() stays lazy: the same document is extracted in growing batches as pages are requested.
+  const lazy = textPdf(200);
+  await collect(convertPages(pdfBytes, { engine: fakeDeps({ pdf: lazy }) }), 10);
+  assert.deepEqual(
+    lazy.requests.map((r) => [r[0], r.at(-1)]),
+    [
+      [0, 7],
+      [8, 23],
+    ],
+  );
+});
+
+test("when convert() cannot extract everything at once, it falls back to batches", async () => {
+  const pdf = textPdf(30);
+  const extract = pdf.extractPagesMarkdown.bind(pdf);
+  pdf.extractPagesMarkdown = async (bytes, pages) => {
+    if ((pages ?? []).length === 30) {
+      pdf.requests.push(pages ?? []);
+      throw new Error("parse error");
+    }
+    return extract(bytes, pages);
+  };
+  const result = await convert(pdfBytes, { engine: fakeDeps({ pdf }) });
+  assert.deepEqual(
+    pdf.requests.map((r) => [r[0], r.at(-1)]),
+    [
+      [0, 29],
+      [0, 7],
+      [8, 23],
+      [24, 29],
+    ],
+  );
+  assert.equal(result.markdown.match(/^text \d+$/gm)?.length, 30);
+  assert.deepEqual(result.warnings, []);
+});

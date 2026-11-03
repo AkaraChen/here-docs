@@ -11,7 +11,7 @@ pdf-inspector (1.14.2 and 1.25.2) renders page Markdown without link targets. It
 ## Decision
 
 - `PdfInspectorPort` gains an optional `pageItems(bytes, pages)` that returns text, link, and image items for 0-based pages. The adapter maps it onto `extractTextWithPositions`.
-- The PDF strategy reads items once per extraction batch, for that batch's text pages only.
+- The PDF strategy reads items for text pages only, at most 64 pages at a time: once per lazy extraction batch, or per 64-page chunk when `convert()` extracts everything at once.
 - `spliceLinks` (in `src/markdown/`) works on one page:
   - Links with a safe scheme (`http`, `https`, `mailto`) are taken in reading order.
   - The anchor is the words of the text runs under the link's rectangle. Character positions inside a run are estimated from proportional advance widths (Helvetica metrics, one em per CJK character), and the anchor is snapped to whole words.
