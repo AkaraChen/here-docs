@@ -55,7 +55,7 @@ Encrypted, unknown, or unconvertible inputs resolve with empty `markdown` and at
 
 ### Page by page
 
-`convertPages()` takes the same arguments and yields the manuscript one part at a time. A PDF, an OFD, or a multi-page TIFF yields one part per page, in order, and each page is OCR'd only when you ask for it, so breaking out of the loop skips the rest. PDF text extraction runs in at most two native calls (the first eight pages, then the rest). Other inputs yield a single part with `page: null`.
+`convertPages()` takes the same arguments and yields the manuscript one part at a time. A PDF, an OFD, or a multi-page TIFF yields one part per page, in order, and each page is extracted or OCR'd only when you ask for it, so breaking out of the loop skips the rest. Other inputs yield a single part with `page: null`.
 
 ```ts
 import { convertPages } from "here-docs";
